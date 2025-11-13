@@ -1,17 +1,11 @@
 "use client";
 import { useState, useEffect } from "react";
-import {
-  FaUserCircle,
-  FaBars,
-  FaUserPlus,
-  FaSignOutAlt,
-  FaTasks,
-} from "react-icons/fa";
-import { BiSolidReport } from "react-icons/bi";
-import { TiHome } from "react-icons/ti";
+import { FaUserCircle, FaBars, FaSignOutAlt } from "react-icons/fa";
+import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Poppins } from "next/font/google";
-import { useRouter, usePathname } from "next/navigation";
+import { BiSolidReport } from "react-icons/bi";
+import { FaTasks } from "react-icons/fa";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -23,30 +17,60 @@ export default function Header({ onLogout }) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
   const [username, setUsername] = useState(null);
-  const [role, setRole] = useState(null);
+  const [loadingUser, setLoadingUser] = useState(true);
 
+  // 🧭 تحميل بيانات المستخدم من localStorage
   useEffect(() => {
     const updateUser = () => {
-      const storedUser = localStorage.getItem("username");
-      const storedRole = localStorage.getItem("role");
-      setUsername(storedUser || null);
-      setRole(storedRole || "user");
-      if (!storedUser) setMenuOpen(false);
+      try {
+        const storedUser = localStorage.getItem("user");
+        if (storedUser) {
+          const parsed = JSON.parse(storedUser);
+          setUsername(
+            parsed.fullname?.trim() ||
+              parsed.username?.trim() ||
+              parsed.UserName?.trim() ||
+              "User"
+          );
+        } else {
+          setUsername(null);
+        }
+      } catch (err) {
+        console.error("Error reading user:", err);
+        setUsername(null);
+      } finally {
+        setLoadingUser(false);
+      }
     };
+
     updateUser();
     window.addEventListener("userChanged", updateUser);
     return () => window.removeEventListener("userChanged", updateUser);
   }, []);
 
+  // 🔒 منع الدخول للصفحات بدون تسجيل دخول
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+    if (!storedUser && pathname !== "/login") {
+      router.push("/login");
+    }
+  }, [pathname, router]);
+
+  // 🚪 تسجيل الخروج
   const handleLogout = () => {
-    localStorage.removeItem("username");
-    localStorage.removeItem("role");
+    localStorage.removeItem("user");
+    document.cookie = "userLoggedIn=false; path=/; max-age=0";
     setUsername(null);
-    setRole(null);
     window.dispatchEvent(new Event("userChanged"));
     if (onLogout) onLogout();
     router.push("/login");
   };
+
+  if (loadingUser) {
+    return (
+      <div className="h-16 w-full bg-gradient-to-b from-gray-800 via-gray-750 to-gray-900 border-b border-gray-800/60 shadow" />
+    );
+  }
 
   return (
     <motion.header
@@ -67,7 +91,7 @@ export default function Header({ onLogout }) {
                         bg-gradient-to-r from-gray-300 via-gray-100 to-white
                         text-transparent bg-clip-text ${poppins.className}`}
           >
-            SPC
+           SPC
           </span>
           <span className={`text-[11px] text-gray-300 ${poppins.className}`}>
             Developed by SPC Team
@@ -81,12 +105,12 @@ export default function Header({ onLogout }) {
                        bg-gradient-to-r from-gray-200 via-gray-100 to-white
                        text-transparent bg-clip-text"
           >
-            Sales Order Portal
+            SAP Portal 
           </h1>
         </div>
 
         {/* يمين */}
-        <div className="flex justify-end items-center relative">
+        <div className="flex justify-end items-center">
           <AnimatePresence>
             {pathname !== "/login" && username && (
               <motion.div
@@ -109,7 +133,7 @@ export default function Header({ onLogout }) {
                   </span>
                 </motion.div>
 
-                {/* زر القائمة */}
+                {/* زر المنيو */}
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   onClick={() => setMenuOpen((v) => !v)}
@@ -145,39 +169,21 @@ export default function Header({ onLogout }) {
                         <MenuItem
                           onClick={() => {
                             setMenuOpen(false);
-                            router.push("/home");
+                            router.push("/sales-order");
                           }}
-                          icon={<TiHome className="text-gray-200" />}
-                          label="Home"
+                          icon={<FaTasks className="text-gray-200" />}
+                          label="Sales Order"
                         />
+
                         <MenuItem
                           onClick={() => {
                             setMenuOpen(false);
-                            router.push("/sales-orders");
+                            router.push("/sales-orders-report");
                           }}
-                          icon={<FaTasks className="text-gray-200" />}
-                          label="Sales Orders"
+                          icon={<BiSolidReport className="text-gray-200" />}
+                          label="Reports"
                         />
-                        {role === "admin" && (
-                          <MenuItem
-                            onClick={() => {
-                              setMenuOpen(false);
-                              router.push("/register");
-                            }}
-                            icon={<FaUserPlus className="text-gray-200" />}
-                            label="Create User"
-                          />
-                        )}
-                        {role === "admin" && (
-                          <MenuItem
-                            onClick={() => {
-                              setMenuOpen(false);
-                              router.push("/reports");
-                            }}
-                            icon={<BiSolidReport className="text-gray-200" />}
-                            label="Reports"
-                          />
-                        )}
+
                         <MenuItem
                           onClick={handleLogout}
                           icon={<FaSignOutAlt className="text-red-400" />}
@@ -197,7 +203,7 @@ export default function Header({ onLogout }) {
   );
 }
 
-/* 🔹 عنصر المنيو */
+/* 🔹 عنصر القائمة */
 function MenuItem({ onClick, icon, label, danger = false }) {
   return (
     <motion.button

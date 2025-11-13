@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "Interview",
+  title: "Alryiad Gui",
   description: "SPC Dashboard",
 };
 
