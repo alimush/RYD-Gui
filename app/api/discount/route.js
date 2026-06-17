@@ -20,8 +20,8 @@ export async function GET(req) {
 
     const sql = `
       SELECT T1."Discount"
-      FROM "DEMO_RYD_05102025"."OEDG" T0
-      INNER JOIN "DEMO_RYD_05102025"."EDG1" T1
+      FROM "RYD"."OEDG" T0
+      INNER JOIN "RYD"."EDG1" T1
         ON T0."AbsEntry" = T1."AbsEntry"
       WHERE 
         T1."ObjKey" = '${itemCode}'

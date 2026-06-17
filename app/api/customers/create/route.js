@@ -19,17 +19,17 @@ export async function POST(req) {
       CardName: CardName.trim(),
       AliasName: AliasName?.trim() || "",
       Notes: Remarks?.trim() || "",
-      CardType: "cCustomer",
+      CardType: "C",
       Territory: parseInt(Territory) || 0,
       Phone1: Phone1?.trim() || "",
-      Currency: "##",                     // ✅ جميع العملات (All Currencies)
+      Currency: "##",                     //  جميع العملات (All Currencies)
     };
 
     // 🔐 تسجيل الدخول
     const loginRes = await axios.post(`${SAP_BASE_URL}/Login`, {
-      CompanyDB: "DEMO_RYD_05102025",
-      UserName: sapUser,
-      Password: sapPass,
+      CompanyDB: "RYD",
+      UserName: "manager",
+      Password: "mgrryd1234",
     });
 
     const sessionId = loginRes.data.SessionId;

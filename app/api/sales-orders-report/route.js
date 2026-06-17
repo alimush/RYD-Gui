@@ -18,7 +18,7 @@ export async function POST(req) {
 
     console.log(`🔐 تسجيل الدخول في SAP بواسطة: ${sapUser}`);
     const loginRes = await axios.post(`${SAP_BASE_URL}/Login`, {
-      CompanyDB: "DEMO_RYD_05102025", // ← غيّرها إذا لازم
+      CompanyDB: "RYD", // ← غيّرها إذا لازم
       UserName: sapUser,
       Password: sapPass,
     });

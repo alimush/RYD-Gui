@@ -25,10 +25,10 @@ export async function GET(req) {
         owhs."WhsName",
         TO_DECIMAL(oitw."OnHand" - oitw."IsCommited", 15, 2) AS "Available",
         COALESCE(itm1."Price", 0) AS "Price"
-      FROM "DEMO_RYD_05102025"."OITW" oitw
-      INNER JOIN "DEMO_RYD_05102025"."OWHS" owhs 
+      FROM "RYD"."OITW" oitw
+      INNER JOIN "RYD"."OWHS" owhs 
         ON oitw."WhsCode" = owhs."WhsCode"
-      LEFT JOIN "DEMO_RYD_05102025"."ITM1" itm1 
+      LEFT JOIN "RYD"."ITM1" itm1 
         ON itm1."ItemCode" = oitw."ItemCode" 
         AND itm1."PriceList" = 1
       WHERE oitw."ItemCode" = '${itemCode}'

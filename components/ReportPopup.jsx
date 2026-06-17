@@ -42,6 +42,17 @@ export default function ReportPopup({ order, onClose, onCanceled, onUpdated }) {
   const [addQty, setAddQty] = useState("");
   const [addDisc, setAddDisc] = useState("");
   const [discFromSAP, setDiscFromSAP] = useState(false);
+  const [userMaxDiscount, setUserMaxDiscount] = useState(0); 
+  useEffect(() => {
+    try {
+      const user = JSON.parse(localStorage.getItem("user"));
+      if (user && user.dis != null) {
+        setUserMaxDiscount(Number(user.dis) || 0);
+      }
+    } catch (err) {
+      console.error("❌ Failed to load user discount", err);
+    }
+  }, []);
   const fmt = (n) =>
   (Number(n) || 0).toLocaleString("en-US", {
     minimumFractionDigits: 2,
@@ -64,6 +75,7 @@ export default function ReportPopup({ order, onClose, onCanceled, onUpdated }) {
       const url = URL.createObjectURL(blob);
       window.open(url, "_blank");
     };
+    
 
   // نحول DocumentLines المسترجعة من SAP إلى draftLines
   // ونخفي أي سطر LineStatus === "C"
@@ -410,43 +422,37 @@ setDiscFromSAP(0);  };
     currentOrder?.CANCELED === "Y" ||
     currentOrder?.DocumentStatus === "C";
 // 💾 حفظ التعديلات (يشمل إنشاء أوردر جديد + إلغاء القديم تلقائيًا)
+// 💾 حفظ التعديلات (Update فقط - بدون Cancel)
 const saveChanges = async () => {
   if (!currentOrder?.DocEntry) return;
+
   setSaving(true);
   try {
     const user = JSON.parse(localStorage.getItem("user"));
     if (!user?.sapUser || !user?.sapPass) {
       toast.error("بيانات دخول SAP غير موجودة");
-      setSaving(false);
       return;
     }
 
-    // نرسل فقط الأسطر المتبقية بعد الحذف
     const payload = {
       docEntry: currentOrder.DocEntry,
       sapUser: user.sapUser,
       sapPass: user.sapPass,
       updatedLines: draftLines.map((r) => ({
-        LineNum: typeof r.LineNum === "number" ? r.LineNum : null,
+        LineNum: typeof r.LineNum === "number" ? r.LineNum : null, // ✅ القديم فقط
         ItemCode: r.ItemCode,
         Quantity: Number(r.Quantity) || 0,
         UnitPrice: Number(r.UnitPrice) || 0,
         DiscountPercent: Number(r.DiscountPercent) || 0,
         WarehouseCode: r.WarehouseCode,
         isSAPDiscount: !!r.isSAPDiscount,
-        originalSAPDiscount: r.isSAPDiscount ? r.originalSAPDiscount : 0,
+        originalSAPDiscount: r.isSAPDiscount ? Number(r.originalSAPDiscount || 0) : 0,
         FreeText: r.isSAPDiscount
-        ? `DG:${r.originalSAPDiscount ?? r.DiscountPercent ?? 0}`
-        : "",
+          ? `DG:${Number(r.originalSAPDiscount ?? r.DiscountPercent ?? 0)}`
+          : "",
       })),
     };
-// // نحافظ على حالة القفل للخصم
-// setDraftLines((prev) =>
-//   prev.map((r) => ({
-//     ...r,
-//     lockedDiscount: r.isSAPDiscount || r.lockedDiscount, // 👈 نحتفظ بالقفل بعد الحفظ
-//   }))
-// );
+
     const res = await fetch("/api/update-order", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -456,24 +462,22 @@ const saveChanges = async () => {
     const data = await res.json();
     if (!res.ok) throw new Error(data?.error || "SAP update failed");
 
-    // ✅ إلغاء الأوردر القديم مباشرة بعد نجاح الإنشاء الجديد
-    try {
-      await fetch("/api/cancel", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          docEntry: currentOrder.DocEntry,
-          sapUser: user.sapUser,
-          sapPass: user.sapPass,
-        }),
-      });
-    } catch (err) {
-      console.warn("⚠️ فشل إلغاء الأوردر القديم:", err.message);
+    toast.success("✅ تم الحفظ بنجاح");
+
+    // ✅ تحديث البيانات بالواجهة
+    if (data?.order) {
+      setCurrentOrder(data.order);      // يحدث الهيدر والسطور
+      setDraftLines(mapDocToDraft(data.order)); // يرجع يضبط الدرفت من SAP
     }
 
-    // ✅ نحدث الصفحة ونغلق البوب أب
+    setEditMode(false);
+
+    // إذا تحب تحديث القائمة الرئيسية برا:
     if (onUpdated) onUpdated();
-    onClose();
+
+    // ❌ لا تسوي onClose حتى يبقى مفتوح بعد الحفظ (إذا تحب تغلقه خلي onClose هنا)
+    // onClose();
+
   } catch (err) {
     console.error(err);
     toast.error(`❌ فشل الحفظ: ${err.message}`);
@@ -785,44 +789,57 @@ const saveChanges = async () => {
                       placeholder="Qty"
                     />
 
-                    <div className="relative">
-                    <input
-  type="text"
-  inputMode="decimal"
-  value={addDisc === "0" || addDisc === 0 ? "" : addDisc}
-  onChange={(e) => {
-    const val = e.target.value.trim();
+<div className="relative">
+  <input
+    type="text"
+    inputMode="decimal"
+    value={addDisc === "0" || addDisc === 0 ? "" : addDisc}
+    onChange={(e) => {
+      const val = e.target.value.trim();
 
-    // إذا الحقل فارغ نخليه فارغ (بدون 0)
-    if (val === "") {
-      setAddDisc("");
-      return;
-    }
+      // إذا الحقل فارغ نخليه فارغ (بدون 0)
+      if (val === "") {
+        setAddDisc("");
+        return;
+      }
 
-    const num = Number(val);
-    if (isNaN(num)) return;
+      const num = Number(val);
+      if (isNaN(num)) return;
 
-    // 🔒 إذا الخصم من SAP لا يسمح بزيادته عن القيمة الأصلية
-    if (Number(discFromSAP) > 0 && num > Number(discFromSAP)) {
-      toast.error(`⚠️ لا يمكن تجاوز خصم SAP (${discFromSAP}%)`);
-      return;
-    }
+      // =======================================================
+      // 1) خصم SAP - لا يمكن تجاوز الخصم الأصلي من SAP
+      // =======================================================
+      if (Number(discFromSAP) > 0 && num > Number(discFromSAP)) {
+        toast.error(`⚠️ لا يمكن تجاوز خصم SAP (${discFromSAP}%)`);
+        return;
+      }
 
-    setAddDisc(val);
-  }}
-  className={`w-full border rounded-xl px-2 py-2 text-right ${
-    discFromSAP
-      ? "bg-gray-100 text-gray-500 border-gray-400 cursor-default select-none"
-      : "bg-white border-gray-300 focus:border-[#2f3a47]"
-  }`}
-  placeholder="Discount %"
-/>
-                      {Number(addDisc) > 0 && (
-                        <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-semibold">
-                          %
-                        </span>
-                      )}
-                    </div>
+      // =======================================================
+      // 2) خصم مندوب - لا يمكن تجاوز الحد الأقصى للمندوب
+      // =======================================================
+      if (Number(discFromSAP) === 0 && num > userMaxDiscount) {
+        toast.error(
+          `⚠️ الحد الأقصى للخصم حسب المندوب هو (${userMaxDiscount}%)`
+        );
+        setAddDisc(String(userMaxDiscount));
+        return;
+      }
+
+      setAddDisc(val);
+    }}
+    className={`w-full border rounded-xl px-2 py-2 text-right ${
+      discFromSAP
+        ? "bg-gray-100 text-gray-500 border-gray-400 cursor-default select-none"
+        : "bg-white border-gray-300 focus:border-[#2f3a47]"
+    }`}
+    placeholder="Discount %"
+  />
+  {Number(addDisc) > 0 && (
+    <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-semibold">
+      %
+    </span>
+  )}
+</div>
 
                     <div className="col-span-2 flex items-center gap-2">
                       <div className="px-3 rounded-xl border bg-gray-50 text-sm text-gray-700">
@@ -913,46 +930,58 @@ const saveChanges = async () => {
     </>
   )}
 </td>
-{/* Discount */}{/* Discount */}
+{/* Discount */}{/* Discount */}{/* Discount */}
 <td className="p-3 text-right">
-  {editMode ? ( 
+  {editMode ? (
     <div className="relative">
- <input
-  type="number"
-  inputMode="decimal"
-  value={r.DiscountPercent === 0 ? "" : r.DiscountPercent}
-  onChange={(e) => {
-    const val = e.target.value.trim();
-    if (val === "") {
-      updateDraftRow(i, "DiscountPercent", 0);
-      return;
-    }
+      <input
+        type="number"
+        inputMode="decimal"
+        value={r.DiscountPercent === 0 ? "" : r.DiscountPercent}
+        onChange={(e) => {
+          const val = e.target.value.trim();
+          if (val === "") {
+            updateDraftRow(i, "DiscountPercent", 0);
+            return;
+          }
 
-    const num = Number(val);
-    if (isNaN(num)) return;
+          const num = Number(val);
+          if (isNaN(num)) return;
 
-    // ✅ من SAP: لا يمكن الزيادة عن الأصل، لكن يمكن الرجوع له
-    if (r.isSAPDiscount) {
-      const max = Number(r.originalSAPDiscount) || 0;
-      if (num > max) {
-        toast.error(`⚠️ لا يمكن تجاوز خصم SAP (${max}%)`);
-        updateDraftRow(i, "DiscountPercent", max);
-        return;
-      }
-    }
+          // ===================================================
+          // 1) خصم SAP — لا يتجاوز خصم SAP
+          // ===================================================
+          if (r.isSAPDiscount) {
+            const max = Number(r.originalSAPDiscount) || 0;
+            if (num > max) {
+              toast.error(`⚠️ لا يمكن تجاوز خصم SAP (${max}%)`);
+              updateDraftRow(i, "DiscountPercent", max);
+              return;
+            }
+          }
 
-    updateDraftRow(i, "DiscountPercent", num);
-  }}
-  className={`w-full border rounded-xl px-2 py-2 text-right transition
-    ${
-      r.isSAPDiscount
-        ? "bg-yellow-50 text-yellow-800 font-semibold border-yellow-300"
-        : "bg-white border-gray-300 focus:border-[#2f3a47]"
-    }`}
-  placeholder="Discount %"
-/>
+          // ===================================================
+          // 2) خصم مندوب — لا يتجاوز userMaxDiscount
+          // ===================================================
+          if (!r.isSAPDiscount && num > userMaxDiscount) {
+            toast.error(
+              `⚠️ الحد الأقصى للخصم حسب المندوب هو (${userMaxDiscount}%)`
+            );
+            updateDraftRow(i, "DiscountPercent", userMaxDiscount);
+            return;
+          }
 
-      {/* 🔹 رمز % */}
+          updateDraftRow(i, "DiscountPercent", num);
+        }}
+        className={`w-full border rounded-xl px-2 py-2 text-right transition
+          ${
+            r.isSAPDiscount
+              ? "bg-yellow-50 text-yellow-800 font-semibold border-yellow-300"
+              : "bg-white border-gray-300 focus:border-[#2f3a47]"
+          }`}
+        placeholder="Discount %"
+      />
+
       {Number(r.DiscountPercent) > 0 && (
         <span className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-semibold">
           %

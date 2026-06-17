@@ -11,7 +11,7 @@ const HANA_CONN_STR =
 
 // 🔹 بيانات الاتصال بـ Service Layer
 const SAP_BASE_URL = "https://hanab1:50000/b1s/v1";
-const COMPANY_DB = "DEMO_RYD_05102025";
+const COMPANY_DB = "RYD";
 
 export async function POST(req) {
   try {
@@ -94,7 +94,7 @@ export async function POST(req) {
       SELECT DISTINCT 
         T0."territryID" AS "ID",
         T0."descript" AS "Name"
-      FROM "DEMO_RYD_05102025"."OTER" T0
+      FROM "RYD"."OTER" T0
       WHERE T0."territryID" IS NOT NULL
       ORDER BY T0."territryID"
     `);
@@ -114,14 +114,14 @@ export async function POST(req) {
         T4."U_NAME" AS "CreatedBy",
         T0."Comments",
         T0."CANCELED"
-      FROM "DEMO_RYD_05102025"."ORDR" T0
-      INNER JOIN "DEMO_RYD_05102025"."OCRD" T1 
+      FROM "RYD"."ORDR" T0
+      INNER JOIN "RYD"."OCRD" T1 
         ON T0."CardCode" = T1."CardCode"
-      LEFT JOIN "DEMO_RYD_05102025"."OTER" T2 
+      LEFT JOIN "RYD"."OTER" T2 
         ON T1."Territory" = T2."territryID"
-      LEFT JOIN "DEMO_RYD_05102025"."OSLP" T3 
+      LEFT JOIN "RYD"."OSLP" T3 
         ON T0."SlpCode" = T3."SlpCode"
-      LEFT JOIN "DEMO_RYD_05102025"."OUSR" T4 
+      LEFT JOIN "RYD"."OUSR" T4 
         ON T0."UserSign" = T4."USERID"
       WHERE T0."CANCELED" = 'Y'
       ORDER BY T0."DocDate" DESC

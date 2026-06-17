@@ -11,13 +11,18 @@ const pool = await odbc.pool(
 const cache = new Map();
 const CACHE_TTL = 10 * 1000; // 10 seconds
 
+// 🔥 Primary + Fallback IPs
+const PRIMARY_IP = "http://172.30.30.201:8777";
+const FALLBACK_IP = "http://109.205.118.249:8777";
+
+const DEFAULT_IMAGE = "http://172.30.30.201:3002/no-image.jpg";
+
 export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const q = searchParams.get("q")?.trim().toLowerCase() || "";
 
-    // 🔒 شرط: إذا المستخدم كتب أقل من 3 أحرف — رجّع مصفوفة فارغة
-    if (q.length > 0 && q.length < 3) {
+    if (q.length > 0 && q.length < 5) {
       return new Response(JSON.stringify([]), {
         status: 200,
         headers: { "Content-Type": "application/json" },
@@ -27,7 +32,6 @@ export async function GET(req) {
     const cacheKey = `items_${q}`;
     const now = Date.now();
 
-    // 🚀 Cache hit
     if (cache.has(cacheKey)) {
       const data = cache.get(cacheKey);
       if (now - data.time < CACHE_TTL) {
@@ -40,7 +44,6 @@ export async function GET(req) {
 
     const conn = await pool.connect();
 
-    // ⚡ Query
     let sql = `
       SELECT 
         oitm."ItemCode",
@@ -53,8 +56,8 @@ export async function GET(req) {
         oitm."PicturName",
         SUM(oitw."OnHand" - oitw."IsCommited") AS "TotalAvailable",
         AVG(NULLIF(oitw."AvgPrice", 0)) AS "WarehousePrice"
-      FROM "DEMO_RYD_05102025"."OITM" oitm
-      LEFT JOIN "DEMO_RYD_05102025"."OITW" oitw 
+      FROM "RYD"."OITM" oitm
+      LEFT JOIN "RYD"."OITW" oitw 
         ON oitm."ItemCode" = oitw."ItemCode"
       WHERE oitm."validFor" = 'Y'
     `;
@@ -71,7 +74,7 @@ export async function GET(req) {
       `;
     }
 
-    sql += `
+    sql += `  
       GROUP BY 
         oitm."ItemCode",
         oitm."ItemName",
@@ -82,18 +85,17 @@ export async function GET(req) {
         oitm."SWW",
         oitm."PicturName"
       ORDER BY "TotalAvailable" DESC
-      LIMIT 20
     `;
 
     const result = await conn.query(sql);
 
-    const defaultImage = "http://109.205.118.249:3002/no-image.jpg";
-
     const items = result.map((r) => {
       const pic = (r.PicturName || "").trim();
+
+      // ❗ API يرجع صورة واحدة فقط (حتى الـ <img src> يشتغل)
       const imageUrl = pic
-        ?  `http://109.205.118.249:8777/${pic}`
-        : defaultImage;
+        ? `${PRIMARY_IP}/${pic}`
+        : DEFAULT_IMAGE;
 
       return {
         ItemCode: r.ItemCode,
@@ -105,11 +107,11 @@ export async function GET(req) {
         SWW: r.SWW,
         TotalAvailable: Number(r.TotalAvailable || 0),
         Price: Number(r.WarehousePrice?.toFixed(2) || 0),
-        image: imageUrl,
+        image: imageUrl, // ← string فقط (مهم)
+        fallbackImage: pic ? `${FALLBACK_IP}/${pic}` : DEFAULT_IMAGE
       };
     });
 
-    // 🧊 Cache save
     cache.set(cacheKey, { time: now, result: items });
 
     return new Response(JSON.stringify(items), {

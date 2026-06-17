@@ -63,6 +63,22 @@ const [createdOrder, setCreatedOrder] = useState(null);
 const [discFromSAP, setDiscFromSAP] = useState(0);
 const [currency, setCurrency] = useState("IQD");
 const [isProject, setIsProject] = useState(false);
+const [userMaxDiscount, setUserMaxDiscount] = useState(0);
+useEffect(() => {
+  const user = JSON.parse(localStorage.getItem("user"));
+  const mode = localStorage.getItem("mode");
+
+  if (!user) return;
+
+  setUserMaxDiscount(Number(user.dis) || 0); // 🟢 خصم المندوب
+
+  if (mode === "select-sale-order") {
+    setIsProject(true);
+  } else {
+    setIsProject(false);
+    if (user?.currency) setCurrency(user.currency);
+  }
+}, []);
 useEffect(() => {
   const user = JSON.parse(localStorage.getItem("user"));
   const mode = localStorage.getItem("mode");
@@ -154,7 +170,7 @@ useEffect(() => {
   }
 
   // ⭐ شرط الـ 3 حروف
-  if (s.length > 0 && s.length < 3) {
+  if (s.length > 0 && s.length < 5) {
     setSuggestions([]);
     return;
   }
@@ -201,10 +217,26 @@ useEffect(() => {
       );
       const data = await res.json();
   
-      if (!res.ok || !data?.data?.length) {
-        toast.error("⚠️ لم يتم العثور على سعر للمادة");
-        return;
-      }
+     // 🟡 إذا المادة بلا سعر — عادي جدًا، خلي السعر = 0 والمخازن فارغة
+if (!res.ok || !data?.data?.length) {
+  setDiscFromSAP(0);
+
+  setSelectedItem({
+    code: item.ItemCode,
+    name: item.ItemName,
+    desc: item.U_ST_Model || item.U_ST_PartNo || "",
+    U_ST_Model: item.U_ST_Model,
+    U_ST_PartNo: item.U_ST_PartNo,
+    ItemCode: item.ItemCode,
+    SWW: item.SWW || "",
+    price: 0,         // 🟢 السعر = صفر بدون تنبيه
+    currency: currency,
+    image: item.image || placeholder,
+    warehouses: [],   // 🟢 بدون مخازن (إن ما رجع SAP)
+  });
+
+  return;
+}
   
       // 🔹 بعد تحميل السعر من SAP، نجلب الخصم من مجموعة الخصومات
       try {
@@ -258,9 +290,14 @@ useEffect(() => {
     if (!qty) return toast.error("أدخل الكمية");
   
     const validQty = Number(qty);
-    const userDisc = Number(disc) || 0;
-    const autoDisc = userDisc === 0 ? autoDiscount(validQty) : 0;
-    const usedDisc = userDisc || autoDisc;
+   // خصم المستخدم
+const userDisc = Number(disc) || 0;
+
+// خصم SAP (إن وجد)
+const sapDisc = Number(discFromSAP) || 0;
+
+// الخصم النهائي — فقط SAP أو المستخدم
+const usedDisc = sapDisc > 0 ? sapDisc : userDisc;
   
     const selectedWarehouse = selectedItem.warehouses.find(
       (w) => w.code === selectedWhs
@@ -343,6 +380,7 @@ sapDiscountValue: discFromSAP || 0, // 🟢 نخزن الخصم الأصلي ا�
     setQty("");
     setDisc("");
   };
+
   // 🧩 تحديث حقل داخل صف معين في السلة
 const updateCartItem = (index, field, value) => {
   setCart((prev) =>
@@ -833,11 +871,17 @@ const totalsByCurrency = useMemo(() => {
   >
     {/* 🖼️ صورة المادة */}
     <img
-      src={it.image || placeholder}
-      onError={(e) => (e.target.src =placeholder)}
-      alt={it.ItemName}
-      className="w-10 h-10 rounded-lg object-cover border border-gray-300 shadow-sm"
-    />
+  src={it.image}
+  alt={it.ItemName}
+  onError={(e) => {
+    if (e.currentTarget.src !== it.fallbackImage) {
+      e.currentTarget.src = it.fallbackImage;
+    } else {
+      e.currentTarget.src = placeholder;
+    }
+  }}
+  className="w-10 h-10 rounded-lg object-cover border border-gray-300 shadow-sm"
+/>
 
     {/* 🧾 التفاصيل */}
     <div className="flex flex-col overflow-hidden">
@@ -947,28 +991,37 @@ const totalsByCurrency = useMemo(() => {
 />
 
 <div className="relative">
+<div className="relative">
   <input
     type="text"
     inputMode="decimal"
-    value={disc === 0 ? "" : disc} // ✅ إذا القيمة صفر، خليه فارغ
+    value={disc === 0 ? "" : disc} // يبقى مثل القديم
     onChange={(e) => {
       const val = e.target.value;
 
-      // ✅ لو المستخدم مسح الحقل بالكامل
+      // 🔹 لو المستخدم مسح الحقل
       if (val.trim() === "") {
         setDisc("");
         return;
       }
 
-      // ✅ نحاول نحول القيمة لرقم
+      // 🔹 نحول القيمة لرقم
       const num = Number(val);
 
-      // 🚫 لو مو رقم صالح
       if (isNaN(num)) return;
 
-      // 🔒 إذا عندنا خصم من SAP، لا نسمح بالزيادة
-      if (discFromSAP > 0 && num > discFromSAP) {
-        toast.error(`⚠️ لا يمكن تجاوز خصم SAP (${discFromSAP}%)`);
+      // ⭐ خصم SAP
+      const sapLimit = Number(discFromSAP) || 0;
+
+      // ⭐ خصم المندوب
+      const userLimit = Number(userMaxDiscount) || 0;
+
+      // ⭐ الحد النهائي الأعلى
+      const maxAllowed = Math.max(sapLimit, userLimit);
+
+      // ⛔ منع تجاوز الحد
+      if (num > maxAllowed) {
+        toast.error(`⚠️ لا يمكن تجاوز الحد المسموح (${maxAllowed}%)`);
         return;
       }
 
@@ -976,10 +1029,19 @@ const totalsByCurrency = useMemo(() => {
     }}
     placeholder="الخصم"
     className={`w-full border rounded-xl pl-2 pr-6 py-2 text-sm outline-none transition
-      ${discFromSAP > 0
-        ? "bg-white border-yellow-400 focus:border-yellow-500 text-gray-800"
-        : "bg-white focus:border-[#2f3a47] border-gray-300"}`}
+      ${
+        discFromSAP > 0
+          ? "bg-white border-yellow-400 focus:border-yellow-500 text-gray-800"
+          : "bg-white focus:border-[#2f3a47] border-gray-300"
+      }`}
   />
+
+  {Number(disc) > 0 && (
+    <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-semibold">
+      %
+    </span>
+  )}
+</div>
 
   {Number(disc) > 0 && (
     <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-500 text-sm font-semibold">
@@ -1006,12 +1068,18 @@ const totalsByCurrency = useMemo(() => {
 >
   {/* 🖼️ صورة المادة */}
   <div className="relative">
-    <img
-      src={selectedItem.image || placeholder}
-      onError={(e) => (e.target.src =placeholder)}
-      alt={selectedItem.name}
-      className="w-32 h-32 object-cover rounded-xl border border-gray-300 shadow-md"
-    />
+  <img
+  src={selectedItem.image}
+  onError={(e) => {
+    if (selectedItem.fallbackImage && e.currentTarget.src !== selectedItem.fallbackImage) {
+      e.currentTarget.src = selectedItem.fallbackImage;
+    } else {
+      e.currentTarget.src = placeholder;
+    }
+  }}
+  alt={selectedItem.name}
+  className="w-32 h-32 object-cover rounded-xl border border-gray-300 shadow-md"
+/>
     <div className="absolute bottom-1 right-1 bg-[#2f3a47] text-white text-[10px] px-2 py-0.5 rounded-md shadow-md">
       {currency}
     </div>
@@ -1140,23 +1208,26 @@ const totalsByCurrency = useMemo(() => {
               <td className="p-3 font-medium text-gray-800">{r.code}</td>
               <td className="p-3 text-gray-600">{r.desc}</td>
               <td className="p-3 text-gray-700">{r.whs}</td>
-              <td className="p-3 text-gray-800 font-medium">
+              <td className="p-3 text-gray-800">
   <input
     type="number"
     min={1}
     value={r.qty}
     onChange={(e) => {
-      const val = Number(e.target.value);
-      if (!val || val <= 0) return;
-      updateCartItem(i, "qty", val);
+      const newQty = Number(e.target.value);
+      if (isNaN(newQty) || newQty <= 0) return;
+
+      updateCartItem(i, "qty", newQty);
     }}
-    className="w-20 text-center border border-gray-300 rounded-lg px-2 py-1 focus:border-[#2f3a47] outline-none"
+    className="w-20 text-center border-2 rounded-lg px-2 py-1 outline-none transition
+      border-gray-300 focus:border-[#2f3a47] bg-white"
   />
 </td>
               <td className="p-3 text-gray-800">
                 {fmt(r.price)} {r.currency}
               </td>
               <td className="p-3 text-gray-800">
+             
   <input
     type="number"
     min={0}
@@ -1165,22 +1236,32 @@ const totalsByCurrency = useMemo(() => {
       const val = Number(e.target.value);
       if (isNaN(val)) return;
 
-      // ✅ لا تسمح بالزيادة فوق خصم SAP
-      if (discFromSAP > 0 && val > discFromSAP) {
-        toast.error(`⚠️ لا يمكن تجاوز خصم SAP (${discFromSAP}%)`);
+      // ⭐ خصم SAP
+      const sapLimit = Number(discFromSAP) || 0;
+
+      // ⭐ خصم المندوب من localStorage
+      const userLimit = Number(userMaxDiscount) || 0;
+
+      // ⭐ الحد الأعلى النهائي (أكبر واحد بينهم)
+      const maxAllowed = Math.max(sapLimit, userLimit);
+
+      // ⛔ منع تجاوز الحد
+      if (val > maxAllowed) {
+        toast.error(`⚠️ لا يمكن تجاوز الحد المسموح (${maxAllowed}%)`);
         return;
       }
 
       updateCartItem(i, "disc", val);
     }}
     className={`w-20 text-center border-2 rounded-lg px-2 py-1 outline-none transition
-    ${
-      r.isSAPDiscount
-        ? "border-yellow-400 focus:border-yellow-500" // 🟡 فقط البوردر أصفر
-        : "border-gray-300 focus:border-[#2f3a47]"    // ⚪ طبيعي
-    }`}
+      ${
+        r.isSAPDiscount
+          ? "border-yellow-400 focus:border-yellow-500"
+          : "border-gray-300 focus:border-[#2f3a47]"
+      }`}
   />
 </td>
+
               <td className="p-3 font-semibold text-[#2f3a47]">
                 {fmt(r.total)} {r.currency}
               </td>

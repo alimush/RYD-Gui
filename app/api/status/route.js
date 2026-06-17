@@ -4,7 +4,7 @@ import { NextResponse } from "next/server";
 import axios from "axios";
 
 const SAP_BASE_URL = "https://hanab1:50000/b1s/v1";
-const COMPANY_DB = "DEMO_RYD_05102025";
+const COMPANY_DB = "RYD";
 
 export async function POST(req) {
   try {

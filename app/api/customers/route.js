@@ -11,13 +11,12 @@ export async function GET(req) {
 
     const conn = await odbc.connect(CONN_STR);
 
-    // ✅ الكويري اللي انت طلبتها
     let sql = `
       SELECT 
         T0."Phone1",
         T0."CardName",
         T0."CardCode"
-      FROM "DEMO_RYD_05102025"."OCRD" T0
+      FROM "RYD"."OCRD" T0
       WHERE T0."CardType" = 'C'
     `;
 

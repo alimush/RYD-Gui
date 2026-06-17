@@ -27,12 +27,12 @@ export async function GET(req) {
             owhs."WhsName" || ' |' || owhs."WhsCode" AS "whsname",
             TO_DECIMAL(oitw."OnHand" - oitw."IsCommited") AS "Available",
             TO_DECIMAL(itm1."AddPrice1", 10, 2) AS "Price"
-          FROM "DEMO_RYD_05102025"."OITW" oitw
-          INNER JOIN "DEMO_RYD_05102025"."OITM" oitm ON oitm."ItemCode" = oitw."ItemCode"
-          INNER JOIN "DEMO_RYD_05102025"."ITM1" itm1 ON itm1."ItemCode" = oitw."ItemCode" AND itm1."PriceList" = 1
-          INNER JOIN "DEMO_RYD_05102025"."OITB" oitb ON oitb."ItmsGrpCod" = oitm."ItmsGrpCod"
-          INNER JOIN "DEMO_RYD_05102025"."OWHS" owhs ON owhs."WhsCode" = oitw."WhsCode"
-          INNER JOIN "DEMO_RYD_05102025"."OLCT" olct ON olct."Code" = owhs."Location"
+          FROM "RYD"."OITW" oitw
+          INNER JOIN "RYD"."OITM" oitm ON oitm."ItemCode" = oitw."ItemCode"
+          INNER JOIN "RYD"."ITM1" itm1 ON itm1."ItemCode" = oitw."ItemCode" AND itm1."PriceList" = 1
+          INNER JOIN "RYD"."OITB" oitb ON oitb."ItmsGrpCod" = oitm."ItmsGrpCod"
+          INNER JOIN "RYD"."OWHS" owhs ON owhs."WhsCode" = oitw."WhsCode"
+          INNER JOIN "RYD"."OLCT" olct ON olct."Code" = owhs."Location"
           WHERE (oitw."OnHand" - oitw."IsCommited") > 0
             AND oitw."ItemCode" = ?
             AND owhs."WhsCode" NOT IN (
@@ -49,12 +49,12 @@ export async function GET(req) {
             owhs."WhsName" || ' |' || owhs."WhsCode" AS "whsname",
             TO_DECIMAL(oitw."OnHand" - oitw."IsCommited") AS "Available",
             TO_DECIMAL(itm1."Price", 10, 2) AS "Price"
-          FROM "DEMO_RYD_05102025"."OITW" oitw
-          INNER JOIN "DEMO_RYD_05102025"."OITM" oitm ON oitm."ItemCode" = oitw."ItemCode"
-          INNER JOIN "DEMO_RYD_05102025"."ITM1" itm1 ON itm1."ItemCode" = oitw."ItemCode" AND itm1."PriceList" = 1
-          INNER JOIN "DEMO_RYD_05102025"."OITB" oitb ON oitb."ItmsGrpCod" = oitm."ItmsGrpCod"
-          INNER JOIN "DEMO_RYD_05102025"."OWHS" owhs ON owhs."WhsCode" = oitw."WhsCode"
-          INNER JOIN "DEMO_RYD_05102025"."OLCT" olct ON olct."Code" = owhs."Location"
+          FROM "RYD"."OITW" oitw
+          INNER JOIN "RYD"."OITM" oitm ON oitm."ItemCode" = oitw."ItemCode"
+          INNER JOIN "RYD"."ITM1" itm1 ON itm1."ItemCode" = oitw."ItemCode" AND itm1."PriceList" = 1
+          INNER JOIN "RYD"."OITB" oitb ON oitb."ItmsGrpCod" = oitm."ItmsGrpCod"
+          INNER JOIN "RYD"."OWHS" owhs ON owhs."WhsCode" = oitw."WhsCode"
+          INNER JOIN "RYD"."OLCT" olct ON olct."Code" = owhs."Location"
           WHERE (oitw."OnHand" - oitw."IsCommited") > 0
             AND oitw."ItemCode" = ?
             AND owhs."WhsCode" NOT IN (

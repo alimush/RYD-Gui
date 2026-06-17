@@ -8,7 +8,7 @@ module.exports = {
       cwd: path.resolve("C:/Users/Administrator/Desktop/JS App/RYD-Gui/RYD-Gui"),
 
       script: "node",
-      args: "start-nextjs.js 3002",
+      args: "start-nextjs.js 3000",
 
       env: {
         NODE_ENV: "production"

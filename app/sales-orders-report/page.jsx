@@ -144,7 +144,7 @@ export default function SalesOrdersReport() {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <h1 className="text-3xl font-bold text-gray-800 flex items-center gap-3">
-          <FiHash /> Sales Orders Report
+          <FiHash /> Sales Orders Report 
         </h1>
       </div>
 

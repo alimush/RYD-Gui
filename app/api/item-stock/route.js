@@ -10,14 +10,14 @@ export async function GET() {
   try {
     const conn = await odbc.connect(CONN_STR);
 
-    // ✅ الكويري داخل قاعدة DEMO_RYD_05102025
+    // ✅ الكويري داخل قاعدة RYD
     const sql = `
       SELECT 
         oitw."ItemCode",
         oitm."ItemName",
         SUM(oitw."OnHand" - oitw."IsCommited") AS "TotalAvailable"
-      FROM "DEMO_RYD_05102025"."OITW" oitw
-      INNER JOIN "DEMO_RYD_05102025"."OITM" oitm 
+      FROM "RYD"."OITW" oitw
+      INNER JOIN "RYD"."OITM" oitm 
         ON oitm."ItemCode" = oitw."ItemCode"
       WHERE oitw."OnHand" - oitw."IsCommited" > 0
       GROUP BY oitw."ItemCode", oitm."ItemName"

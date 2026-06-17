@@ -5,8 +5,16 @@ import { NextResponse } from "next/server";
 import https from "https";
 
 const SAP_BASE_URL = "https://hanab1:50000/b1s/v1";
-const COMPANY_DB = "DEMO_RYD_05102025";
+const COMPANY_DB = "RYD";
 const agent = new https.Agent({ rejectUnauthorized: false });
+
+function num(x) {
+  const v = Number(x);
+  return Number.isFinite(v) ? v : 0;
+}
+function str(x) {
+  return String(x ?? "").trim();
+}
 
 // 🟢 تسجيل الدخول إلى SAP
 async function sapLogin(user, pass) {
@@ -20,7 +28,9 @@ async function sapLogin(user, pass) {
     }),
     agent,
   });
+
   if (!res.ok) throw new Error(await res.text());
+
   const cookies = res.headers.get("set-cookie") || "";
   if (!cookies) throw new Error("SAP cookie not received");
   return cookies;
@@ -47,99 +57,196 @@ async function fetchOrder(docEntry, cookies) {
   return r.json();
 }
 
+function normalizeIncomingLine(ln) {
+  return {
+    LineNum: ln.LineNum ?? ln.LineId ?? ln.lineNum ?? null, // القديم لازم بيه LineNum
+    ItemCode: str(ln.ItemCode),
+    Quantity: num(ln.Quantity),
+    UnitPrice: num(ln.UnitPrice),
+    DiscountPercent: num(ln.DiscountPercent),
+    WarehouseCode: str(ln.WarehouseCode),
+    FreeText: str(ln.FreeText),
+  };
+}
+
 export async function POST(req) {
   let cookies;
-  try {
-    const { docEntry, sapUser, sapPass, updatedLines } = await req.json();
 
-    if (!docEntry || !sapUser || !sapPass)
+  try {
+    const body = await req.json();
+
+    const { docEntry, sapUser, sapPass, updatedLines, headerUpdates } = body;
+
+    // ✅ حماية: هذا الـ API ممنوع يغير حالة الأوردر
+    if (body?.DocumentStatus !== undefined || body?.Canceled !== undefined || body?.Cancelled !== undefined) {
       return NextResponse.json(
-        { error: "❌ Missing parameters" },
+        { error: "❌ ممنوع إرسال DocumentStatus/Canceled إلى update-order" },
         { status: 400 }
       );
+    }
 
-    // 🟢 تسجيل الدخول
+    if (!docEntry || !sapUser || !sapPass) {
+      return NextResponse.json(
+        { error: "❌ Missing parameters (docEntry, sapUser, sapPass)" },
+        { status: 400 }
+      );
+    }
+
+    if (!Array.isArray(updatedLines)) {
+      return NextResponse.json(
+        { error: "❌ updatedLines لازم يكون Array" },
+        { status: 400 }
+      );
+    }
+
+    console.log("✅ UPDATE-ORDER called", { docEntry });
+
     cookies = await sapLogin(sapUser, sapPass);
 
-    // 🧭 جلب بيانات الأوردر القديم
+    // جلب الأوردر الحالي فقط حتى نتحقق من LineNum
     const orderData = await fetchOrder(docEntry, cookies);
+    const sapLineNums = new Set(
+      (orderData.DocumentLines || []).map((l) => Number(l.LineNum))
+    );
 
-    console.log("🧨 تعديل موجود → إنشاء أوردر جديد وإغلاق القديم...");
+    const incoming = updatedLines.map(normalizeIncomingLine);
 
-    // 🆕 إنشاء أوردر جديد بنفس البيانات + تمييز خصم SAP داخل FreeText
-    const newOrder = {
-      CardCode: orderData.CardCode,
-      DocDate: orderData.DocDate,
-      DocDueDate: orderData.DocDueDate,
-      DocCurrency: orderData.DocCurrency,
-      SalesPersonCode: orderData.SalesPersonCode,
-      Comments: orderData.Comments || "",
-      DocumentLines: (updatedLines || []).map((ln) => ({
-        ItemCode: ln.ItemCode,
-        Quantity: Number(ln.Quantity) || 0,
-        UnitPrice: Number(ln.UnitPrice) || 0,
-        DiscountPercent: Number(ln.DiscountPercent) || 0,
-        WarehouseCode: ln.WarehouseCode,
-        LineStatus: "O",
+    // ✅ نبني updates + inserts بدون تكرار
+    const updatesMap = new Map(); // LineNum -> obj
+    const insertsMap = new Map(); // Item|Whs|Price|Disc|FreeText -> obj (merge qty)
 
-        // ✅ نميز خصم SAP داخل SAP نفسه (يبقى محفوظ)
-       FreeText:
-  ln.isSAPDiscount && (ln.originalSAPDiscount || ln.DiscountPercent)
-    ? `DG:${Number(ln.originalSAPDiscount || ln.DiscountPercent || 0)}`
-    : "",
-      })),
+    for (const ln of incoming) {
+      const isNew = ln.LineNum === null || ln.LineNum === undefined || ln.LineNum === "";
+
+      if (isNew) {
+        if (!ln.ItemCode || ln.Quantity <= 0) continue;
+
+        const k = [
+          ln.ItemCode,
+          ln.WarehouseCode || "",
+          ln.UnitPrice,
+          ln.DiscountPercent,
+          ln.FreeText || "",
+        ].join("|");
+
+        if (!insertsMap.has(k)) {
+          insertsMap.set(k, {
+            ItemCode: ln.ItemCode,
+            Quantity: ln.Quantity,
+            UnitPrice: ln.UnitPrice,
+            DiscountPercent: ln.DiscountPercent,
+            WarehouseCode: ln.WarehouseCode || undefined,
+            FreeText: ln.FreeText || "",
+          });
+        } else {
+          const cur = insertsMap.get(k);
+          cur.Quantity = num(cur.Quantity) + ln.Quantity;
+          insertsMap.set(k, cur);
+        }
+
+        continue;
+      }
+
+      // ✅ سطر قديم لازم LineNum موجود فعلاً بالأوردر
+      const lineNum = Number(ln.LineNum);
+      if (!sapLineNums.has(lineNum)) {
+        // إذا LineNum غلط، لا نسويه Update حتى لا يسبب -2035
+        // نخليه Insert (سطر جديد)
+        if (!ln.ItemCode || ln.Quantity <= 0) continue;
+
+        const k = [
+          ln.ItemCode,
+          ln.WarehouseCode || "",
+          ln.UnitPrice,
+          ln.DiscountPercent,
+          ln.FreeText || "",
+        ].join("|");
+
+        if (!insertsMap.has(k)) {
+          insertsMap.set(k, {
+            ItemCode: ln.ItemCode,
+            Quantity: ln.Quantity,
+            UnitPrice: ln.UnitPrice,
+            DiscountPercent: ln.DiscountPercent,
+            WarehouseCode: ln.WarehouseCode || undefined,
+            FreeText: ln.FreeText || "",
+          });
+        } else {
+          const cur = insertsMap.get(k);
+          cur.Quantity = num(cur.Quantity) + ln.Quantity;
+          insertsMap.set(k, cur);
+        }
+        continue;
+      }
+
+      updatesMap.set(lineNum, {
+        LineNum: lineNum,
+        Quantity: ln.Quantity,
+        UnitPrice: ln.UnitPrice,
+        DiscountPercent: ln.DiscountPercent,
+        WarehouseCode: ln.WarehouseCode || undefined,
+        FreeText: ln.FreeText || "",
+      });
+    }
+
+    const updateLines = Array.from(updatesMap.values());
+    const insertLines = Array.from(insertsMap.values());
+
+    // ✅ Header updates (اختياري) بدون حالة
+    const headerPatch = {};
+    if (headerUpdates && typeof headerUpdates === "object") {
+      const allowed = ["Comments", "DocDueDate", "DocDate", "NumAtCard"];
+      for (const k of allowed) {
+        if (headerUpdates[k] !== undefined) headerPatch[k] = headerUpdates[k];
+      }
+    }
+
+    if (!updateLines.length && !insertLines.length && !Object.keys(headerPatch).length) {
+      await sapLogout(cookies);
+      return NextResponse.json({ success: true, message: "✅ لا يوجد تغييرات" });
+    }
+
+    const patchBody = {
+      ...headerPatch,
+      DocumentLines: [...updateLines, ...insertLines],
     };
 
-    // 🟢 إنشاء أوردر جديد في SAP
-    const postRes = await fetch(`${SAP_BASE_URL}/Orders`, {
-      method: "POST",
+    // 🔥 هذا الهيدر مهم حتى ما يستبدل كل السطور
+    const patchRes = await fetch(`${SAP_BASE_URL}/Orders(${docEntry})`, {
+      method: "PATCH",
       headers: {
         "Content-Type": "application/json",
         Cookie: cookies,
         Prefer: "return-content",
+        "B1S-ReplaceCollectionsOnPatch": "false",
       },
-      body: JSON.stringify(newOrder),
+      body: JSON.stringify(patchBody),
       agent,
     });
 
-    const postText = await postRes.text();
-    if (!postRes.ok) throw new Error(postText);
+    const patchText = await patchRes.text();
+    if (!patchRes.ok) throw new Error(patchText);
 
-    let createdOrder = {};
+    let updatedOrder;
     try {
-      createdOrder = JSON.parse(postText);
+      updatedOrder = JSON.parse(patchText);
     } catch {
-      createdOrder = { message: "Order created (SAP returned empty body)" };
+      updatedOrder = await fetchOrder(docEntry, cookies);
     }
 
-    console.log("✅ تم إنشاء أوردر جديد:", createdOrder.DocNum || "unknown");
-
-    // 🔒 إغلاق الأوردر القديم
-    const closeRes = await fetch(`${SAP_BASE_URL}/Orders(${docEntry})`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json", Cookie: cookies },
-      body: JSON.stringify({ DocumentStatus: "C" }),
-      agent,
-    });
-
-    if (!closeRes.ok) {
-      const t = await closeRes.text();
-      console.warn("⚠️ فشل إغلاق الأوردر القديم:", t);
-    } else {
-      console.log("✅ الأوردر القديم تم إغلاقه بنجاح");
-    }
-
-    // 🔚 تسجيل خروج من SAP
     await sapLogout(cookies);
 
     return NextResponse.json({
       success: true,
-      message: "✅ New order created successfully and old order closed",
-      newOrder: createdOrder,
+      message: "✅ Updated (no cancel/close touched)",
+      order: updatedOrder,
     });
   } catch (err) {
-    console.error("❌ /api/update-order Error:", err.message);
+    console.error("❌ update-order error:", err?.message || err);
     if (cookies) await sapLogout(cookies);
-    return NextResponse.json({ error: err.message }, { status: 500 });
+    return NextResponse.json(
+      { error: err?.message || "Update failed" },
+      { status: 500 }
+    );
   }
 }

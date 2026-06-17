@@ -1,4 +1,4 @@
-// ✅ تجاهل فحص الشهادة SSL في بيئة التطوير فقط
+
 process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
 
 import { NextResponse } from "next/server";
@@ -34,7 +34,7 @@ export async function POST(req) {
     let loginRes;
     try {
       loginRes = await axios.post(`${SAP_BASE_URL}/Login`, {
-        CompanyDB: "DEMO_RYD_05102025",
+        CompanyDB: "RYD",
         UserName: sapUser,
         Password: sapPass,
       });
@@ -59,7 +59,7 @@ export async function POST(req) {
     for (const line of body.DocumentLines || []) {
       const query = `
         SELECT TO_DECIMAL("OnHand" - "IsCommited", 15, 2) AS "Available"
-        FROM "DEMO_RYD_05102025"."OITW"
+        FROM "RYD"."OITW"
         WHERE "ItemCode" = '${line.ItemCode}'
           AND "WhsCode" = '${line.WarehouseCode}'
       `;

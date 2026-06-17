@@ -13,7 +13,7 @@ const GET_TERRITORIES_QUERY = `
   SELECT DISTINCT 
     T0."territryID" AS "ID",
     T0."descript" AS "Name"
-  FROM "DEMO_RYD_05102025"."OTER" T0
+  FROM "RYD"."OTER" T0
   WHERE T0."territryID" IS NOT NULL
   ORDER BY T0."territryID"
 `;

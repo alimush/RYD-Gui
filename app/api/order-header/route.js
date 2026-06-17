@@ -47,14 +47,14 @@ export async function GET(req) {
         T0."U_Location",
         T4."U_NAME" AS "CreatedBy",
         T0."Comments"
-      FROM "DEMO_RYD_05102025"."ORDR" T0
-      INNER JOIN "DEMO_RYD_05102025"."OCRD" T1 
+      FROM "RYD"."ORDR" T0
+      INNER JOIN "RYD"."OCRD" T1 
         ON T0."CardCode" = T1."CardCode"
-      LEFT JOIN "DEMO_RYD_05102025"."OTER" T2 
+      LEFT JOIN "RYD"."OTER" T2 
         ON T1."Territory" = T2."territryID"
-      LEFT JOIN "DEMO_RYD_05102025"."OSLP" T3 
+      LEFT JOIN "RYD"."OSLP" T3 
         ON T0."SlpCode" = T3."SlpCode"
-      INNER JOIN "DEMO_RYD_05102025"."OUSR" T4 
+      INNER JOIN "RYD"."OUSR" T4 
         ON T0."UserSign" = T4."USERID"
       WHERE T0."DocEntry" = ${docEntry};
     `;
