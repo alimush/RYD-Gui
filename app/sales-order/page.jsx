@@ -45,6 +45,38 @@ const autoDiscount = (qty) => {
   return 2;
 };
 
+const SALES_ORDER_DRAFT_KEY = "salesOrderDraft";
+
+const saveSalesOrderDraft = (cart, currency) => {
+  try {
+    sessionStorage.setItem(
+      SALES_ORDER_DRAFT_KEY,
+      JSON.stringify({ cart, currency })
+    );
+  } catch (err) {
+    console.error("Failed to save sales order draft:", err);
+  }
+};
+
+const restoreSalesOrderDraft = () => {
+  try {
+    const raw = sessionStorage.getItem(SALES_ORDER_DRAFT_KEY);
+    if (!raw) return null;
+    sessionStorage.removeItem(SALES_ORDER_DRAFT_KEY);
+    return JSON.parse(raw);
+  } catch (err) {
+    console.error("Failed to restore sales order draft:", err);
+    sessionStorage.removeItem(SALES_ORDER_DRAFT_KEY);
+    return null;
+  }
+};
+
+const clearSalesOrderDraft = () => {
+  try {
+    sessionStorage.removeItem(SALES_ORDER_DRAFT_KEY);
+  } catch (_) {}
+};
+
 export default function SalesOrderPage() {
   const [query, setQuery] = useState("");
   const [selectedItem, setSelectedItem] = useState(null);
@@ -54,8 +86,7 @@ export default function SalesOrderPage() {
   const [cart, setCart] = useState([]);
   const [submitting, setSubmitting] = useState(false);
   const [showPopup, setShowPopup] = useState(false);
-  const [allItems, setAllItems] = useState([]);
-const [suggestions, setSuggestions] = useState([]);
+  const [suggestions, setSuggestions] = useState([]);
 const [customerQuery, setCustomerQuery] = useState("");
 const [customerSuggestions, setCustomerSuggestions] = useState([]);
 const [selectedCustomer, setSelectedCustomer] = useState(null);
@@ -116,6 +147,16 @@ useEffect(() => {
     }
   }
 }, []);
+
+// ✅ استعادة السلة بعد العودة من صفحة إنشاء زبون
+useEffect(() => {
+  const draft = restoreSalesOrderDraft();
+  if (draft?.cart?.length) {
+    setCart(draft.cart);
+    if (draft.currency) setCurrency(draft.currency);
+  }
+}, []);
+
 useEffect(() => {
   const user = localStorage.getItem("user");
   if (!user) {
@@ -147,18 +188,6 @@ const handleSelectCustomer = async (cust) => {
   
 };
 useEffect(() => {
-  async function fetchItems() {
-    try {
-      const res = await fetch("/api/items");
-      const data = await res.json();
-      setAllItems(data);
-    } catch (err) {
-      console.error("❌ Failed to fetch items:", err);
-    }
-  }
-  fetchItems();
-}, []);
-useEffect(() => {
   const s = query.trim().toLowerCase();
 
   if (!currency) {
@@ -169,32 +198,41 @@ useEffect(() => {
     return;
   }
 
-  // ⭐ شرط الـ 3 حروف
-  if (s.length > 0 && s.length < 5) {
+  if (!s || s.length < 5) {
     setSuggestions([]);
     return;
   }
 
-  if (!s) {
-    setSuggestions([]);
-    return;
-  }
+  const controller = new AbortController();
+  const t = setTimeout(async () => {
+    try {
+      const res = await fetch(`/api/items?q=${encodeURIComponent(s)}`, {
+        signal: controller.signal,
+      });
+      const text = await res.text();
+      let data;
+      try {
+        data = JSON.parse(text);
+      } catch {
+        throw new Error("السيرفر أرجع رداً غير صالح (ليست JSON)");
+      }
+      if (!res.ok) {
+        throw new Error(data?.details || data?.error || "Failed to fetch items");
+      }
+      setSuggestions((Array.isArray(data) ? data : []).slice(0, 10));
+    } catch (err) {
+      if (err.name === "AbortError") return;
+      console.error("❌ Failed to fetch items:", err);
+      setSuggestions([]);
+      toast.error(err.message || "فشل تحميل المواد من SAP");
+    }
+  }, 300);
 
-  const t = setTimeout(() => {
-    const results = allItems.filter(
-      (i) =>
-        i.ItemCode?.toLowerCase().includes(s) ||
-        i.ItemName?.toLowerCase().includes(s) ||
-        i.U_ST_Model?.toLowerCase().includes(s) ||
-        i.U_ST_PartNo?.toLowerCase().includes(s) ||
-        i.SWW?.toLowerCase().includes(s)
-    );
-
-    setSuggestions(results.slice(0, 10));
-  }, 300); // Debounce
-
-  return () => clearTimeout(t);
-}, [query, allItems, currency]);
+  return () => {
+    clearTimeout(t);
+    controller.abort();
+  };
+}, [query, currency]);
   /* البحث */
   const handleSelectItem = async (item) => {
     try {
@@ -399,7 +437,10 @@ const updateCartItem = (index, field, value) => {
   );
 };
   const removeRow = (i) => setCart((p) => p.filter((_, idx) => idx !== i));
-  const clearAll = () => setCart([]);
+  const clearAll = () => {
+    setCart([]);
+    clearSalesOrderDraft();
+  };
 
   const totalBeforeDiscount = useMemo(
     () => cart.reduce((s, r) => s + r.price * r.qty, 0).toFixed(2),
@@ -495,6 +536,7 @@ const updateCartItem = (index, field, value) => {
         });
   
         setCart([]);
+        clearSalesOrderDraft();
         setSelectedCustomer(null);
         setCustomerQuery("");
         setShowPopup(true);
@@ -637,7 +679,13 @@ const totalsByCurrency = useMemo(() => {
         <motion.li
           whileHover={{ scale: 1.02 }}
           className="flex items-center justify-between px-4 py-3 text-[#2f3a47] font-medium hover:bg-gray-100 cursor-pointer"
-          onClick={() => (window.location.href = "/create-customer")}
+          onClick={() => {
+            saveSalesOrderDraft(cart, currency);
+            if (customerQuery.trim()) {
+              localStorage.setItem("newCustomerName", customerQuery.trim());
+            }
+            window.location.href = "/create-customer";
+          }}
         >
           <span>➕ إنشاء زبون جديد "{customerQuery}"</span>
           <FiPlus />

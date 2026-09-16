@@ -195,7 +195,7 @@ export async function POST(req) {
     // ✅ Header updates (اختياري) بدون حالة
     const headerPatch = {};
     if (headerUpdates && typeof headerUpdates === "object") {
-      const allowed = ["Comments", "DocDueDate", "DocDate", "NumAtCard"];
+      const allowed = ["Comments", "DocDueDate", "DocDate", "NumAtCard", "U_Approval"];
       for (const k of allowed) {
         if (headerUpdates[k] !== undefined) headerPatch[k] = headerUpdates[k];
       }

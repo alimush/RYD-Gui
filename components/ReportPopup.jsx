@@ -33,6 +33,7 @@ export default function ReportPopup({ order, onClose, onCanceled, onUpdated }) {
   const [canceling, setCanceling] = useState(false);
   const [isCanceled, setIsCanceled] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [approval, setApproval] = useState("N");
 
   // إضافة مادة (بحث + مخزن + كمية + خصم)
   const [addQuery, setAddQuery] = useState("");
@@ -146,38 +147,55 @@ const originalDisc = fromSAP
           currentOrder?.DocumentStatus === "C"
       );
       setEditMode(false);
+      setApproval(
+        currentOrder?.U_Approval === "Y" || currentOrder?.U_Approval === "Yes"
+          ? "Y"
+          : "N"
+      );
     }
   }, [currentOrder]);
 
-  // جلب كل المواد (للبحث/الصور)
+  // اقتراحات البحث من API مباشرة
   useEffect(() => {
-    fetch("/api/items")
-      .then((r) => r.json())
-      .then((data) => setAllItems(Array.isArray(data) ? data : []))
-      .catch(() => toast.error("❌ Failed to load items"));
-  }, []);
+    const s = addQuery.trim().toLowerCase();
 
-  // اقتراحات البحث
-useEffect(() => {
-  const s = addQuery.trim().toLowerCase();
+    if (s.length < 3) {
+      setAddSuggestions([]);
+      return;
+    }
 
-  // 🔥 يمنع البحث إذا عدد الأحرف أقل من 3
-  if (s.length < 3) {
-    setAddSuggestions([]);
-    return;
-  }
+    const controller = new AbortController();
+    const t = setTimeout(async () => {
+      try {
+        const res = await fetch(`/api/items?q=${encodeURIComponent(s)}`, {
+          signal: controller.signal,
+        });
+        const text = await res.text();
+        let data;
+        try {
+          data = JSON.parse(text);
+        } catch {
+          throw new Error("Invalid JSON from /api/items");
+        }
+        if (!res.ok) {
+          throw new Error(data?.details || data?.error || "Failed to load items");
+        }
+        const items = Array.isArray(data) ? data : [];
+        setAllItems(items);
+        setAddSuggestions(items.slice(0, 12));
+      } catch (err) {
+        if (err.name === "AbortError") return;
+        console.error(err);
+        setAddSuggestions([]);
+        toast.error("❌ Failed to load items");
+      }
+    }, 300);
 
-  const results = allItems.filter(
-    (i) =>
-      i.ItemCode?.toLowerCase().includes(s) ||
-      i.ItemName?.toLowerCase().includes(s) ||
-      i.U_ST_Model?.toLowerCase().includes(s) ||
-      i.U_ST_PartNo?.toLowerCase().includes(s) ||
-      i.SWW?.toLowerCase().includes(s)
-  );
-
-  setAddSuggestions(results.slice(0, 12));
-}, [addQuery, allItems]);
+    return () => {
+      clearTimeout(t);
+      controller.abort();
+    };
+  }, [addQuery]);
 
   const findImage = (itemCode) => {
     const hit =
@@ -213,6 +231,11 @@ useEffect(() => {
     if (currentOrder?.DocumentLines) {
       setDraftLines(mapDocToDraft(currentOrder));
     }
+    setApproval(
+      currentOrder?.U_Approval === "Y" || currentOrder?.U_Approval === "Yes"
+        ? "Y"
+        : "N"
+    );
     setEditMode(false);
   };
 // ✅ دالة جديدة لتحميل الـ PDF بعد جلب بيانات الهيدر
@@ -434,10 +457,16 @@ const saveChanges = async () => {
       return;
     }
 
+    const currentApproval =
+      currentOrder?.U_Approval === "Y" || currentOrder?.U_Approval === "Yes"
+        ? "Y"
+        : "N";
+
     const payload = {
       docEntry: currentOrder.DocEntry,
       sapUser: user.sapUser,
       sapPass: user.sapPass,
+      ...(approval !== currentApproval ? { headerUpdates: { U_Approval: approval } } : {}),
       updatedLines: draftLines.map((r) => ({
         LineNum: typeof r.LineNum === "number" ? r.LineNum : null, // ✅ القديم فقط
         ItemCode: r.ItemCode,
@@ -615,6 +644,26 @@ const saveChanges = async () => {
                   
                 </div>
               )}
+            </div>
+
+            {/* Approval */}
+            <div className="mb-5 flex items-center gap-3">
+              <label className="text-sm font-semibold text-gray-700 whitespace-nowrap">
+                Approval
+              </label>
+              <select
+                value={approval}
+                onChange={(e) => setApproval(e.target.value)}
+                disabled={!editMode || isOrderClosed}
+                className={`border rounded-xl px-4 py-2 text-sm min-w-[120px] transition ${
+                  !editMode || isOrderClosed
+                    ? "bg-gray-100 text-gray-600 border-gray-300 cursor-not-allowed"
+                    : "bg-white border-gray-400 focus:border-[#2f3a47] outline-none"
+                }`}
+              >
+                <option value="N">No</option>
+                <option value="Y">Yes</option>
+              </select>
             </div>
 
             {/* إضافة مادة */}
