@@ -7,9 +7,9 @@ const CONN_STR =
 const cache = new Map();
 const CACHE_TTL = 10 * 1000;
 
-const PRIMARY_IP = "http://172.30.30.201:8777";
-const FALLBACK_IP = "http://109.205.118.249:8777";
-const DEFAULT_IMAGE = "http://172.30.30.201:3002/no-image.jpg";
+const PRIMARY_IP = "http://172.30.30.96:3003";
+const FALLBACK_IP = "http://109.205.118.249:3003";
+const DEFAULT_IMAGE = "http://172.30.30.96:3003/no-image.jpg";
 
 async function getOdbc() {
   // استيراد ديناميكي — يمنع رجوع HTML 500 لو فشل تحميل المكتبة الأصلية
