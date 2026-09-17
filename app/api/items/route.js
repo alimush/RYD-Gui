@@ -7,9 +7,23 @@ const CONN_STR =
 const cache = new Map();
 const CACHE_TTL = 10 * 1000;
 
-const PRIMARY_IP = "http://172.30.30.96:3003";
-const FALLBACK_IP = "http://109.205.118.249:3003";
-const DEFAULT_IMAGE = "http://172.30.30.96:3003/no-image.jpg";
+const LOCAL_IMAGE_BASE = "http://172.30.30.96:3003";
+const PUBLIC_IMAGE_BASE = "http://109.205.118.249:3003";
+
+function getImageBases(req) {
+  const host = (
+    req.headers.get("x-forwarded-host") ||
+    req.headers.get("host") ||
+    ""
+  ).toLowerCase();
+
+  // من الإنترنت: ابدأ بالـ public حتى ما تنتظر timeout على عنوان الـ local
+  if (host.includes("109.205.118.249")) {
+    return { primary: PUBLIC_IMAGE_BASE, fallback: LOCAL_IMAGE_BASE };
+  }
+
+  return { primary: LOCAL_IMAGE_BASE, fallback: PUBLIC_IMAGE_BASE };
+}
 
 async function getOdbc() {
   // استيراد ديناميكي — يمنع رجوع HTML 500 لو فشل تحميل المكتبة الأصلية
@@ -17,7 +31,7 @@ async function getOdbc() {
   return odbc.default || odbc;
 }
 
-function mapItems(result) {
+function mapItems(result, { primary, fallback }) {
   return result.map((r) => {
     const pic = (r.PicturName || "").trim();
     return {
@@ -30,8 +44,8 @@ function mapItems(result) {
       SWW: r.SWW,
       TotalAvailable: Number(r.TotalAvailable || 0),
       Price: Number(r.WarehousePrice?.toFixed?.(2) || r.WarehousePrice || 0),
-      image: pic ? `${PRIMARY_IP}/${pic}` : DEFAULT_IMAGE,
-      fallbackImage: pic ? `${FALLBACK_IP}/${pic}` : DEFAULT_IMAGE,
+      image: pic ? `${primary}/${pic}` : `${primary}/no-image.jpg`,
+      fallbackImage: pic ? `${fallback}/${pic}` : `${fallback}/no-image.jpg`,
     };
   });
 }
@@ -40,6 +54,7 @@ export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const q = searchParams.get("q")?.trim().toLowerCase() || "";
+    const imageBases = getImageBases(req);
 
     // بدون بحث لا نجلب كل المواد (ثقيل ويسبب 500)
     if (!q) {
@@ -50,7 +65,7 @@ export async function GET(req) {
       return NextResponse.json([]);
     }
 
-    const cacheKey = `items_${q}`;
+    const cacheKey = `items_${imageBases.primary}_${q}`;
     const now = Date.now();
 
     if (cache.has(cacheKey)) {
@@ -101,7 +116,7 @@ export async function GET(req) {
       `;
 
       const result = await conn.query(sql);
-      const items = mapItems(result);
+      const items = mapItems(result, imageBases);
 
       cache.set(cacheKey, { time: now, result: items });
       return NextResponse.json(items);
