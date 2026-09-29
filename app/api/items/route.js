@@ -7,8 +7,8 @@ const CONN_STR =
 const cache = new Map();
 const CACHE_TTL = 10 * 1000;
 
-const LOCAL_IMAGE_BASE = "http://172.30.30.96:3003";
-const PUBLIC_IMAGE_BASE = "http://109.205.118.249:3003";
+const LOCAL_IMAGE_BASE = "http://172.30.30.96:8777";
+const PUBLIC_IMAGE_BASE = "http://109.205.118.249:8777";
 
 function getImageBases(req) {
   const host = (

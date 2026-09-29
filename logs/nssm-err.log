@@ -1,0 +1,1089 @@
+(node:2900) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+ ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+(node:11672) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:11672) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+❌ SAP Fetch Orders Error: connect ETIMEDOUT 172.30.30.35:50000
+❌ SAP Order Error: {
+  error: {
+    code: -1116,
+    message: {
+      lang: 'en-us',
+      value: '(-170024) there is no discount for this item LEG00412'
+    }
+  }
+}
+ ⨯ [Error: NEXT_REDIRECT] { digest: '7370446' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '373395015' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2875559302' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3729394491' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '70555140' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\app\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\app\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\tmp\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\tmp\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1217272292' }
+[Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\shm\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\shm\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\var\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\var\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\etc\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\etc\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '439301418' }
+[Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '628686116' }
+[Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '327368962' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2120119488' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3738811752' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '327368962' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2120119488' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3738811752' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1400916298' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2772739716' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1079472513' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '173374726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+[Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\tmp\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\tmp\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1621882661' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1698764395' }
+[Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2721180261' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2267719427' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3212678849' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1003638082' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2267719427' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3212678849' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1003638082' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '4110232907' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2034880133' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1920151682' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [Error: NEXT_REDIRECT] { digest: '2353548' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '373395015' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2875559302' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3729394491' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '70555140' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\app\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\app\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\tmp\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\tmp\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1217272292' }
+[Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\shm\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\shm\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\var\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\var\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\etc\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\etc\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '439301418' }
+[Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '628686116' }
+[Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '327368962' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2120119488' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3738811752' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '327368962' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2120119488' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3738811752' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1400916298' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2772739716' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1079472513' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '173374726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+[Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\app\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\app\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+[Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1621882661' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+[Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\var\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\var\\let'
+}
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1698764395' }
+[Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2721180261' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2267719427' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3212678849' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1003638082' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2267719427' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '871602726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3212678849' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1003638082' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '4110232907' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2034880133' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1920151682' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+(node:9952) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+ ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+(node:9168) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:9168) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+ ⨯ [Error: NEXT_REDIRECT] { digest: '2527258' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '373395015' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2875559302' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3729394491' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '70555140' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\app\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\app\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\tmp\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\tmp\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1217272292' }
+[Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\shm\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\shm\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\var\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\var\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+[Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\etc\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\etc\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '439301418' }
+[Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '628686116' }
+[Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1400916298' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2772739716' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1079472513' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '173374726' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+[Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+  errno: -4058,
+  code: 'ENOENT',
+  syscall: 'open',
+  path: 'C:\\dev\\let'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1621882661' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1698764395' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2721180261' }
+[Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+}
+ ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'open',
+  path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+}
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [Error: spawn EPERM] {
+  errno: -4048,
+  code: 'EPERM',
+  syscall: 'spawn',
+  digest: '1738431524'
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+    at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+  errno: -4039,
+  code: 'ETIMEDOUT',
+  syscall: 'connect',
+  address: '94.183.234.121',
+  port: 80
+}
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '4110232907' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '2034880133' }
+ ⨯ [ReferenceError: returnNaN is not defined] { digest: '1920151682' }
+(node:1596) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+ ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+ ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+(node:9860) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+(node:9860) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.

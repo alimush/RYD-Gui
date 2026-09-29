@@ -36365,3 +36365,1764 @@
 2026-06-17T09:36:34:  ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
 2026-06-17T09:55:48: (node:5864) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
 2026-06-17T09:55:48: (Use `node --trace-warnings ...` to show where the warning was created)
+2026-09-17T11:14:43: (node:1552) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+2026-09-17T11:14:43: (Use `NODE.EXE --trace-deprecation ...` to show where the warning was created)
+2026-09-17T11:14:49:  ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+2026-09-17T11:14:49:  ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-09-17T11:14:50: (node:18932) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-17T11:14:50: (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-17T11:57:24: (node:23748) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+2026-09-17T11:57:24: (Use `NODE.EXE --trace-deprecation ...` to show where the warning was created)
+2026-09-17T11:57:28:  ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+2026-09-17T11:57:28:  ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-09-17T11:57:29: (node:24064) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-17T11:57:29: (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-17T12:01:43: (node:24064) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+2026-09-17T12:06:36: (node:14604) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+2026-09-17T12:06:36: (Use `NODE.EXE --trace-deprecation ...` to show where the warning was created)
+2026-09-17T12:06:40:  ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+2026-09-17T12:06:40:  ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-09-17T12:06:41: (node:15964) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-17T12:06:41: (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-17T14:36:10:  ⨯ [Error: NEXT_REDIRECT] { digest: '7418532' }
+2026-09-17T14:36:10:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '373395015' }
+2026-09-17T14:36:10:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2875559302' }
+2026-09-17T14:36:11:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3729394491' }
+2026-09-17T14:36:11:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '70555140' }
+2026-09-17T14:36:11:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-17T14:36:12: [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+2026-09-17T14:36:12:   errno: -4058,
+2026-09-17T14:36:12:   code: 'ENOENT',
+2026-09-17T14:36:12:   syscall: 'open',
+2026-09-17T14:36:12:   path: 'C:\\app\\let'
+2026-09-17T14:36:12: }
+2026-09-17T14:36:12:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+2026-09-17T14:36:12:   errno: -4058,
+2026-09-17T14:36:12:   code: 'ENOENT',
+2026-09-17T14:36:12:   syscall: 'open',
+2026-09-17T14:36:12:   path: 'C:\\app\\let'
+2026-09-17T14:36:12: }
+2026-09-17T14:36:17:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:36:17:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-17T14:36:17: [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+2026-09-17T14:36:17:   errno: -4048,
+2026-09-17T14:36:17:   code: 'EPERM',
+2026-09-17T14:36:17:   syscall: 'open',
+2026-09-17T14:36:17:   path: 'C:\\tmp\\let'
+2026-09-17T14:36:17: }
+2026-09-17T14:36:17:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+2026-09-17T14:36:17:   errno: -4048,
+2026-09-17T14:36:17:   code: 'EPERM',
+2026-09-17T14:36:17:   syscall: 'open',
+2026-09-17T14:36:17:   path: 'C:\\tmp\\let'
+2026-09-17T14:36:17: }
+2026-09-17T14:36:22:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:36:22:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-17T14:36:23: [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+2026-09-17T14:36:23:   errno: -4058,
+2026-09-17T14:36:23:   code: 'ENOENT',
+2026-09-17T14:36:23:   syscall: 'open',
+2026-09-17T14:36:23:   path: 'C:\\dev\\let'
+2026-09-17T14:36:23: }
+2026-09-17T14:36:23:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+2026-09-17T14:36:23:   errno: -4058,
+2026-09-17T14:36:23:   code: 'ENOENT',
+2026-09-17T14:36:23:   syscall: 'open',
+2026-09-17T14:36:23:   path: 'C:\\dev\\let'
+2026-09-17T14:36:23: }
+2026-09-17T14:36:27:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:36:28:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1217272292' }
+2026-09-17T14:36:28: [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+2026-09-17T14:36:28:   errno: -4058,
+2026-09-17T14:36:28:   code: 'ENOENT',
+2026-09-17T14:36:28:   syscall: 'open',
+2026-09-17T14:36:28:   path: 'C:\\dev\\shm\\let'
+2026-09-17T14:36:28: }
+2026-09-17T14:36:28:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+2026-09-17T14:36:28:   errno: -4058,
+2026-09-17T14:36:28:   code: 'ENOENT',
+2026-09-17T14:36:28:   syscall: 'open',
+2026-09-17T14:36:28:   path: 'C:\\dev\\shm\\let'
+2026-09-17T14:36:28: }
+2026-09-17T14:36:33:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+2026-09-17T14:36:33:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-17T14:36:33: [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+2026-09-17T14:36:33:   errno: -4058,
+2026-09-17T14:36:33:   code: 'ENOENT',
+2026-09-17T14:36:33:   syscall: 'open',
+2026-09-17T14:36:33:   path: 'C:\\var\\let'
+2026-09-17T14:36:33: }
+2026-09-17T14:36:33:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+2026-09-17T14:36:33:   errno: -4058,
+2026-09-17T14:36:33:   code: 'ENOENT',
+2026-09-17T14:36:33:   syscall: 'open',
+2026-09-17T14:36:33:   path: 'C:\\var\\let'
+2026-09-17T14:36:33: }
+2026-09-17T14:36:38:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:36:38:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-17T14:36:39: [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+2026-09-17T14:36:39:   errno: -4058,
+2026-09-17T14:36:39:   code: 'ENOENT',
+2026-09-17T14:36:39:   syscall: 'open',
+2026-09-17T14:36:39:   path: 'C:\\etc\\let'
+2026-09-17T14:36:39: }
+2026-09-17T14:36:39:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+2026-09-17T14:36:39:   errno: -4058,
+2026-09-17T14:36:39:   code: 'ENOENT',
+2026-09-17T14:36:39:   syscall: 'open',
+2026-09-17T14:36:39:   path: 'C:\\etc\\let'
+2026-09-17T14:36:39: }
+2026-09-17T14:36:44:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:36:44:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '439301418' }
+2026-09-17T14:36:44: [Error: EPERM: operation not permitted, open 'C:\let'] {
+2026-09-17T14:36:44:   errno: -4048,
+2026-09-17T14:36:44:   code: 'EPERM',
+2026-09-17T14:36:44:   syscall: 'open',
+2026-09-17T14:36:44:   path: 'C:\\let'
+2026-09-17T14:36:44: }
+2026-09-17T14:36:44:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\let'] {
+2026-09-17T14:36:44:   errno: -4048,
+2026-09-17T14:36:44:   code: 'EPERM',
+2026-09-17T14:36:44:   syscall: 'open',
+2026-09-17T14:36:44:   path: 'C:\\let'
+2026-09-17T14:36:44: }
+2026-09-17T14:36:50:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+2026-09-17T14:36:50:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '628686116' }
+2026-09-17T14:36:56:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+2026-09-17T14:36:56:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:56:   errno: -4048,
+2026-09-17T14:36:56:   code: 'EPERM',
+2026-09-17T14:36:56:   syscall: 'spawn',
+2026-09-17T14:36:56:   digest: '1738431524'
+2026-09-17T14:36:56: }
+2026-09-17T14:36:56:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:56:   errno: -4048,
+2026-09-17T14:36:56:   code: 'EPERM',
+2026-09-17T14:36:56:   syscall: 'spawn',
+2026-09-17T14:36:56:   digest: '1738431524'
+2026-09-17T14:36:56: }
+2026-09-17T14:36:56:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:56:   errno: -4048,
+2026-09-17T14:36:56:   code: 'EPERM',
+2026-09-17T14:36:56:   syscall: 'spawn',
+2026-09-17T14:36:56:   digest: '1738431524'
+2026-09-17T14:36:56: }
+2026-09-17T14:36:57:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:57:   errno: -4048,
+2026-09-17T14:36:57:   code: 'EPERM',
+2026-09-17T14:36:57:   syscall: 'spawn',
+2026-09-17T14:36:57:   digest: '1738431524'
+2026-09-17T14:36:57: }
+2026-09-17T14:36:57:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:57:   errno: -4048,
+2026-09-17T14:36:57:   code: 'EPERM',
+2026-09-17T14:36:57:   syscall: 'spawn',
+2026-09-17T14:36:57:   digest: '1738431524'
+2026-09-17T14:36:57: }
+2026-09-17T14:36:57:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:57:   errno: -4048,
+2026-09-17T14:36:57:   code: 'EPERM',
+2026-09-17T14:36:57:   syscall: 'spawn',
+2026-09-17T14:36:57:   digest: '1738431524'
+2026-09-17T14:36:57: }
+2026-09-17T14:36:57:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:57:   errno: -4048,
+2026-09-17T14:36:57:   code: 'EPERM',
+2026-09-17T14:36:57:   syscall: 'spawn',
+2026-09-17T14:36:57:   digest: '1738431524'
+2026-09-17T14:36:57: }
+2026-09-17T14:36:58:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:58:   errno: -4048,
+2026-09-17T14:36:58:   code: 'EPERM',
+2026-09-17T14:36:58:   syscall: 'spawn',
+2026-09-17T14:36:58:   digest: '1738431524'
+2026-09-17T14:36:58: }
+2026-09-17T14:36:58:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:58:   errno: -4048,
+2026-09-17T14:36:58:   code: 'EPERM',
+2026-09-17T14:36:58:   syscall: 'spawn',
+2026-09-17T14:36:58:   digest: '1738431524'
+2026-09-17T14:36:58: }
+2026-09-17T14:36:58:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:58:   errno: -4048,
+2026-09-17T14:36:58:   code: 'EPERM',
+2026-09-17T14:36:58:   syscall: 'spawn',
+2026-09-17T14:36:58:   digest: '1738431524'
+2026-09-17T14:36:58: }
+2026-09-17T14:36:58:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:58:   errno: -4048,
+2026-09-17T14:36:58:   code: 'EPERM',
+2026-09-17T14:36:58:   syscall: 'spawn',
+2026-09-17T14:36:58:   digest: '1738431524'
+2026-09-17T14:36:58: }
+2026-09-17T14:36:58:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:58:   errno: -4048,
+2026-09-17T14:36:58:   code: 'EPERM',
+2026-09-17T14:36:58:   syscall: 'spawn',
+2026-09-17T14:36:58:   digest: '1738431524'
+2026-09-17T14:36:58: }
+2026-09-17T14:36:59:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:59:   errno: -4048,
+2026-09-17T14:36:59:   code: 'EPERM',
+2026-09-17T14:36:59:   syscall: 'spawn',
+2026-09-17T14:36:59:   digest: '1738431524'
+2026-09-17T14:36:59: }
+2026-09-17T14:36:59:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:59:   errno: -4048,
+2026-09-17T14:36:59:   code: 'EPERM',
+2026-09-17T14:36:59:   syscall: 'spawn',
+2026-09-17T14:36:59:   digest: '1738431524'
+2026-09-17T14:36:59: }
+2026-09-17T14:36:59:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:59:   errno: -4048,
+2026-09-17T14:36:59:   code: 'EPERM',
+2026-09-17T14:36:59:   syscall: 'spawn',
+2026-09-17T14:36:59:   digest: '1738431524'
+2026-09-17T14:36:59: }
+2026-09-17T14:36:59:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:36:59:   errno: -4048,
+2026-09-17T14:36:59:   code: 'EPERM',
+2026-09-17T14:36:59:   syscall: 'spawn',
+2026-09-17T14:36:59:   digest: '1738431524'
+2026-09-17T14:36:59: }
+2026-09-17T14:37:00:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-17T14:37:00:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-17T14:37:00:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-17T14:37:00:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1400916298' }
+2026-09-17T14:37:01:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-17T14:37:01:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-17T14:37:01:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2772739716' }
+2026-09-17T14:37:01:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1079472513' }
+2026-09-17T14:37:02:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '173374726' }
+2026-09-17T14:37:02:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-17T14:37:07:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:37:07:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-17T14:37:12:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:37:12:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-17T14:37:18:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:37:18:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1621882661' }
+2026-09-17T14:37:23:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+2026-09-17T14:37:23:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-17T14:37:28: Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:28:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:28:   errno: -4039,
+2026-09-17T14:37:28:   code: 'ETIMEDOUT',
+2026-09-17T14:37:28:   syscall: 'connect',
+2026-09-17T14:37:28:   address: '94.183.234.121',
+2026-09-17T14:37:28:   port: 80
+2026-09-17T14:37:28: }
+2026-09-17T14:37:28:  ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:28:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:28:   errno: -4039,
+2026-09-17T14:37:28:   code: 'ETIMEDOUT',
+2026-09-17T14:37:28:   syscall: 'connect',
+2026-09-17T14:37:28:   address: '94.183.234.121',
+2026-09-17T14:37:28:   port: 80
+2026-09-17T14:37:28: }
+2026-09-17T14:37:29:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:37:30:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-17T14:37:36:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-17T14:37:36:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1698764395' }
+2026-09-17T14:37:39: Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:39:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:39:   errno: -4039,
+2026-09-17T14:37:39:   code: 'ETIMEDOUT',
+2026-09-17T14:37:39:   syscall: 'connect',
+2026-09-17T14:37:39:   address: '94.183.234.121',
+2026-09-17T14:37:39:   port: 80
+2026-09-17T14:37:39: }
+2026-09-17T14:37:39:  ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:39:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:39:   errno: -4039,
+2026-09-17T14:37:39:   code: 'ETIMEDOUT',
+2026-09-17T14:37:39:   syscall: 'connect',
+2026-09-17T14:37:39:   address: '94.183.234.121',
+2026-09-17T14:37:39:   port: 80
+2026-09-17T14:37:39: }
+2026-09-17T14:37:41:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+2026-09-17T14:37:41:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2721180261' }
+2026-09-17T14:37:44: Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:44:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:44:   errno: -4039,
+2026-09-17T14:37:44:   code: 'ETIMEDOUT',
+2026-09-17T14:37:44:   syscall: 'connect',
+2026-09-17T14:37:44:   address: '94.183.234.121',
+2026-09-17T14:37:44:   port: 80
+2026-09-17T14:37:44: }
+2026-09-17T14:37:44:  ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:44:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:44:   errno: -4039,
+2026-09-17T14:37:44:   code: 'ETIMEDOUT',
+2026-09-17T14:37:44:   syscall: 'connect',
+2026-09-17T14:37:44:   address: '94.183.234.121',
+2026-09-17T14:37:44:   port: 80
+2026-09-17T14:37:44: }
+2026-09-17T14:37:47:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+2026-09-17T14:37:47:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:47:   errno: -4048,
+2026-09-17T14:37:47:   code: 'EPERM',
+2026-09-17T14:37:47:   syscall: 'spawn',
+2026-09-17T14:37:47:   digest: '1738431524'
+2026-09-17T14:37:47: }
+2026-09-17T14:37:47:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:47:   errno: -4048,
+2026-09-17T14:37:47:   code: 'EPERM',
+2026-09-17T14:37:47:   syscall: 'spawn',
+2026-09-17T14:37:47:   digest: '1738431524'
+2026-09-17T14:37:47: }
+2026-09-17T14:37:47:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:47:   errno: -4048,
+2026-09-17T14:37:47:   code: 'EPERM',
+2026-09-17T14:37:47:   syscall: 'spawn',
+2026-09-17T14:37:47:   digest: '1738431524'
+2026-09-17T14:37:47: }
+2026-09-17T14:37:48:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:48:   errno: -4048,
+2026-09-17T14:37:48:   code: 'EPERM',
+2026-09-17T14:37:48:   syscall: 'spawn',
+2026-09-17T14:37:48:   digest: '1738431524'
+2026-09-17T14:37:48: }
+2026-09-17T14:37:48:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:48:   errno: -4048,
+2026-09-17T14:37:48:   code: 'EPERM',
+2026-09-17T14:37:48:   syscall: 'spawn',
+2026-09-17T14:37:48:   digest: '1738431524'
+2026-09-17T14:37:48: }
+2026-09-17T14:37:48:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:48:   errno: -4048,
+2026-09-17T14:37:48:   code: 'EPERM',
+2026-09-17T14:37:48:   syscall: 'spawn',
+2026-09-17T14:37:48:   digest: '1738431524'
+2026-09-17T14:37:48: }
+2026-09-17T14:37:48:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:48:   errno: -4048,
+2026-09-17T14:37:48:   code: 'EPERM',
+2026-09-17T14:37:48:   syscall: 'spawn',
+2026-09-17T14:37:48:   digest: '1738431524'
+2026-09-17T14:37:48: }
+2026-09-17T14:37:48:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:48:   errno: -4048,
+2026-09-17T14:37:48:   code: 'EPERM',
+2026-09-17T14:37:48:   syscall: 'spawn',
+2026-09-17T14:37:48:   digest: '1738431524'
+2026-09-17T14:37:48: }
+2026-09-17T14:37:49:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:49:   errno: -4048,
+2026-09-17T14:37:49:   code: 'EPERM',
+2026-09-17T14:37:49:   syscall: 'spawn',
+2026-09-17T14:37:49:   digest: '1738431524'
+2026-09-17T14:37:49: }
+2026-09-17T14:37:50:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:50:   errno: -4048,
+2026-09-17T14:37:50:   code: 'EPERM',
+2026-09-17T14:37:50:   syscall: 'spawn',
+2026-09-17T14:37:50:   digest: '1738431524'
+2026-09-17T14:37:50: }
+2026-09-17T14:37:51:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:51:   errno: -4048,
+2026-09-17T14:37:51:   code: 'EPERM',
+2026-09-17T14:37:51:   syscall: 'spawn',
+2026-09-17T14:37:51:   digest: '1738431524'
+2026-09-17T14:37:51: }
+2026-09-17T14:37:51: Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:51:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:51:   errno: -4039,
+2026-09-17T14:37:51:   code: 'ETIMEDOUT',
+2026-09-17T14:37:51:   syscall: 'connect',
+2026-09-17T14:37:51:   address: '94.183.234.121',
+2026-09-17T14:37:51:   port: 80
+2026-09-17T14:37:51: }
+2026-09-17T14:37:51:  ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:51:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:51:   errno: -4039,
+2026-09-17T14:37:51:   code: 'ETIMEDOUT',
+2026-09-17T14:37:51:   syscall: 'connect',
+2026-09-17T14:37:51:   address: '94.183.234.121',
+2026-09-17T14:37:51:   port: 80
+2026-09-17T14:37:51: }
+2026-09-17T14:37:51:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:51:   errno: -4048,
+2026-09-17T14:37:51:   code: 'EPERM',
+2026-09-17T14:37:51:   syscall: 'spawn',
+2026-09-17T14:37:51:   digest: '1738431524'
+2026-09-17T14:37:51: }
+2026-09-17T14:37:52:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:52:   errno: -4048,
+2026-09-17T14:37:52:   code: 'EPERM',
+2026-09-17T14:37:52:   syscall: 'spawn',
+2026-09-17T14:37:52:   digest: '1738431524'
+2026-09-17T14:37:52: }
+2026-09-17T14:37:52:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:52:   errno: -4048,
+2026-09-17T14:37:52:   code: 'EPERM',
+2026-09-17T14:37:52:   syscall: 'spawn',
+2026-09-17T14:37:52:   digest: '1738431524'
+2026-09-17T14:37:52: }
+2026-09-17T14:37:52:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:52:   errno: -4048,
+2026-09-17T14:37:52:   code: 'EPERM',
+2026-09-17T14:37:52:   syscall: 'spawn',
+2026-09-17T14:37:52:   digest: '1738431524'
+2026-09-17T14:37:52: }
+2026-09-17T14:37:52:  ⨯ [Error: spawn EPERM] {
+2026-09-17T14:37:52:   errno: -4048,
+2026-09-17T14:37:52:   code: 'EPERM',
+2026-09-17T14:37:52:   syscall: 'spawn',
+2026-09-17T14:37:52:   digest: '1738431524'
+2026-09-17T14:37:52: }
+2026-09-17T14:37:53:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-17T14:37:53:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-17T14:37:53:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-17T14:37:53:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '4110232907' }
+2026-09-17T14:37:54:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-17T14:37:54:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-17T14:37:54:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2034880133' }
+2026-09-17T14:37:54:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1920151682' }
+2026-09-17T14:37:57: Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:57:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:57:   errno: -4039,
+2026-09-17T14:37:57:   code: 'ETIMEDOUT',
+2026-09-17T14:37:57:   syscall: 'connect',
+2026-09-17T14:37:57:   address: '94.183.234.121',
+2026-09-17T14:37:57:   port: 80
+2026-09-17T14:37:57: }
+2026-09-17T14:37:57:  ⨯ uncaughtException:  Error: connect ETIMEDOUT 94.183.234.121:80
+2026-09-17T14:37:57:     at <unknown> (Error: connect ETIMEDOUT 94.183.234.121:80) {
+2026-09-17T14:37:57:   errno: -4039,
+2026-09-17T14:37:57:   code: 'ETIMEDOUT',
+2026-09-17T14:37:57:   syscall: 'connect',
+2026-09-17T14:37:57:   address: '94.183.234.121',
+2026-09-17T14:37:57:   port: 80
+2026-09-17T14:37:57: }
+2026-09-17T14:42:26: [Error: read ECONNRESET] {
+2026-09-17T14:42:26:   errno: -4077,
+2026-09-17T14:42:26:   code: 'ECONNRESET',
+2026-09-17T14:42:26:   syscall: 'read'
+2026-09-17T14:42:26: }
+2026-09-17T14:42:26:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-17T14:42:26:   errno: -4077,
+2026-09-17T14:42:26:   code: 'ECONNRESET',
+2026-09-17T14:42:26:   syscall: 'read'
+2026-09-17T14:42:26: }
+2026-09-17T14:42:27: [Error: read ECONNRESET] {
+2026-09-17T14:42:27:   errno: -4077,
+2026-09-17T14:42:27:   code: 'ECONNRESET',
+2026-09-17T14:42:27:   syscall: 'read'
+2026-09-17T14:42:27: }
+2026-09-17T14:42:27:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-17T14:42:27:   errno: -4077,
+2026-09-17T14:42:27:   code: 'ECONNRESET',
+2026-09-17T14:42:27:   syscall: 'read'
+2026-09-17T14:42:27: }
+2026-09-17T14:43:06: [Error: read ECONNRESET] {
+2026-09-17T14:43:06:   errno: -4077,
+2026-09-17T14:43:06:   code: 'ECONNRESET',
+2026-09-17T14:43:06:   syscall: 'read'
+2026-09-17T14:43:06: }
+2026-09-17T14:43:06:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-17T14:43:06:   errno: -4077,
+2026-09-17T14:43:06:   code: 'ECONNRESET',
+2026-09-17T14:43:06:   syscall: 'read'
+2026-09-17T14:43:06: }
+2026-09-19T12:57:15: (node:13328) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+2026-09-19T12:57:15: (Use `NODE.EXE --trace-deprecation ...` to show where the warning was created)
+2026-09-19T12:57:38:  ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+2026-09-19T12:57:39:  ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-09-19T12:57:59: (node:1520) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-19T12:57:59: (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-19T16:35:12:  ⨯ [Error: NEXT_REDIRECT] { digest: '6998817' }
+2026-09-19T16:35:13:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '373395015' }
+2026-09-19T16:35:13:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2875559302' }
+2026-09-19T16:35:13:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3729394491' }
+2026-09-19T16:35:15:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '70555140' }
+2026-09-19T16:35:16:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-19T16:35:16: [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+2026-09-19T16:35:16:   errno: -4058,
+2026-09-19T16:35:16:   code: 'ENOENT',
+2026-09-19T16:35:16:   syscall: 'open',
+2026-09-19T16:35:16:   path: 'C:\\app\\let'
+2026-09-19T16:35:16: }
+2026-09-19T16:35:16:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+2026-09-19T16:35:16:   errno: -4058,
+2026-09-19T16:35:16:   code: 'ENOENT',
+2026-09-19T16:35:16:   syscall: 'open',
+2026-09-19T16:35:16:   path: 'C:\\app\\let'
+2026-09-19T16:35:16: }
+2026-09-19T16:35:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:35:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-19T16:35:21: [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+2026-09-19T16:35:21:   errno: -4048,
+2026-09-19T16:35:21:   code: 'EPERM',
+2026-09-19T16:35:21:   syscall: 'open',
+2026-09-19T16:35:21:   path: 'C:\\tmp\\let'
+2026-09-19T16:35:21: }
+2026-09-19T16:35:21:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+2026-09-19T16:35:21:   errno: -4048,
+2026-09-19T16:35:21:   code: 'EPERM',
+2026-09-19T16:35:21:   syscall: 'open',
+2026-09-19T16:35:21:   path: 'C:\\tmp\\let'
+2026-09-19T16:35:21: }
+2026-09-19T16:35:26:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:35:27:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-19T16:35:27: [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+2026-09-19T16:35:27:   errno: -4058,
+2026-09-19T16:35:27:   code: 'ENOENT',
+2026-09-19T16:35:27:   syscall: 'open',
+2026-09-19T16:35:27:   path: 'C:\\dev\\let'
+2026-09-19T16:35:27: }
+2026-09-19T16:35:27:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+2026-09-19T16:35:27:   errno: -4058,
+2026-09-19T16:35:27:   code: 'ENOENT',
+2026-09-19T16:35:27:   syscall: 'open',
+2026-09-19T16:35:27:   path: 'C:\\dev\\let'
+2026-09-19T16:35:27: }
+2026-09-19T16:35:32:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:35:33:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1217272292' }
+2026-09-19T16:35:33: [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+2026-09-19T16:35:33:   errno: -4058,
+2026-09-19T16:35:33:   code: 'ENOENT',
+2026-09-19T16:35:33:   syscall: 'open',
+2026-09-19T16:35:33:   path: 'C:\\dev\\shm\\let'
+2026-09-19T16:35:33: }
+2026-09-19T16:35:33:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+2026-09-19T16:35:33:   errno: -4058,
+2026-09-19T16:35:33:   code: 'ENOENT',
+2026-09-19T16:35:33:   syscall: 'open',
+2026-09-19T16:35:33:   path: 'C:\\dev\\shm\\let'
+2026-09-19T16:35:33: }
+2026-09-19T16:35:38:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+2026-09-19T16:35:39:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-19T16:35:39: [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+2026-09-19T16:35:39:   errno: -4058,
+2026-09-19T16:35:39:   code: 'ENOENT',
+2026-09-19T16:35:39:   syscall: 'open',
+2026-09-19T16:35:39:   path: 'C:\\var\\let'
+2026-09-19T16:35:39: }
+2026-09-19T16:35:39:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+2026-09-19T16:35:39:   errno: -4058,
+2026-09-19T16:35:39:   code: 'ENOENT',
+2026-09-19T16:35:39:   syscall: 'open',
+2026-09-19T16:35:39:   path: 'C:\\var\\let'
+2026-09-19T16:35:39: }
+2026-09-19T16:35:44:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:35:44:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-19T16:35:44: [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+2026-09-19T16:35:44:   errno: -4058,
+2026-09-19T16:35:44:   code: 'ENOENT',
+2026-09-19T16:35:44:   syscall: 'open',
+2026-09-19T16:35:44:   path: 'C:\\etc\\let'
+2026-09-19T16:35:44: }
+2026-09-19T16:35:44:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+2026-09-19T16:35:44:   errno: -4058,
+2026-09-19T16:35:44:   code: 'ENOENT',
+2026-09-19T16:35:44:   syscall: 'open',
+2026-09-19T16:35:44:   path: 'C:\\etc\\let'
+2026-09-19T16:35:44: }
+2026-09-19T16:35:49:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:35:49:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '439301418' }
+2026-09-19T16:35:50: [Error: EPERM: operation not permitted, open 'C:\let'] {
+2026-09-19T16:35:50:   errno: -4048,
+2026-09-19T16:35:50:   code: 'EPERM',
+2026-09-19T16:35:50:   syscall: 'open',
+2026-09-19T16:35:50:   path: 'C:\\let'
+2026-09-19T16:35:50: }
+2026-09-19T16:35:50:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\let'] {
+2026-09-19T16:35:50:   errno: -4048,
+2026-09-19T16:35:50:   code: 'EPERM',
+2026-09-19T16:35:50:   syscall: 'open',
+2026-09-19T16:35:50:   path: 'C:\\let'
+2026-09-19T16:35:50: }
+2026-09-19T16:35:55:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+2026-09-19T16:35:55:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '628686116' }
+2026-09-19T16:35:55: [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+2026-09-19T16:35:55:   errno: -4048,
+2026-09-19T16:35:55:   code: 'EPERM',
+2026-09-19T16:35:55:   syscall: 'open',
+2026-09-19T16:35:55:   path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+2026-09-19T16:35:55: }
+2026-09-19T16:35:55:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+2026-09-19T16:35:55:   errno: -4048,
+2026-09-19T16:35:55:   code: 'EPERM',
+2026-09-19T16:35:55:   syscall: 'open',
+2026-09-19T16:35:55:   path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+2026-09-19T16:35:55: }
+2026-09-19T16:36:00:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+2026-09-19T16:36:00:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:00:   errno: -4048,
+2026-09-19T16:36:00:   code: 'EPERM',
+2026-09-19T16:36:00:   syscall: 'spawn',
+2026-09-19T16:36:00:   digest: '1738431524'
+2026-09-19T16:36:00: }
+2026-09-19T16:36:00:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:00:   errno: -4048,
+2026-09-19T16:36:00:   code: 'EPERM',
+2026-09-19T16:36:00:   syscall: 'spawn',
+2026-09-19T16:36:00:   digest: '1738431524'
+2026-09-19T16:36:00: }
+2026-09-19T16:36:01:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:01:   errno: -4048,
+2026-09-19T16:36:01:   code: 'EPERM',
+2026-09-19T16:36:01:   syscall: 'spawn',
+2026-09-19T16:36:01:   digest: '1738431524'
+2026-09-19T16:36:01: }
+2026-09-19T16:36:01:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:01:   errno: -4048,
+2026-09-19T16:36:01:   code: 'EPERM',
+2026-09-19T16:36:01:   syscall: 'spawn',
+2026-09-19T16:36:01:   digest: '1738431524'
+2026-09-19T16:36:01: }
+2026-09-19T16:36:01:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:01:   errno: -4048,
+2026-09-19T16:36:01:   code: 'EPERM',
+2026-09-19T16:36:01:   syscall: 'spawn',
+2026-09-19T16:36:01:   digest: '1738431524'
+2026-09-19T16:36:01: }
+2026-09-19T16:36:01:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:01:   errno: -4048,
+2026-09-19T16:36:01:   code: 'EPERM',
+2026-09-19T16:36:01:   syscall: 'spawn',
+2026-09-19T16:36:01:   digest: '1738431524'
+2026-09-19T16:36:01: }
+2026-09-19T16:36:02:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:02:   errno: -4048,
+2026-09-19T16:36:02:   code: 'EPERM',
+2026-09-19T16:36:02:   syscall: 'spawn',
+2026-09-19T16:36:02:   digest: '1738431524'
+2026-09-19T16:36:02: }
+2026-09-19T16:36:02:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:02:   errno: -4048,
+2026-09-19T16:36:02:   code: 'EPERM',
+2026-09-19T16:36:02:   syscall: 'spawn',
+2026-09-19T16:36:02:   digest: '1738431524'
+2026-09-19T16:36:02: }
+2026-09-19T16:36:02:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:02:   errno: -4048,
+2026-09-19T16:36:02:   code: 'EPERM',
+2026-09-19T16:36:02:   syscall: 'spawn',
+2026-09-19T16:36:02:   digest: '1738431524'
+2026-09-19T16:36:02: }
+2026-09-19T16:36:02:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:02:   errno: -4048,
+2026-09-19T16:36:02:   code: 'EPERM',
+2026-09-19T16:36:02:   syscall: 'spawn',
+2026-09-19T16:36:02:   digest: '1738431524'
+2026-09-19T16:36:02: }
+2026-09-19T16:36:03:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:03:   errno: -4048,
+2026-09-19T16:36:03:   code: 'EPERM',
+2026-09-19T16:36:03:   syscall: 'spawn',
+2026-09-19T16:36:03:   digest: '1738431524'
+2026-09-19T16:36:03: }
+2026-09-19T16:36:03:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:03:   errno: -4048,
+2026-09-19T16:36:03:   code: 'EPERM',
+2026-09-19T16:36:03:   syscall: 'spawn',
+2026-09-19T16:36:03:   digest: '1738431524'
+2026-09-19T16:36:03: }
+2026-09-19T16:36:03:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:03:   errno: -4048,
+2026-09-19T16:36:03:   code: 'EPERM',
+2026-09-19T16:36:03:   syscall: 'spawn',
+2026-09-19T16:36:03:   digest: '1738431524'
+2026-09-19T16:36:03: }
+2026-09-19T16:36:03:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:03:   errno: -4048,
+2026-09-19T16:36:03:   code: 'EPERM',
+2026-09-19T16:36:03:   syscall: 'spawn',
+2026-09-19T16:36:03:   digest: '1738431524'
+2026-09-19T16:36:03: }
+2026-09-19T16:36:04:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:04:   errno: -4048,
+2026-09-19T16:36:04:   code: 'EPERM',
+2026-09-19T16:36:04:   syscall: 'spawn',
+2026-09-19T16:36:04:   digest: '1738431524'
+2026-09-19T16:36:04: }
+2026-09-19T16:36:04:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:04:   errno: -4048,
+2026-09-19T16:36:04:   code: 'EPERM',
+2026-09-19T16:36:04:   syscall: 'spawn',
+2026-09-19T16:36:04:   digest: '1738431524'
+2026-09-19T16:36:04: }
+2026-09-19T16:36:04:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-19T16:36:04:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-19T16:36:05:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-19T16:36:05:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1400916298' }
+2026-09-19T16:36:05:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-19T16:36:05:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-19T16:36:05:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2772739716' }
+2026-09-19T16:36:06:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1079472513' }
+2026-09-19T16:36:06:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '173374726' }
+2026-09-19T16:36:06:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-19T16:36:11:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:36:12:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-19T16:36:17:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:36:17:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-19T16:36:22:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:36:23:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1621882661' }
+2026-09-19T16:36:28:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+2026-09-19T16:36:28:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-19T16:36:33:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:36:33:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-19T16:36:38:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-19T16:36:39:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1698764395' }
+2026-09-19T16:36:44:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+2026-09-19T16:36:44:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2721180261' }
+2026-09-19T16:36:50:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+2026-09-19T16:36:50:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:50:   errno: -4048,
+2026-09-19T16:36:50:   code: 'EPERM',
+2026-09-19T16:36:50:   syscall: 'spawn',
+2026-09-19T16:36:50:   digest: '1738431524'
+2026-09-19T16:36:50: }
+2026-09-19T16:36:50:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:50:   errno: -4048,
+2026-09-19T16:36:50:   code: 'EPERM',
+2026-09-19T16:36:50:   syscall: 'spawn',
+2026-09-19T16:36:50:   digest: '1738431524'
+2026-09-19T16:36:50: }
+2026-09-19T16:36:50:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:50:   errno: -4048,
+2026-09-19T16:36:50:   code: 'EPERM',
+2026-09-19T16:36:50:   syscall: 'spawn',
+2026-09-19T16:36:50:   digest: '1738431524'
+2026-09-19T16:36:50: }
+2026-09-19T16:36:51:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:51:   errno: -4048,
+2026-09-19T16:36:51:   code: 'EPERM',
+2026-09-19T16:36:51:   syscall: 'spawn',
+2026-09-19T16:36:51:   digest: '1738431524'
+2026-09-19T16:36:51: }
+2026-09-19T16:36:51:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:51:   errno: -4048,
+2026-09-19T16:36:51:   code: 'EPERM',
+2026-09-19T16:36:51:   syscall: 'spawn',
+2026-09-19T16:36:51:   digest: '1738431524'
+2026-09-19T16:36:51: }
+2026-09-19T16:36:51:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:51:   errno: -4048,
+2026-09-19T16:36:51:   code: 'EPERM',
+2026-09-19T16:36:51:   syscall: 'spawn',
+2026-09-19T16:36:51:   digest: '1738431524'
+2026-09-19T16:36:51: }
+2026-09-19T16:36:51:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:51:   errno: -4048,
+2026-09-19T16:36:51:   code: 'EPERM',
+2026-09-19T16:36:51:   syscall: 'spawn',
+2026-09-19T16:36:51:   digest: '1738431524'
+2026-09-19T16:36:51: }
+2026-09-19T16:36:52:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:52:   errno: -4048,
+2026-09-19T16:36:52:   code: 'EPERM',
+2026-09-19T16:36:52:   syscall: 'spawn',
+2026-09-19T16:36:52:   digest: '1738431524'
+2026-09-19T16:36:52: }
+2026-09-19T16:36:52:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:52:   errno: -4048,
+2026-09-19T16:36:52:   code: 'EPERM',
+2026-09-19T16:36:52:   syscall: 'spawn',
+2026-09-19T16:36:52:   digest: '1738431524'
+2026-09-19T16:36:52: }
+2026-09-19T16:36:52:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:52:   errno: -4048,
+2026-09-19T16:36:52:   code: 'EPERM',
+2026-09-19T16:36:52:   syscall: 'spawn',
+2026-09-19T16:36:52:   digest: '1738431524'
+2026-09-19T16:36:52: }
+2026-09-19T16:36:52:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:52:   errno: -4048,
+2026-09-19T16:36:52:   code: 'EPERM',
+2026-09-19T16:36:52:   syscall: 'spawn',
+2026-09-19T16:36:52:   digest: '1738431524'
+2026-09-19T16:36:52: }
+2026-09-19T16:36:53:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:53:   errno: -4048,
+2026-09-19T16:36:53:   code: 'EPERM',
+2026-09-19T16:36:53:   syscall: 'spawn',
+2026-09-19T16:36:53:   digest: '1738431524'
+2026-09-19T16:36:53: }
+2026-09-19T16:36:53:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:53:   errno: -4048,
+2026-09-19T16:36:53:   code: 'EPERM',
+2026-09-19T16:36:53:   syscall: 'spawn',
+2026-09-19T16:36:53:   digest: '1738431524'
+2026-09-19T16:36:53: }
+2026-09-19T16:36:53:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:53:   errno: -4048,
+2026-09-19T16:36:53:   code: 'EPERM',
+2026-09-19T16:36:53:   syscall: 'spawn',
+2026-09-19T16:36:53:   digest: '1738431524'
+2026-09-19T16:36:53: }
+2026-09-19T16:36:53:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:53:   errno: -4048,
+2026-09-19T16:36:53:   code: 'EPERM',
+2026-09-19T16:36:53:   syscall: 'spawn',
+2026-09-19T16:36:53:   digest: '1738431524'
+2026-09-19T16:36:53: }
+2026-09-19T16:36:54:  ⨯ [Error: spawn EPERM] {
+2026-09-19T16:36:54:   errno: -4048,
+2026-09-19T16:36:54:   code: 'EPERM',
+2026-09-19T16:36:54:   syscall: 'spawn',
+2026-09-19T16:36:54:   digest: '1738431524'
+2026-09-19T16:36:54: }
+2026-09-19T16:36:54:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-19T16:36:54:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-19T16:36:54:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-19T16:36:55:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '4110232907' }
+2026-09-19T16:36:55:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-19T16:36:55:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-19T16:36:55:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2034880133' }
+2026-09-19T16:36:56:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1920151682' }
+2026-09-19T16:41:15: [Error: read ECONNRESET] {
+2026-09-19T16:41:15:   errno: -4077,
+2026-09-19T16:41:15:   code: 'ECONNRESET',
+2026-09-19T16:41:15:   syscall: 'read'
+2026-09-19T16:41:15: }
+2026-09-19T16:41:15:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-19T16:41:15:   errno: -4077,
+2026-09-19T16:41:15:   code: 'ECONNRESET',
+2026-09-19T16:41:15:   syscall: 'read'
+2026-09-19T16:41:15: }
+2026-09-19T16:41:18: [Error: read ECONNRESET] {
+2026-09-19T16:41:18:   errno: -4077,
+2026-09-19T16:41:18:   code: 'ECONNRESET',
+2026-09-19T16:41:18:   syscall: 'read'
+2026-09-19T16:41:18: }
+2026-09-19T16:41:18:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-19T16:41:18:   errno: -4077,
+2026-09-19T16:41:18:   code: 'ECONNRESET',
+2026-09-19T16:41:18:   syscall: 'read'
+2026-09-19T16:41:18: }
+2026-09-19T16:42:57: [Error: read ECONNRESET] {
+2026-09-19T16:42:57:   errno: -4077,
+2026-09-19T16:42:57:   code: 'ECONNRESET',
+2026-09-19T16:42:57:   syscall: 'read'
+2026-09-19T16:42:57: }
+2026-09-19T16:42:57:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-19T16:42:57:   errno: -4077,
+2026-09-19T16:42:57:   code: 'ECONNRESET',
+2026-09-19T16:42:57:   syscall: 'read'
+2026-09-19T16:42:57: }
+2026-09-19T16:43:00: [Error: read ECONNRESET] {
+2026-09-19T16:43:00:   errno: -4077,
+2026-09-19T16:43:00:   code: 'ECONNRESET',
+2026-09-19T16:43:00:   syscall: 'read'
+2026-09-19T16:43:00: }
+2026-09-19T16:43:00:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-19T16:43:00:   errno: -4077,
+2026-09-19T16:43:00:   code: 'ECONNRESET',
+2026-09-19T16:43:00:   syscall: 'read'
+2026-09-19T16:43:00: }
+2026-09-19T16:43:09: [Error: read ECONNRESET] {
+2026-09-19T16:43:09:   errno: -4077,
+2026-09-19T16:43:09:   code: 'ECONNRESET',
+2026-09-19T16:43:09:   syscall: 'read'
+2026-09-19T16:43:09: }
+2026-09-19T16:43:09:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-19T16:43:09:   errno: -4077,
+2026-09-19T16:43:09:   code: 'ECONNRESET',
+2026-09-19T16:43:09:   syscall: 'read'
+2026-09-19T16:43:09: }
+2026-09-19T16:43:17: [Error: read ECONNRESET] {
+2026-09-19T16:43:17:   errno: -4077,
+2026-09-19T16:43:17:   code: 'ECONNRESET',
+2026-09-19T16:43:17:   syscall: 'read'
+2026-09-19T16:43:17: }
+2026-09-19T16:43:17:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-19T16:43:17:   errno: -4077,
+2026-09-19T16:43:17:   code: 'ECONNRESET',
+2026-09-19T16:43:17:   syscall: 'read'
+2026-09-19T16:43:17: }
+2026-09-19T16:43:17: [Error: read ECONNRESET] {
+2026-09-19T16:43:17:   errno: -4077,
+2026-09-19T16:43:17:   code: 'ECONNRESET',
+2026-09-19T16:43:17:   syscall: 'read'
+2026-09-19T16:43:17: }
+2026-09-19T16:43:17:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-19T16:43:17:   errno: -4077,
+2026-09-19T16:43:17:   code: 'ECONNRESET',
+2026-09-19T16:43:17:   syscall: 'read'
+2026-09-19T16:43:17: }
+2026-09-19T16:43:29: [Error: read ECONNRESET] {
+2026-09-19T16:43:29:   errno: -4077,
+2026-09-19T16:43:29:   code: 'ECONNRESET',
+2026-09-19T16:43:29:   syscall: 'read'
+2026-09-19T16:43:29: }
+2026-09-19T16:43:29:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-19T16:43:29:   errno: -4077,
+2026-09-19T16:43:29:   code: 'ECONNRESET',
+2026-09-19T16:43:29:   syscall: 'read'
+2026-09-19T16:43:29: }
+2026-09-20T06:17:20:  ⨯ [Error: NEXT_REDIRECT] { digest: '977511' }
+2026-09-20T06:17:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '373395015' }
+2026-09-20T06:17:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2875559302' }
+2026-09-20T06:17:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3729394491' }
+2026-09-20T06:17:22:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '70555140' }
+2026-09-20T06:17:22:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T06:17:22: [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+2026-09-20T06:17:22:   errno: -4058,
+2026-09-20T06:17:22:   code: 'ENOENT',
+2026-09-20T06:17:22:   syscall: 'open',
+2026-09-20T06:17:22:   path: 'C:\\app\\let'
+2026-09-20T06:17:22: }
+2026-09-20T06:17:22:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+2026-09-20T06:17:22:   errno: -4058,
+2026-09-20T06:17:22:   code: 'ENOENT',
+2026-09-20T06:17:22:   syscall: 'open',
+2026-09-20T06:17:22:   path: 'C:\\app\\let'
+2026-09-20T06:17:22: }
+2026-09-20T06:17:27:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:17:27:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T06:17:28: [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+2026-09-20T06:17:28:   errno: -4048,
+2026-09-20T06:17:28:   code: 'EPERM',
+2026-09-20T06:17:28:   syscall: 'open',
+2026-09-20T06:17:28:   path: 'C:\\tmp\\let'
+2026-09-20T06:17:28: }
+2026-09-20T06:17:28:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+2026-09-20T06:17:28:   errno: -4048,
+2026-09-20T06:17:28:   code: 'EPERM',
+2026-09-20T06:17:28:   syscall: 'open',
+2026-09-20T06:17:28:   path: 'C:\\tmp\\let'
+2026-09-20T06:17:28: }
+2026-09-20T06:17:32:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:17:33:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T06:17:33: [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+2026-09-20T06:17:33:   errno: -4058,
+2026-09-20T06:17:33:   code: 'ENOENT',
+2026-09-20T06:17:33:   syscall: 'open',
+2026-09-20T06:17:33:   path: 'C:\\dev\\let'
+2026-09-20T06:17:33: }
+2026-09-20T06:17:33:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+2026-09-20T06:17:33:   errno: -4058,
+2026-09-20T06:17:33:   code: 'ENOENT',
+2026-09-20T06:17:33:   syscall: 'open',
+2026-09-20T06:17:33:   path: 'C:\\dev\\let'
+2026-09-20T06:17:33: }
+2026-09-20T06:17:38:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:17:39:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1217272292' }
+2026-09-20T06:17:39: [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+2026-09-20T06:17:39:   errno: -4058,
+2026-09-20T06:17:39:   code: 'ENOENT',
+2026-09-20T06:17:39:   syscall: 'open',
+2026-09-20T06:17:39:   path: 'C:\\dev\\shm\\let'
+2026-09-20T06:17:39: }
+2026-09-20T06:17:39:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+2026-09-20T06:17:39:   errno: -4058,
+2026-09-20T06:17:39:   code: 'ENOENT',
+2026-09-20T06:17:39:   syscall: 'open',
+2026-09-20T06:17:39:   path: 'C:\\dev\\shm\\let'
+2026-09-20T06:17:39: }
+2026-09-20T06:17:44:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+2026-09-20T06:17:44:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T06:17:45: [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+2026-09-20T06:17:45:   errno: -4058,
+2026-09-20T06:17:45:   code: 'ENOENT',
+2026-09-20T06:17:45:   syscall: 'open',
+2026-09-20T06:17:45:   path: 'C:\\var\\let'
+2026-09-20T06:17:45: }
+2026-09-20T06:17:45:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+2026-09-20T06:17:45:   errno: -4058,
+2026-09-20T06:17:45:   code: 'ENOENT',
+2026-09-20T06:17:45:   syscall: 'open',
+2026-09-20T06:17:45:   path: 'C:\\var\\let'
+2026-09-20T06:17:45: }
+2026-09-20T06:17:53:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:17:53:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T06:17:53: [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+2026-09-20T06:17:53:   errno: -4058,
+2026-09-20T06:17:53:   code: 'ENOENT',
+2026-09-20T06:17:53:   syscall: 'open',
+2026-09-20T06:17:53:   path: 'C:\\etc\\let'
+2026-09-20T06:17:53: }
+2026-09-20T06:17:53:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+2026-09-20T06:17:53:   errno: -4058,
+2026-09-20T06:17:53:   code: 'ENOENT',
+2026-09-20T06:17:53:   syscall: 'open',
+2026-09-20T06:17:53:   path: 'C:\\etc\\let'
+2026-09-20T06:17:53: }
+2026-09-20T06:17:58:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:17:59:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '439301418' }
+2026-09-20T06:17:59: [Error: EPERM: operation not permitted, open 'C:\let'] {
+2026-09-20T06:17:59:   errno: -4048,
+2026-09-20T06:17:59:   code: 'EPERM',
+2026-09-20T06:17:59:   syscall: 'open',
+2026-09-20T06:17:59:   path: 'C:\\let'
+2026-09-20T06:17:59: }
+2026-09-20T06:17:59:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\let'] {
+2026-09-20T06:17:59:   errno: -4048,
+2026-09-20T06:17:59:   code: 'EPERM',
+2026-09-20T06:17:59:   syscall: 'open',
+2026-09-20T06:17:59:   path: 'C:\\let'
+2026-09-20T06:17:59: }
+2026-09-20T06:18:04:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+2026-09-20T06:18:04:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '628686116' }
+2026-09-20T06:18:05: [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+2026-09-20T06:18:05:   errno: -4048,
+2026-09-20T06:18:05:   code: 'EPERM',
+2026-09-20T06:18:05:   syscall: 'open',
+2026-09-20T06:18:05:   path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+2026-09-20T06:18:05: }
+2026-09-20T06:18:05:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+2026-09-20T06:18:05:   errno: -4048,
+2026-09-20T06:18:05:   code: 'EPERM',
+2026-09-20T06:18:05:   syscall: 'open',
+2026-09-20T06:18:05:   path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+2026-09-20T06:18:05: }
+2026-09-20T06:18:09:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+2026-09-20T06:18:15:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3472192231' }
+2026-09-20T06:18:15:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:15:   errno: -4048,
+2026-09-20T06:18:15:   code: 'EPERM',
+2026-09-20T06:18:15:   syscall: 'spawn',
+2026-09-20T06:18:15:   digest: '1738431524'
+2026-09-20T06:18:15: }
+2026-09-20T06:18:15:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:15:   errno: -4048,
+2026-09-20T06:18:15:   code: 'EPERM',
+2026-09-20T06:18:15:   syscall: 'spawn',
+2026-09-20T06:18:15:   digest: '1738431524'
+2026-09-20T06:18:15: }
+2026-09-20T06:18:15:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:15:   errno: -4048,
+2026-09-20T06:18:15:   code: 'EPERM',
+2026-09-20T06:18:15:   syscall: 'spawn',
+2026-09-20T06:18:15:   digest: '1738431524'
+2026-09-20T06:18:15: }
+2026-09-20T06:18:16:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:16:   errno: -4048,
+2026-09-20T06:18:16:   code: 'EPERM',
+2026-09-20T06:18:16:   syscall: 'spawn',
+2026-09-20T06:18:16:   digest: '1738431524'
+2026-09-20T06:18:16: }
+2026-09-20T06:18:16:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:16:   errno: -4048,
+2026-09-20T06:18:16:   code: 'EPERM',
+2026-09-20T06:18:16:   syscall: 'spawn',
+2026-09-20T06:18:16:   digest: '1738431524'
+2026-09-20T06:18:16: }
+2026-09-20T06:18:17:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:17:   errno: -4048,
+2026-09-20T06:18:17:   code: 'EPERM',
+2026-09-20T06:18:17:   syscall: 'spawn',
+2026-09-20T06:18:17:   digest: '1738431524'
+2026-09-20T06:18:17: }
+2026-09-20T06:18:18:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:18:   errno: -4048,
+2026-09-20T06:18:18:   code: 'EPERM',
+2026-09-20T06:18:18:   syscall: 'spawn',
+2026-09-20T06:18:18:   digest: '1738431524'
+2026-09-20T06:18:18: }
+2026-09-20T06:18:18:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:18:   errno: -4048,
+2026-09-20T06:18:18:   code: 'EPERM',
+2026-09-20T06:18:18:   syscall: 'spawn',
+2026-09-20T06:18:18:   digest: '1738431524'
+2026-09-20T06:18:18: }
+2026-09-20T06:18:19:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:19:   errno: -4048,
+2026-09-20T06:18:19:   code: 'EPERM',
+2026-09-20T06:18:19:   syscall: 'spawn',
+2026-09-20T06:18:19:   digest: '1738431524'
+2026-09-20T06:18:19: }
+2026-09-20T06:18:19:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:19:   errno: -4048,
+2026-09-20T06:18:19:   code: 'EPERM',
+2026-09-20T06:18:19:   syscall: 'spawn',
+2026-09-20T06:18:19:   digest: '1738431524'
+2026-09-20T06:18:19: }
+2026-09-20T06:18:19:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:19:   errno: -4048,
+2026-09-20T06:18:19:   code: 'EPERM',
+2026-09-20T06:18:19:   syscall: 'spawn',
+2026-09-20T06:18:19:   digest: '1738431524'
+2026-09-20T06:18:19: }
+2026-09-20T06:18:19:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:19:   errno: -4048,
+2026-09-20T06:18:19:   code: 'EPERM',
+2026-09-20T06:18:19:   syscall: 'spawn',
+2026-09-20T06:18:19:   digest: '1738431524'
+2026-09-20T06:18:19: }
+2026-09-20T06:18:20:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:20:   errno: -4048,
+2026-09-20T06:18:20:   code: 'EPERM',
+2026-09-20T06:18:20:   syscall: 'spawn',
+2026-09-20T06:18:20:   digest: '1738431524'
+2026-09-20T06:18:20: }
+2026-09-20T06:18:20:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:20:   errno: -4048,
+2026-09-20T06:18:20:   code: 'EPERM',
+2026-09-20T06:18:20:   syscall: 'spawn',
+2026-09-20T06:18:20:   digest: '1738431524'
+2026-09-20T06:18:20: }
+2026-09-20T06:18:20:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:18:20:   errno: -4048,
+2026-09-20T06:18:20:   code: 'EPERM',
+2026-09-20T06:18:20:   syscall: 'spawn',
+2026-09-20T06:18:20:   digest: '1738431524'
+2026-09-20T06:18:20: }
+2026-09-20T06:18:20:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T06:18:20:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T06:18:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T06:18:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1400916298' }
+2026-09-20T06:18:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T06:18:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T06:18:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2772739716' }
+2026-09-20T06:18:22:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1079472513' }
+2026-09-20T06:18:22:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '173374726' }
+2026-09-20T06:18:22:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T06:18:27:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:18:27:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T06:18:33:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:18:33:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T06:18:38:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:18:38:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1621882661' }
+2026-09-20T06:18:43:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+2026-09-20T06:18:44:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T06:18:49:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:18:49:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T06:18:55:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T06:18:55:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1698764395' }
+2026-09-20T06:19:01:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+2026-09-20T06:19:01:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2721180261' }
+2026-09-20T06:19:06:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+2026-09-20T06:19:07:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:07:   errno: -4048,
+2026-09-20T06:19:07:   code: 'EPERM',
+2026-09-20T06:19:07:   syscall: 'spawn',
+2026-09-20T06:19:07:   digest: '1738431524'
+2026-09-20T06:19:07: }
+2026-09-20T06:19:07:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:07:   errno: -4048,
+2026-09-20T06:19:07:   code: 'EPERM',
+2026-09-20T06:19:07:   syscall: 'spawn',
+2026-09-20T06:19:07:   digest: '1738431524'
+2026-09-20T06:19:07: }
+2026-09-20T06:19:07:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:07:   errno: -4048,
+2026-09-20T06:19:07:   code: 'EPERM',
+2026-09-20T06:19:07:   syscall: 'spawn',
+2026-09-20T06:19:07:   digest: '1738431524'
+2026-09-20T06:19:07: }
+2026-09-20T06:19:07:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:07:   errno: -4048,
+2026-09-20T06:19:07:   code: 'EPERM',
+2026-09-20T06:19:07:   syscall: 'spawn',
+2026-09-20T06:19:07:   digest: '1738431524'
+2026-09-20T06:19:07: }
+2026-09-20T06:19:07:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:07:   errno: -4048,
+2026-09-20T06:19:07:   code: 'EPERM',
+2026-09-20T06:19:07:   syscall: 'spawn',
+2026-09-20T06:19:07:   digest: '1738431524'
+2026-09-20T06:19:07: }
+2026-09-20T06:19:08:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:08:   errno: -4048,
+2026-09-20T06:19:08:   code: 'EPERM',
+2026-09-20T06:19:08:   syscall: 'spawn',
+2026-09-20T06:19:08:   digest: '1738431524'
+2026-09-20T06:19:08: }
+2026-09-20T06:19:08:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:08:   errno: -4048,
+2026-09-20T06:19:08:   code: 'EPERM',
+2026-09-20T06:19:08:   syscall: 'spawn',
+2026-09-20T06:19:08:   digest: '1738431524'
+2026-09-20T06:19:08: }
+2026-09-20T06:19:08:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:08:   errno: -4048,
+2026-09-20T06:19:08:   code: 'EPERM',
+2026-09-20T06:19:08:   syscall: 'spawn',
+2026-09-20T06:19:08:   digest: '1738431524'
+2026-09-20T06:19:08: }
+2026-09-20T06:19:08:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:08:   errno: -4048,
+2026-09-20T06:19:08:   code: 'EPERM',
+2026-09-20T06:19:08:   syscall: 'spawn',
+2026-09-20T06:19:08:   digest: '1738431524'
+2026-09-20T06:19:08: }
+2026-09-20T06:19:09:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:09:   errno: -4048,
+2026-09-20T06:19:09:   code: 'EPERM',
+2026-09-20T06:19:09:   syscall: 'spawn',
+2026-09-20T06:19:09:   digest: '1738431524'
+2026-09-20T06:19:09: }
+2026-09-20T06:19:09:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:09:   errno: -4048,
+2026-09-20T06:19:09:   code: 'EPERM',
+2026-09-20T06:19:09:   syscall: 'spawn',
+2026-09-20T06:19:09:   digest: '1738431524'
+2026-09-20T06:19:09: }
+2026-09-20T06:19:09:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:09:   errno: -4048,
+2026-09-20T06:19:09:   code: 'EPERM',
+2026-09-20T06:19:09:   syscall: 'spawn',
+2026-09-20T06:19:09:   digest: '1738431524'
+2026-09-20T06:19:09: }
+2026-09-20T06:19:09:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:09:   errno: -4048,
+2026-09-20T06:19:09:   code: 'EPERM',
+2026-09-20T06:19:09:   syscall: 'spawn',
+2026-09-20T06:19:09:   digest: '1738431524'
+2026-09-20T06:19:09: }
+2026-09-20T06:19:10:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:10:   errno: -4048,
+2026-09-20T06:19:10:   code: 'EPERM',
+2026-09-20T06:19:10:   syscall: 'spawn',
+2026-09-20T06:19:10:   digest: '1738431524'
+2026-09-20T06:19:10: }
+2026-09-20T06:19:10:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:10:   errno: -4048,
+2026-09-20T06:19:10:   code: 'EPERM',
+2026-09-20T06:19:10:   syscall: 'spawn',
+2026-09-20T06:19:10:   digest: '1738431524'
+2026-09-20T06:19:10: }
+2026-09-20T06:19:10:  ⨯ [Error: spawn EPERM] {
+2026-09-20T06:19:10:   errno: -4048,
+2026-09-20T06:19:10:   code: 'EPERM',
+2026-09-20T06:19:10:   syscall: 'spawn',
+2026-09-20T06:19:10:   digest: '1738431524'
+2026-09-20T06:19:10: }
+2026-09-20T06:19:10:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T06:19:11:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T06:19:11:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T06:19:11:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '4110232907' }
+2026-09-20T06:19:11:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T06:19:12:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T06:19:12:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2034880133' }
+2026-09-20T06:19:12:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1920151682' }
+2026-09-20T06:23:37: [Error: read ECONNRESET] {
+2026-09-20T06:23:37:   errno: -4077,
+2026-09-20T06:23:37:   code: 'ECONNRESET',
+2026-09-20T06:23:37:   syscall: 'read'
+2026-09-20T06:23:37: }
+2026-09-20T06:23:37:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T06:23:37:   errno: -4077,
+2026-09-20T06:23:37:   code: 'ECONNRESET',
+2026-09-20T06:23:37:   syscall: 'read'
+2026-09-20T06:23:37: }
+2026-09-20T06:24:06: [Error: read ECONNRESET] {
+2026-09-20T06:24:06:   errno: -4077,
+2026-09-20T06:24:06:   code: 'ECONNRESET',
+2026-09-20T06:24:06:   syscall: 'read'
+2026-09-20T06:24:06: }
+2026-09-20T06:24:06:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T06:24:06:   errno: -4077,
+2026-09-20T06:24:06:   code: 'ECONNRESET',
+2026-09-20T06:24:06:   syscall: 'read'
+2026-09-20T06:24:06: }
+2026-09-20T06:25:20: [Error: read ECONNRESET] {
+2026-09-20T06:25:20:   errno: -4077,
+2026-09-20T06:25:20:   code: 'ECONNRESET',
+2026-09-20T06:25:20:   syscall: 'read'
+2026-09-20T06:25:20: }
+2026-09-20T06:25:20:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T06:25:20:   errno: -4077,
+2026-09-20T06:25:20:   code: 'ECONNRESET',
+2026-09-20T06:25:20:   syscall: 'read'
+2026-09-20T06:25:20: }
+2026-09-20T06:25:24: [Error: read ECONNRESET] {
+2026-09-20T06:25:24:   errno: -4077,
+2026-09-20T06:25:24:   code: 'ECONNRESET',
+2026-09-20T06:25:24:   syscall: 'read'
+2026-09-20T06:25:24: }
+2026-09-20T06:25:24:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T06:25:24:   errno: -4077,
+2026-09-20T06:25:24:   code: 'ECONNRESET',
+2026-09-20T06:25:24:   syscall: 'read'
+2026-09-20T06:25:24: }
+2026-09-20T06:25:28: [Error: read ECONNRESET] {
+2026-09-20T06:25:28:   errno: -4077,
+2026-09-20T06:25:28:   code: 'ECONNRESET',
+2026-09-20T06:25:28:   syscall: 'read'
+2026-09-20T06:25:28: }
+2026-09-20T06:25:28:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T06:25:28:   errno: -4077,
+2026-09-20T06:25:28:   code: 'ECONNRESET',
+2026-09-20T06:25:28:   syscall: 'read'
+2026-09-20T06:25:28: }
+2026-09-20T06:25:33: [Error: read ECONNRESET] {
+2026-09-20T06:25:33:   errno: -4077,
+2026-09-20T06:25:33:   code: 'ECONNRESET',
+2026-09-20T06:25:33:   syscall: 'read'
+2026-09-20T06:25:33: }
+2026-09-20T06:25:33:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T06:25:33:   errno: -4077,
+2026-09-20T06:25:33:   code: 'ECONNRESET',
+2026-09-20T06:25:33:   syscall: 'read'
+2026-09-20T06:25:33: }
+2026-09-20T06:25:48: [Error: read ECONNRESET] {
+2026-09-20T06:25:48:   errno: -4077,
+2026-09-20T06:25:48:   code: 'ECONNRESET',
+2026-09-20T06:25:48:   syscall: 'read'
+2026-09-20T06:25:48: }
+2026-09-20T06:25:48:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T06:25:48:   errno: -4077,
+2026-09-20T06:25:48:   code: 'ECONNRESET',
+2026-09-20T06:25:48:   syscall: 'read'
+2026-09-20T06:25:48: }
+2026-09-20T06:25:48: [Error: read ECONNRESET] {
+2026-09-20T06:25:48:   errno: -4077,
+2026-09-20T06:25:48:   code: 'ECONNRESET',
+2026-09-20T06:25:48:   syscall: 'read'
+2026-09-20T06:25:48: }
+2026-09-20T06:25:48:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T06:25:48:   errno: -4077,
+2026-09-20T06:25:48:   code: 'ECONNRESET',
+2026-09-20T06:25:48:   syscall: 'read'
+2026-09-20T06:25:48: }
+2026-09-20T11:44:20: (node:11676) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+2026-09-20T11:44:20: (Use `NODE.EXE --trace-deprecation ...` to show where the warning was created)
+2026-09-20T11:44:24:  ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+2026-09-20T11:44:24:  ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-09-20T11:44:26: (node:22908) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-20T11:44:26: (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-20T19:12:20:  ⨯ [Error: NEXT_REDIRECT] { digest: '4128746' }
+2026-09-20T19:12:20:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '373395015' }
+2026-09-20T19:12:20:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2875559302' }
+2026-09-20T19:12:21:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3729394491' }
+2026-09-20T19:12:23:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '70555140' }
+2026-09-20T19:12:24:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T19:12:24: [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+2026-09-20T19:12:24:   errno: -4058,
+2026-09-20T19:12:24:   code: 'ENOENT',
+2026-09-20T19:12:24:   syscall: 'open',
+2026-09-20T19:12:24:   path: 'C:\\app\\let'
+2026-09-20T19:12:24: }
+2026-09-20T19:12:24:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\app\let'] {
+2026-09-20T19:12:24:   errno: -4058,
+2026-09-20T19:12:24:   code: 'ENOENT',
+2026-09-20T19:12:24:   syscall: 'open',
+2026-09-20T19:12:24:   path: 'C:\\app\\let'
+2026-09-20T19:12:24: }
+2026-09-20T19:12:29:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:12:29:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T19:12:29: [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+2026-09-20T19:12:29:   errno: -4048,
+2026-09-20T19:12:29:   code: 'EPERM',
+2026-09-20T19:12:29:   syscall: 'open',
+2026-09-20T19:12:29:   path: 'C:\\tmp\\let'
+2026-09-20T19:12:29: }
+2026-09-20T19:12:29:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\tmp\let'] {
+2026-09-20T19:12:29:   errno: -4048,
+2026-09-20T19:12:29:   code: 'EPERM',
+2026-09-20T19:12:29:   syscall: 'open',
+2026-09-20T19:12:29:   path: 'C:\\tmp\\let'
+2026-09-20T19:12:29: }
+2026-09-20T19:12:34:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:12:34:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T19:12:35: [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+2026-09-20T19:12:35:   errno: -4058,
+2026-09-20T19:12:35:   code: 'ENOENT',
+2026-09-20T19:12:35:   syscall: 'open',
+2026-09-20T19:12:35:   path: 'C:\\dev\\let'
+2026-09-20T19:12:35: }
+2026-09-20T19:12:35:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\let'] {
+2026-09-20T19:12:35:   errno: -4058,
+2026-09-20T19:12:35:   code: 'ENOENT',
+2026-09-20T19:12:35:   syscall: 'open',
+2026-09-20T19:12:35:   path: 'C:\\dev\\let'
+2026-09-20T19:12:35: }
+2026-09-20T19:12:40:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:12:41:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1217272292' }
+2026-09-20T19:12:41: [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+2026-09-20T19:12:41:   errno: -4058,
+2026-09-20T19:12:41:   code: 'ENOENT',
+2026-09-20T19:12:41:   syscall: 'open',
+2026-09-20T19:12:41:   path: 'C:\\dev\\shm\\let'
+2026-09-20T19:12:41: }
+2026-09-20T19:12:41:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\dev\shm\let'] {
+2026-09-20T19:12:41:   errno: -4058,
+2026-09-20T19:12:41:   code: 'ENOENT',
+2026-09-20T19:12:41:   syscall: 'open',
+2026-09-20T19:12:41:   path: 'C:\\dev\\shm\\let'
+2026-09-20T19:12:41: }
+2026-09-20T19:12:46:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+2026-09-20T19:12:47:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T19:12:47: [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+2026-09-20T19:12:47:   errno: -4058,
+2026-09-20T19:12:47:   code: 'ENOENT',
+2026-09-20T19:12:47:   syscall: 'open',
+2026-09-20T19:12:47:   path: 'C:\\var\\let'
+2026-09-20T19:12:47: }
+2026-09-20T19:12:47:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\var\let'] {
+2026-09-20T19:12:47:   errno: -4058,
+2026-09-20T19:12:47:   code: 'ENOENT',
+2026-09-20T19:12:47:   syscall: 'open',
+2026-09-20T19:12:47:   path: 'C:\\var\\let'
+2026-09-20T19:12:47: }
+2026-09-20T19:12:52:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:12:52:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '750879303' }
+2026-09-20T19:12:52: [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+2026-09-20T19:12:52:   errno: -4058,
+2026-09-20T19:12:52:   code: 'ENOENT',
+2026-09-20T19:12:52:   syscall: 'open',
+2026-09-20T19:12:52:   path: 'C:\\etc\\let'
+2026-09-20T19:12:52: }
+2026-09-20T19:12:52:  ⨯ uncaughtException:  [Error: ENOENT: no such file or directory, open 'C:\etc\let'] {
+2026-09-20T19:12:52:   errno: -4058,
+2026-09-20T19:12:52:   code: 'ENOENT',
+2026-09-20T19:12:52:   syscall: 'open',
+2026-09-20T19:12:52:   path: 'C:\\etc\\let'
+2026-09-20T19:12:52: }
+2026-09-20T19:12:57:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:12:57:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '439301418' }
+2026-09-20T19:12:58: [Error: EPERM: operation not permitted, open 'C:\let'] {
+2026-09-20T19:12:58:   errno: -4048,
+2026-09-20T19:12:58:   code: 'EPERM',
+2026-09-20T19:12:58:   syscall: 'open',
+2026-09-20T19:12:58:   path: 'C:\\let'
+2026-09-20T19:12:58: }
+2026-09-20T19:12:58:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\let'] {
+2026-09-20T19:12:58:   errno: -4048,
+2026-09-20T19:12:58:   code: 'EPERM',
+2026-09-20T19:12:58:   syscall: 'open',
+2026-09-20T19:12:58:   path: 'C:\\let'
+2026-09-20T19:12:58: }
+2026-09-20T19:13:03:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+2026-09-20T19:13:04:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '628686116' }
+2026-09-20T19:13:04: [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+2026-09-20T19:13:04:   errno: -4048,
+2026-09-20T19:13:04:   code: 'EPERM',
+2026-09-20T19:13:04:   syscall: 'open',
+2026-09-20T19:13:04:   path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+2026-09-20T19:13:04: }
+2026-09-20T19:13:04:  ⨯ uncaughtException:  [Error: EPERM: operation not permitted, open 'C:\Users\Administrator\Desktop\ryd gui\RYD-Gui\let'] {
+2026-09-20T19:13:04:   errno: -4048,
+2026-09-20T19:13:04:   code: 'EPERM',
+2026-09-20T19:13:04:   syscall: 'open',
+2026-09-20T19:13:04:   path: 'C:\\Users\\Administrator\\Desktop\\ryd gui\\RYD-Gui\\let'
+2026-09-20T19:13:04: }
+2026-09-20T19:13:09:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+2026-09-20T19:13:09:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:09:   errno: -4048,
+2026-09-20T19:13:09:   code: 'EPERM',
+2026-09-20T19:13:09:   syscall: 'spawn',
+2026-09-20T19:13:09:   digest: '1738431524'
+2026-09-20T19:13:09: }
+2026-09-20T19:13:09:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:09:   errno: -4048,
+2026-09-20T19:13:09:   code: 'EPERM',
+2026-09-20T19:13:09:   syscall: 'spawn',
+2026-09-20T19:13:09:   digest: '1738431524'
+2026-09-20T19:13:09: }
+2026-09-20T19:13:10:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:10:   errno: -4048,
+2026-09-20T19:13:10:   code: 'EPERM',
+2026-09-20T19:13:10:   syscall: 'spawn',
+2026-09-20T19:13:10:   digest: '1738431524'
+2026-09-20T19:13:10: }
+2026-09-20T19:13:10:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:10:   errno: -4048,
+2026-09-20T19:13:10:   code: 'EPERM',
+2026-09-20T19:13:10:   syscall: 'spawn',
+2026-09-20T19:13:10:   digest: '1738431524'
+2026-09-20T19:13:10: }
+2026-09-20T19:13:10:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:10:   errno: -4048,
+2026-09-20T19:13:10:   code: 'EPERM',
+2026-09-20T19:13:10:   syscall: 'spawn',
+2026-09-20T19:13:10:   digest: '1738431524'
+2026-09-20T19:13:10: }
+2026-09-20T19:13:10:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:10:   errno: -4048,
+2026-09-20T19:13:10:   code: 'EPERM',
+2026-09-20T19:13:10:   syscall: 'spawn',
+2026-09-20T19:13:10:   digest: '1738431524'
+2026-09-20T19:13:10: }
+2026-09-20T19:13:11:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:11:   errno: -4048,
+2026-09-20T19:13:11:   code: 'EPERM',
+2026-09-20T19:13:11:   syscall: 'spawn',
+2026-09-20T19:13:11:   digest: '1738431524'
+2026-09-20T19:13:11: }
+2026-09-20T19:13:11:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:11:   errno: -4048,
+2026-09-20T19:13:11:   code: 'EPERM',
+2026-09-20T19:13:11:   syscall: 'spawn',
+2026-09-20T19:13:11:   digest: '1738431524'
+2026-09-20T19:13:11: }
+2026-09-20T19:13:11:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:11:   errno: -4048,
+2026-09-20T19:13:11:   code: 'EPERM',
+2026-09-20T19:13:11:   syscall: 'spawn',
+2026-09-20T19:13:11:   digest: '1738431524'
+2026-09-20T19:13:11: }
+2026-09-20T19:13:11:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:11:   errno: -4048,
+2026-09-20T19:13:11:   code: 'EPERM',
+2026-09-20T19:13:11:   syscall: 'spawn',
+2026-09-20T19:13:11:   digest: '1738431524'
+2026-09-20T19:13:11: }
+2026-09-20T19:13:12:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:12:   errno: -4048,
+2026-09-20T19:13:12:   code: 'EPERM',
+2026-09-20T19:13:12:   syscall: 'spawn',
+2026-09-20T19:13:12:   digest: '1738431524'
+2026-09-20T19:13:12: }
+2026-09-20T19:13:12:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:12:   errno: -4048,
+2026-09-20T19:13:12:   code: 'EPERM',
+2026-09-20T19:13:12:   syscall: 'spawn',
+2026-09-20T19:13:12:   digest: '1738431524'
+2026-09-20T19:13:12: }
+2026-09-20T19:13:12:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:12:   errno: -4048,
+2026-09-20T19:13:12:   code: 'EPERM',
+2026-09-20T19:13:12:   syscall: 'spawn',
+2026-09-20T19:13:12:   digest: '1738431524'
+2026-09-20T19:13:12: }
+2026-09-20T19:13:12:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:12:   errno: -4048,
+2026-09-20T19:13:12:   code: 'EPERM',
+2026-09-20T19:13:12:   syscall: 'spawn',
+2026-09-20T19:13:12:   digest: '1738431524'
+2026-09-20T19:13:12: }
+2026-09-20T19:13:12:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:12:   errno: -4048,
+2026-09-20T19:13:12:   code: 'EPERM',
+2026-09-20T19:13:12:   syscall: 'spawn',
+2026-09-20T19:13:12:   digest: '1738431524'
+2026-09-20T19:13:12: }
+2026-09-20T19:13:13:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:13:   errno: -4048,
+2026-09-20T19:13:13:   code: 'EPERM',
+2026-09-20T19:13:13:   syscall: 'spawn',
+2026-09-20T19:13:13:   digest: '1738431524'
+2026-09-20T19:13:13: }
+2026-09-20T19:13:13:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T19:13:13:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T19:13:13:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T19:13:14:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1400916298' }
+2026-09-20T19:13:14:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T19:13:14:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '108865063' }
+2026-09-20T19:13:14:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2772739716' }
+2026-09-20T19:13:15:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1079472513' }
+2026-09-20T19:13:15:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '173374726' }
+2026-09-20T19:13:15:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T19:13:20:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:13:20:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T19:13:26:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:13:26:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T19:13:31:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:13:31:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1621882661' }
+2026-09-20T19:13:37:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1535161439' }
+2026-09-20T19:13:37:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T19:13:42:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:13:42:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2084873798' }
+2026-09-20T19:13:47:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1815121363' }
+2026-09-20T19:13:47:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1698764395' }
+2026-09-20T19:13:53:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2247285079' }
+2026-09-20T19:13:53:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2721180261' }
+2026-09-20T19:13:58:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '3631290493' }
+2026-09-20T19:13:58:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:58:   errno: -4048,
+2026-09-20T19:13:58:   code: 'EPERM',
+2026-09-20T19:13:58:   syscall: 'spawn',
+2026-09-20T19:13:58:   digest: '1738431524'
+2026-09-20T19:13:58: }
+2026-09-20T19:13:58:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:58:   errno: -4048,
+2026-09-20T19:13:58:   code: 'EPERM',
+2026-09-20T19:13:58:   syscall: 'spawn',
+2026-09-20T19:13:58:   digest: '1738431524'
+2026-09-20T19:13:58: }
+2026-09-20T19:13:59:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:59:   errno: -4048,
+2026-09-20T19:13:59:   code: 'EPERM',
+2026-09-20T19:13:59:   syscall: 'spawn',
+2026-09-20T19:13:59:   digest: '1738431524'
+2026-09-20T19:13:59: }
+2026-09-20T19:13:59:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:59:   errno: -4048,
+2026-09-20T19:13:59:   code: 'EPERM',
+2026-09-20T19:13:59:   syscall: 'spawn',
+2026-09-20T19:13:59:   digest: '1738431524'
+2026-09-20T19:13:59: }
+2026-09-20T19:13:59:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:59:   errno: -4048,
+2026-09-20T19:13:59:   code: 'EPERM',
+2026-09-20T19:13:59:   syscall: 'spawn',
+2026-09-20T19:13:59:   digest: '1738431524'
+2026-09-20T19:13:59: }
+2026-09-20T19:13:59:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:13:59:   errno: -4048,
+2026-09-20T19:13:59:   code: 'EPERM',
+2026-09-20T19:13:59:   syscall: 'spawn',
+2026-09-20T19:13:59:   digest: '1738431524'
+2026-09-20T19:13:59: }
+2026-09-20T19:14:00:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:00:   errno: -4048,
+2026-09-20T19:14:00:   code: 'EPERM',
+2026-09-20T19:14:00:   syscall: 'spawn',
+2026-09-20T19:14:00:   digest: '1738431524'
+2026-09-20T19:14:00: }
+2026-09-20T19:14:00:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:00:   errno: -4048,
+2026-09-20T19:14:00:   code: 'EPERM',
+2026-09-20T19:14:00:   syscall: 'spawn',
+2026-09-20T19:14:00:   digest: '1738431524'
+2026-09-20T19:14:00: }
+2026-09-20T19:14:00:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:00:   errno: -4048,
+2026-09-20T19:14:00:   code: 'EPERM',
+2026-09-20T19:14:00:   syscall: 'spawn',
+2026-09-20T19:14:00:   digest: '1738431524'
+2026-09-20T19:14:00: }
+2026-09-20T19:14:00:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:00:   errno: -4048,
+2026-09-20T19:14:00:   code: 'EPERM',
+2026-09-20T19:14:00:   syscall: 'spawn',
+2026-09-20T19:14:00:   digest: '1738431524'
+2026-09-20T19:14:00: }
+2026-09-20T19:14:01:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:01:   errno: -4048,
+2026-09-20T19:14:01:   code: 'EPERM',
+2026-09-20T19:14:01:   syscall: 'spawn',
+2026-09-20T19:14:01:   digest: '1738431524'
+2026-09-20T19:14:01: }
+2026-09-20T19:14:01:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:01:   errno: -4048,
+2026-09-20T19:14:01:   code: 'EPERM',
+2026-09-20T19:14:01:   syscall: 'spawn',
+2026-09-20T19:14:01:   digest: '1738431524'
+2026-09-20T19:14:01: }
+2026-09-20T19:14:01:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:01:   errno: -4048,
+2026-09-20T19:14:01:   code: 'EPERM',
+2026-09-20T19:14:01:   syscall: 'spawn',
+2026-09-20T19:14:01:   digest: '1738431524'
+2026-09-20T19:14:01: }
+2026-09-20T19:14:01:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:01:   errno: -4048,
+2026-09-20T19:14:01:   code: 'EPERM',
+2026-09-20T19:14:01:   syscall: 'spawn',
+2026-09-20T19:14:01:   digest: '1738431524'
+2026-09-20T19:14:01: }
+2026-09-20T19:14:01:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:01:   errno: -4048,
+2026-09-20T19:14:01:   code: 'EPERM',
+2026-09-20T19:14:01:   syscall: 'spawn',
+2026-09-20T19:14:01:   digest: '1738431524'
+2026-09-20T19:14:01: }
+2026-09-20T19:14:02:  ⨯ [Error: spawn EPERM] {
+2026-09-20T19:14:02:   errno: -4048,
+2026-09-20T19:14:02:   code: 'EPERM',
+2026-09-20T19:14:02:   syscall: 'spawn',
+2026-09-20T19:14:02:   digest: '1738431524'
+2026-09-20T19:14:02: }
+2026-09-20T19:14:02:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T19:14:02:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T19:14:02:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T19:14:03:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '4110232907' }
+2026-09-20T19:14:03:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T19:14:03:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1825064294' }
+2026-09-20T19:14:04:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '2034880133' }
+2026-09-20T19:14:04:  ⨯ [ReferenceError: returnNaN is not defined] { digest: '1920151682' }
+2026-09-20T19:19:50: [Error: read ECONNRESET] {
+2026-09-20T19:19:50:   errno: -4077,
+2026-09-20T19:19:50:   code: 'ECONNRESET',
+2026-09-20T19:19:50:   syscall: 'read'
+2026-09-20T19:19:50: }
+2026-09-20T19:19:50:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T19:19:50:   errno: -4077,
+2026-09-20T19:19:50:   code: 'ECONNRESET',
+2026-09-20T19:19:50:   syscall: 'read'
+2026-09-20T19:19:50: }
+2026-09-20T19:19:59: [Error: read ECONNRESET] {
+2026-09-20T19:19:59:   errno: -4077,
+2026-09-20T19:19:59:   code: 'ECONNRESET',
+2026-09-20T19:19:59:   syscall: 'read'
+2026-09-20T19:19:59: }
+2026-09-20T19:19:59:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T19:19:59:   errno: -4077,
+2026-09-20T19:19:59:   code: 'ECONNRESET',
+2026-09-20T19:19:59:   syscall: 'read'
+2026-09-20T19:19:59: }
+2026-09-20T19:20:06: [Error: read ECONNRESET] {
+2026-09-20T19:20:06:   errno: -4077,
+2026-09-20T19:20:06:   code: 'ECONNRESET',
+2026-09-20T19:20:06:   syscall: 'read'
+2026-09-20T19:20:06: }
+2026-09-20T19:20:06:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T19:20:06:   errno: -4077,
+2026-09-20T19:20:06:   code: 'ECONNRESET',
+2026-09-20T19:20:06:   syscall: 'read'
+2026-09-20T19:20:06: }
+2026-09-20T19:20:15: [Error: read ECONNRESET] {
+2026-09-20T19:20:15:   errno: -4077,
+2026-09-20T19:20:15:   code: 'ECONNRESET',
+2026-09-20T19:20:15:   syscall: 'read'
+2026-09-20T19:20:15: }
+2026-09-20T19:20:15:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T19:20:15:   errno: -4077,
+2026-09-20T19:20:15:   code: 'ECONNRESET',
+2026-09-20T19:20:15:   syscall: 'read'
+2026-09-20T19:20:15: }
+2026-09-20T19:20:27: [Error: read ECONNRESET] {
+2026-09-20T19:20:27:   errno: -4077,
+2026-09-20T19:20:27:   code: 'ECONNRESET',
+2026-09-20T19:20:27:   syscall: 'read'
+2026-09-20T19:20:27: }
+2026-09-20T19:20:27:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T19:20:27:   errno: -4077,
+2026-09-20T19:20:27:   code: 'ECONNRESET',
+2026-09-20T19:20:27:   syscall: 'read'
+2026-09-20T19:20:27: }
+2026-09-20T19:20:27: [Error: read ECONNRESET] {
+2026-09-20T19:20:27:   errno: -4077,
+2026-09-20T19:20:27:   code: 'ECONNRESET',
+2026-09-20T19:20:27:   syscall: 'read'
+2026-09-20T19:20:27: }
+2026-09-20T19:20:27:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T19:20:27:   errno: -4077,
+2026-09-20T19:20:27:   code: 'ECONNRESET',
+2026-09-20T19:20:27:   syscall: 'read'
+2026-09-20T19:20:27: }
+2026-09-20T19:20:31: [Error: read ECONNRESET] {
+2026-09-20T19:20:31:   errno: -4077,
+2026-09-20T19:20:31:   code: 'ECONNRESET',
+2026-09-20T19:20:31:   syscall: 'read'
+2026-09-20T19:20:31: }
+2026-09-20T19:20:31:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T19:20:31:   errno: -4077,
+2026-09-20T19:20:31:   code: 'ECONNRESET',
+2026-09-20T19:20:31:   syscall: 'read'
+2026-09-20T19:20:31: }
+2026-09-20T19:20:43: [Error: read ECONNRESET] {
+2026-09-20T19:20:43:   errno: -4077,
+2026-09-20T19:20:43:   code: 'ECONNRESET',
+2026-09-20T19:20:43:   syscall: 'read'
+2026-09-20T19:20:43: }
+2026-09-20T19:20:43:  ⨯ uncaughtException:  [Error: read ECONNRESET] {
+2026-09-20T19:20:43:   errno: -4077,
+2026-09-20T19:20:43:   code: 'ECONNRESET',
+2026-09-20T19:20:43:   syscall: 'read'
+2026-09-20T19:20:43: }
+2026-09-22T14:31:35: (node:15232) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+2026-09-22T14:31:35: (Use `NODE.EXE --trace-deprecation ...` to show where the warning was created)
+2026-09-22T14:31:36: npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+2026-09-22T14:31:43:  ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+2026-09-22T14:31:43:  ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-09-22T14:31:49: (node:13444) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-22T14:31:49: (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-23T12:28:50: (node:13444) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+2026-09-24T09:54:24: (node:15300) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+2026-09-24T09:54:24: (Use `NODE.EXE --trace-deprecation ...` to show where the warning was created)
+2026-09-24T09:54:26: npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+2026-09-24T09:54:38:  ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+2026-09-24T09:54:38:  ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-09-24T09:54:46: (node:12440) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-24T09:54:46: (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-24T10:31:09: (node:12440) Warning: Setting the NODE_TLS_REJECT_UNAUTHORIZED environment variable to '0' makes TLS connections and HTTPS requests insecure by disabling certificate verification.
+2026-09-24T11:29:24: ❌ Create Customer Error: {
+2026-09-24T11:29:24:   error: {
+2026-09-24T11:29:24:     code: -1116,
+2026-09-24T11:29:24:     message: { lang: 'en-us', value: '(-20003) الاسم مدخل مسبقا' }
+2026-09-24T11:29:24:   }
+2026-09-24T11:29:24: }
+2026-09-26T14:50:29: (node:16068) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+2026-09-26T14:50:29: (Use `NODE.EXE --trace-deprecation ...` to show where the warning was created)
+2026-09-26T14:50:30: npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+2026-09-26T14:50:40:  ⚠ The config property `experimental.turbo` is deprecated. Move this setting to `config.turbopack` or run `npx @next/codemod@latest next-experimental-turbo-to-turbopack .`
+2026-09-26T14:50:40:  ⚠ "next start" does not work with "output: standalone" configuration. Use "node .next/standalone/server.js" instead.
+2026-09-26T14:50:47: (node:12324) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-26T14:50:47: (Use `node --trace-deprecation ...` to show where the warning was created)
