@@ -15,6 +15,7 @@ export default function SalesOrdersReport() {
   const [orders, setOrders] = useState([]);
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [openingOrder, setOpeningOrder] = useState(false);
   const [search, setSearch] = useState("");
   const [docNum, setDocNum] = useState("");
   const [date, setDate] = useState({ from: "", to: "" });
@@ -29,57 +30,61 @@ export default function SalesOrdersReport() {
     fetchOrders(user.sapUser, user.sapPass, user.RepID);
   }, []);
 
-  // 🟢 جلب أوامر البيع من الـ API
-  const fetchOrders = async (sapUser, sapPass, RepID) => {
+  // 🟢 جلب أوامر البيع من الـ API (قائمة سريعة من HANA)
+  const fetchOrders = async (sapUser, sapPass, RepID, { nocache = false } = {}) => {
     setLoading(true);
     try {
       const res = await fetch("/api/sales-orders-report", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ sapUser, sapPass, RepID }),
+        body: JSON.stringify({ sapUser, sapPass, RepID, nocache }),
       });
 
       const data = await res.json();
 
       if (res.ok) {
-        const ordersWithStatus = data.orders.map((o) => {
-          const docStatus = (o.DocStatus || "").toUpperCase();
-          const docStat2 = (o.DocumentStatus || "").toUpperCase();
-
-          const canceledField =
-            o.CANCELED ??
-            o.Canceled ??
-            o.Cancelled ??
-            o.DocCanceled ??
-            o.DocCancelled ??
-            "";
-
-          const canceled =
-            typeof canceledField === "boolean"
-              ? canceledField
-              : ["Y", "YES", "CANCELED", "CANCELLED"].includes(
-                  String(canceledField).toUpperCase()
-                );
-
-          let Status = "Open";
-          if (canceled) Status = "Canceled";
-          else if (
-            ["C", "CLOSED", "BOST_CLOSE", "CLOSE"].includes(docStatus) ||
-            ["C", "CLOSED", "BOST_CLOSE", "CLOSE"].includes(docStat2)
-          )
-            Status = "Closed";
-
-          return { ...o, Status };
-        });
-
-        setOrders(ordersWithStatus);
-        setFilteredOrders(ordersWithStatus);
+        const list = (data.orders || []).map((o) => ({
+          ...o,
+          Status: o.Status || "Open",
+        }));
+        setOrders(list);
+        setFilteredOrders(list);
       } else toast.error(data.error || "فشل جلب أوامر البيع");
     } catch (err) {
       console.error(err);
       toast.error("حدث خطأ أثناء تحميل البيانات");
     } finally {
       setLoading(false);
+    }
+  };
+
+  // 🔎 جلب تفاصيل الأمر فقط عند الضغط (Service Layer)
+  const openOrder = async (row) => {
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (!user) return;
+
+    setOpeningOrder(true);
+    try {
+      const res = await fetch("/api/sales-orders-report", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          sapUser: user.sapUser,
+          sapPass: user.sapPass,
+          docEntry: row.DocEntry,
+        }),
+      });
+      const data = await res.json();
+      if (!res.ok || !data.order) {
+        toast.error(data.error || "فشل تحميل تفاصيل الأمر");
+        return;
+      }
+      setSelectedOrder({ ...row, ...data.order });
+    } catch (err) {
+      console.error(err);
+      toast.error("حدث خطأ أثناء فتح الأمر");
+    } finally {
+      setOpeningOrder(false);
     }
   };
 
@@ -260,11 +265,16 @@ export default function SalesOrdersReport() {
         ) : filteredOrders.length > 0 ? (
           <motion.div
             key="table"
-            className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden"
+            className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden relative"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.35 }}
           >
+          {openingOrder && (
+            <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/70">
+              <div className="w-10 h-10 border-4 border-gray-200 border-t-gray-700 rounded-full animate-spin" />
+            </div>
+          )}
           <table className="min-w-full text-sm text-gray-700 border-collapse">
   {/* 🎨 الهيدر بلون موحد أنيق */}
   <thead className="bg-gray-700 text-white uppercase text-xs tracking-wide border-b border-gray-300">
@@ -279,18 +289,11 @@ export default function SalesOrdersReport() {
   </thead>
 
   <tbody>
-    {filteredOrders
-      .filter(
-        (o) =>
-          !["C", "CLOSED", "CANCELED", "CANCELLED"].includes(
-            (o.DocStatus || o.Status || "").toUpperCase()
-          )
-      )
-      .map((o, i) => (
+    {filteredOrders.map((o, i) => (
         <tr
           key={o.DocEntry}
-          onClick={() => setSelectedOrder(o)}
-          className={`border-t border-gray-200 transition-colors duration-150 hover:bg-gray-50 ${
+          onClick={() => !openingOrder && openOrder(o)}
+          className={`border-t border-gray-200 transition-colors duration-150 hover:bg-gray-50 cursor-pointer ${
             i % 2 === 0 ? "bg-white" : "bg-gray-50"
           }`}
         >
@@ -311,16 +314,7 @@ export default function SalesOrdersReport() {
 
           {/* الإجمالي */}
           <td className="px-5 py-3 text-right font-semibold text-gray-800 whitespace-nowrap">
-            {(
-              o.DocumentLines?.reduce(
-                (sum, r) =>
-                  sum +
-                  (r.Quantity *
-                    r.UnitPrice *
-                    (1 - (r.DiscountPercent || 0) / 100)),
-                0
-              ) || 0
-            ).toLocaleString()}
+            {Number(o.DocTotal || 0).toLocaleString()}
           </td>
 
           {/* العملة بعد التوتال */}
@@ -373,14 +367,11 @@ export default function SalesOrdersReport() {
     setOrders((prev) => prev.filter((o) => o.DocEntry !== docEntry));
     setFilteredOrders((prev) => prev.filter((o) => o.DocEntry !== docEntry));
     setSelectedOrder(null);
-    // toast.success("🗑️ تم إلغاء الأوردر وإزالته من القائمة");
   }}
   onUpdated={() => {
-    // 🔄 إعادة تحميل البيانات من الـ API بدون ريفرش البراوزر
     const user = JSON.parse(localStorage.getItem("user"));
-    if (user) fetchOrders(user.sapUser, user.sapPass, user.RepID);
+    if (user) fetchOrders(user.sapUser, user.sapPass, user.RepID, { nocache: true });
     setSelectedOrder(null);
-    // toast.success("✅ تم حفظ التعديلات وتحديث الصفحة");
   }}
 />
 )}

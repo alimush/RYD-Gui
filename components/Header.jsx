@@ -1,11 +1,10 @@
 "use client";
 import { useState, useEffect } from "react";
-import { FaUserCircle, FaBars, FaSignOutAlt } from "react-icons/fa";
+import { FaUserCircle, FaBars, FaSignOutAlt, FaChartBar, FaTasks } from "react-icons/fa";
 import { useRouter, usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Poppins } from "next/font/google";
 import { BiSolidReport } from "react-icons/bi";
-import { FaTasks } from "react-icons/fa";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -182,6 +181,15 @@ export default function Header({ onLogout }) {
                           }}
                           icon={<BiSolidReport className="text-gray-200" />}
                           label="Reports"
+                        />
+
+                        <MenuItem
+                          onClick={() => {
+                            setMenuOpen(false);
+                            router.push("/sales-statistics");
+                          }}
+                          icon={<FaChartBar className="text-gray-200" />}
+                          label="إحصائيات المبيعات"
                         />
 
                         <MenuItem
