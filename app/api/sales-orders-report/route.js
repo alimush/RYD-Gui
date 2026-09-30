@@ -33,7 +33,7 @@ function mapStatus(row) {
 
 async function fetchOrdersList(RepID, { nocache = false } = {}) {
   const rep = Number(RepID) || 0;
-  const cacheKey = `list_eshop_docnum_${rep}`;
+  const cacheKey = `list_eshop_saleordno_${rep}`;
   const now = Date.now();
 
   if (!nocache && listCache.has(cacheKey)) {
@@ -47,7 +47,8 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
   try {
     const repFilter = rep !== 0 ? `AND T0."SlpCode" = ${rep}` : "";
 
-    // Link ORDR.CardName with @SOECOM.U_CustomerName via DocNum
+    // Link ORDR.DocNum <-> @SOECOM.U_SaleOrderCreateNo
+    // CardName from ORDR, eshop_customer_name from @SOECOM.U_CustomerName
     const sqlWithEshop = `
       SELECT TOP 50
         T0."DocEntry",
@@ -58,31 +59,7 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
         (
           SELECT MAX(S."U_CustomerName")
           FROM "RYD"."@SOECOM" S
-          WHERE S."DocNum" = T0."DocNum"
-        ) AS "eshop_customer_name",
-        T0."DocTotal",
-        T0."DocCur" AS "DocCurrency",
-        T0."DocStatus",
-        T0."CANCELED",
-        T0."SlpCode" AS "SalesPersonCode"
-      FROM "RYD"."ORDR" T0
-      WHERE T0."DocStatus" = 'O'
-        AND T0."CANCELED" = 'N'
-        ${repFilter}
-      ORDER BY T0."DocEntry" DESC
-    `;
-
-    const sqlWithEshopUDocNum = `
-      SELECT TOP 50
-        T0."DocEntry",
-        T0."DocNum",
-        T0."DocDate",
-        T0."CardCode",
-        T0."CardName",
-        (
-          SELECT MAX(S."U_CustomerName")
-          FROM "RYD"."@SOECOM" S
-          WHERE S."U_DocNum" = T0."DocNum"
+          WHERE TO_NVARCHAR(S."U_SaleOrderCreateNo") = TO_NVARCHAR(T0."DocNum")
         ) AS "eshop_customer_name",
         T0."DocTotal",
         T0."DocCur" AS "DocCurrency",
@@ -118,20 +95,12 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
     let rows;
     try {
       rows = await conn.query(sqlWithEshop);
-    } catch (docNumErr) {
+    } catch (eshopErr) {
       console.error(
-        "⚠️ @SOECOM DocNum link failed, trying U_DocNum:",
-        docNumErr?.odbcErrors || docNumErr?.message || docNumErr
+        "⚠️ @SOECOM U_SaleOrderCreateNo link failed, using base query:",
+        eshopErr?.odbcErrors || eshopErr?.message || eshopErr
       );
-      try {
-        rows = await conn.query(sqlWithEshopUDocNum);
-      } catch (uDocNumErr) {
-        console.error(
-          "⚠️ @SOECOM U_DocNum link failed, using base query:",
-          uDocNumErr?.odbcErrors || uDocNumErr?.message || uDocNumErr
-        );
-        rows = await conn.query(sqlBase);
-      }
+      rows = await conn.query(sqlBase);
     }
 
     const orders = (rows || []).map((o) => ({
