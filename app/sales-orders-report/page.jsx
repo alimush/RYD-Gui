@@ -207,7 +207,12 @@ export default function SalesOrdersReport() {
                       }}
                       className="block w-full text-left px-4 py-2 hover:bg-gray-100"
                     >
-                      {cust.CardCode} — {cust.CardName}
+                      <div>{cust.CardCode} — {cust.CardName}</div>
+                      {cust.eshop_customer_name ? (
+                        <div className="text-xs text-gray-500">
+                          eshop: {cust.eshop_customer_name}
+                        </div>
+                      ) : null}
                     </button>
                   </li>
                 ))}
@@ -280,9 +285,10 @@ export default function SalesOrdersReport() {
   <thead className="bg-gray-700 text-white uppercase text-xs tracking-wide border-b border-gray-300">
     <tr>
       <th className="px-5 py-3 text-left font-semibold w-[8%]">Order #</th>
-      <th className="px-5 py-3 text-left font-semibold w-[32%]">Customer</th>
-      <th className="px-5 py-3 text-center font-semibold w-[14%]">Date</th>
-      <th className="px-5 py-3 text-right font-semibold w-[18%]">Total</th>
+      <th className="px-5 py-3 text-left font-semibold w-[24%]">Customer</th>
+      <th className="px-5 py-3 text-left font-semibold w-[18%]">eshop_customer_name</th>
+      <th className="px-5 py-3 text-center font-semibold w-[12%]">Date</th>
+      <th className="px-5 py-3 text-right font-semibold w-[16%]">Total</th>
       <th className="px-5 py-3 text-center font-semibold w-[8%]">Currency</th>
       <th className="px-5 py-3 text-center font-semibold w-[10%]">Status</th>
     </tr>
@@ -305,6 +311,11 @@ export default function SalesOrdersReport() {
           {/* اسم الزبون */}
           <td className="px-5 py-3 text-gray-700 truncate">
             {o.CardName}
+          </td>
+
+          {/* اسم زبون الإي شوب */}
+          <td className="px-5 py-3 text-gray-700 truncate">
+            {o.eshop_customer_name || "—"}
           </td>
 
           {/* التاريخ */}

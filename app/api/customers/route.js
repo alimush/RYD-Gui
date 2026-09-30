@@ -15,18 +15,22 @@ export async function GET(req) {
       SELECT 
         T0."Phone1",
         T0."CardName",
-        T0."CardCode"
+        T0."CardCode",
+        S."U_CustomerName" AS "eshop_customer_name"
       FROM "RYD"."OCRD" T0
+      LEFT JOIN "RYD"."@SOECOM" S
+        ON S."Code" = T0."CardCode"
       WHERE T0."CardType" = 'C'
     `;
 
-    // 🔎 دعم البحث بالاسم أو الكود أو الرقم
+    // 🔎 دعم البحث بالاسم أو الكود أو الرقم أو اسم الإي شوب
     if (q) {
       sql += `
         AND (
           LOWER(T0."CardName") LIKE '%${q}%'
           OR LOWER(T0."CardCode") LIKE '%${q}%'
           OR LOWER(T0."Phone1") LIKE '%${q}%'
+          OR LOWER(IFNULL(S."U_CustomerName", '')) LIKE '%${q}%'
         )
       `;
     }
@@ -36,7 +40,16 @@ export async function GET(req) {
     const result = await conn.query(sql);
     await conn.close();
 
-    return new Response(JSON.stringify(result), {
+    const customers = (result || []).map((r) => ({
+      Phone1: r.Phone1,
+      CardName: r.CardName,
+      CardCode: r.CardCode,
+      eshop_customer_name: String(
+        r.eshop_customer_name || r.ESHOP_CUSTOMER_NAME || ""
+      ).trim(),
+    }));
+
+    return new Response(JSON.stringify(customers), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });

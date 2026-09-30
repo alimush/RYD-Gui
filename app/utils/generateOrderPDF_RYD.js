@@ -103,6 +103,10 @@ export default async function generateOrderPDF_RYD(order) {
         <td style="padding:5px;">${order.SalesPersonName || "—"}</td>
       </tr>
       <tr>
+        <td style="padding:5px;">eshop_customer_name:</td>
+        <td style="padding:5px;" colspan="3">${order.eshop_customer_name || "—"}</td>
+      </tr>
+      <tr>
         <td style="padding:5px;">طريقة الدفع:</td>
         <td style="padding:5px;">${order.PaymentMethod || "نقداً"}</td>
         <td style="padding:5px;">المنطقة:</td>

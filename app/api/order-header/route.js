@@ -41,6 +41,7 @@ export async function GET(req) {
         T1."CardCode",
         T1."CardName",
         T1."Phone1",
+        S."U_CustomerName" AS "eshop_customer_name",
         T2."descript" AS "TerritoryName",
         T3."SlpName" AS "SalesPersonName",
         T0."U_Department",
@@ -50,6 +51,8 @@ export async function GET(req) {
       FROM "RYD"."ORDR" T0
       INNER JOIN "RYD"."OCRD" T1 
         ON T0."CardCode" = T1."CardCode"
+      LEFT JOIN "RYD"."@SOECOM" S
+        ON S."Code" = T0."CardCode"
       LEFT JOIN "RYD"."OTER" T2 
         ON T1."Territory" = T2."territryID"
       LEFT JOIN "RYD"."OSLP" T3 
@@ -65,7 +68,12 @@ export async function GET(req) {
     if (!result.length)
       return NextResponse.json({ error: "Order not found" }, { status: 404 });
 
-    const data = result[0];
+    const data = {
+      ...result[0],
+      eshop_customer_name: String(
+        result[0].eshop_customer_name || result[0].ESHOP_CUSTOMER_NAME || ""
+      ).trim(),
+    };
 
     // ⚡ 3) خزّن بالكاش
     cache.set(key, { time: now, data });

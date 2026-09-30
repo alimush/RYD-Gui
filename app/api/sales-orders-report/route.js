@@ -53,12 +53,15 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
         T0."DocDate",
         T0."CardCode",
         T0."CardName",
+        S."U_CustomerName" AS "eshop_customer_name",
         T0."DocTotal",
         T0."DocCur" AS "DocCurrency",
         T0."DocStatus",
         T0."CANCELED",
         T0."SlpCode" AS "SalesPersonCode"
       FROM "RYD"."ORDR" T0
+      LEFT JOIN "RYD"."@SOECOM" S
+        ON S."Code" = T0."CardCode"
       WHERE T0."DocStatus" = 'O'
         AND T0."CANCELED" = 'N'
         ${repFilter}
@@ -68,6 +71,9 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
     const rows = await conn.query(sql);
     const orders = (rows || []).map((o) => ({
       ...o,
+      eshop_customer_name: String(
+        o.eshop_customer_name || o.ESHOP_CUSTOMER_NAME || ""
+      ).trim(),
       Status: mapStatus(o),
       DocumentStatus: o.DocStatus === "O" ? "bost_Open" : "bost_Close",
     }));
