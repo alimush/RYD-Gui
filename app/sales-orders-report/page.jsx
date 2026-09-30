@@ -23,6 +23,13 @@ export default function SalesOrdersReport() {
   const [customerSuggestions, setCustomerSuggestions] = useState([]);
   const [selectedCustomer, setSelectedCustomer] = useState(null);
 
+  const isEshopCustomer = (name) =>
+    String(name || "").trim().toLowerCase() === "eshope customer";
+
+  const showEshopColumns = filteredOrders.some((o) =>
+    isEshopCustomer(o.CardName)
+  );
+
   // 🧭 تحميل أوامر البيع للمستخدم الحالي
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -265,7 +272,7 @@ export default function SalesOrdersReport() {
         ) : filteredOrders.length > 0 ? (
           <motion.div
             key="table"
-            className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-hidden relative"
+            className="bg-white rounded-2xl border border-gray-200 shadow-lg overflow-x-auto relative"
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.35 }}
@@ -279,18 +286,27 @@ export default function SalesOrdersReport() {
   {/* 🎨 الهيدر بلون موحد أنيق */}
   <thead className="bg-gray-700 text-white uppercase text-xs tracking-wide border-b border-gray-300">
     <tr>
-      <th className="px-5 py-3 text-left font-semibold w-[8%]">Order #</th>
-      <th className="px-5 py-3 text-left font-semibold w-[24%]">Customer</th>
-      <th className="px-5 py-3 text-left font-semibold w-[18%]">eshop_customer_name</th>
-      <th className="px-5 py-3 text-center font-semibold w-[12%]">Date</th>
-      <th className="px-5 py-3 text-right font-semibold w-[16%]">Total</th>
-      <th className="px-5 py-3 text-center font-semibold w-[8%]">Currency</th>
-      <th className="px-5 py-3 text-center font-semibold w-[10%]">Status</th>
+      <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">Order #</th>
+      <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">Customer</th>
+      {showEshopColumns && (
+        <>
+          <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">eShop Name</th>
+          <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">eShop Email</th>
+          <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">eShop Mobile</th>
+          <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">eShop Address</th>
+        </>
+      )}
+      <th className="px-5 py-3 text-center font-semibold whitespace-nowrap">Date</th>
+      <th className="px-5 py-3 text-right font-semibold whitespace-nowrap">Total</th>
+      <th className="px-5 py-3 text-center font-semibold whitespace-nowrap">Currency</th>
+      <th className="px-5 py-3 text-center font-semibold whitespace-nowrap">Status</th>
     </tr>
   </thead>
 
   <tbody>
-    {filteredOrders.map((o, i) => (
+    {filteredOrders.map((o, i) => {
+      const eshop = isEshopCustomer(o.CardName);
+      return (
         <tr
           key={o.DocEntry}
           onClick={() => !openingOrder && openOrder(o)}
@@ -298,32 +314,39 @@ export default function SalesOrdersReport() {
             i % 2 === 0 ? "bg-white" : "bg-gray-50"
           }`}
         >
-          {/* رقم الأوردر */}
           <td className="px-5 py-3 font-semibold text-gray-800 whitespace-nowrap">
             {o.DocNum}
           </td>
 
-          {/* اسم الزبون */}
-          <td className="px-5 py-3 text-gray-700 truncate">
+          <td className="px-5 py-3 text-gray-700 truncate max-w-[180px]">
             {o.CardName}
           </td>
 
-          {/* اسم زبون الإي شوب */}
-          <td className="px-5 py-3 text-gray-700 truncate">
-            {o.eshop_customer_name || "—"}
-          </td>
+          {showEshopColumns && (
+            <>
+              <td className="px-5 py-3 text-gray-700 truncate max-w-[160px]">
+                {eshop ? o.eshop_customer_name || "—" : "—"}
+              </td>
+              <td className="px-5 py-3 text-gray-700 truncate max-w-[160px]">
+                {eshop ? o.eshop_customer_email || "—" : "—"}
+              </td>
+              <td className="px-5 py-3 text-gray-700 whitespace-nowrap">
+                {eshop ? o.eshop_shipping_mobile || "—" : "—"}
+              </td>
+              <td className="px-5 py-3 text-gray-700 truncate max-w-[200px]">
+                {eshop ? o.eshop_shipping_address || "—" : "—"}
+              </td>
+            </>
+          )}
 
-          {/* التاريخ */}
           <td className="px-5 py-3 text-center text-gray-600 whitespace-nowrap">
             {new Date(o.DocDate).toLocaleDateString("en-GB")}
           </td>
 
-          {/* الإجمالي */}
           <td className="px-5 py-3 text-right font-semibold text-gray-800 whitespace-nowrap">
             {Number(o.DocTotal || 0).toLocaleString()}
           </td>
 
-          {/* العملة بعد التوتال */}
           <td
             className={`px-5 py-3 text-center font-medium whitespace-nowrap ${
               o.DocCurrency === "USD"
@@ -336,7 +359,6 @@ export default function SalesOrdersReport() {
             {o.DocCurrency || "IQD"}
           </td>
 
-          {/* الحالة */}
           <td className="px-5 py-3 text-center">
             {o.Status === "Closed" ? (
               <span className="px-3 py-1 text-xs rounded-full border border-gray-400 bg-gray-100 text-gray-700 font-medium">
@@ -353,7 +375,8 @@ export default function SalesOrdersReport() {
             )}
           </td>
         </tr>
-      ))}
+      );
+    })}
   </tbody>
 </table>
           </motion.div>

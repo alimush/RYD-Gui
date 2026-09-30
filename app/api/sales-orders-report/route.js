@@ -33,7 +33,7 @@ function mapStatus(row) {
 
 async function fetchOrdersList(RepID, { nocache = false } = {}) {
   const rep = Number(RepID) || 0;
-  const cacheKey = `list_eshop_saleordno_${rep}`;
+  const cacheKey = `list_eshop_fields_v2_${rep}`;
   const now = Date.now();
 
   if (!nocache && listCache.has(cacheKey)) {
@@ -48,7 +48,7 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
     const repFilter = rep !== 0 ? `AND T0."SlpCode" = ${rep}` : "";
 
     // Link ORDR.DocNum <-> @SOECOM.U_SaleOrderCreateNo
-    // CardName from ORDR, eshop_customer_name from @SOECOM.U_CustomerName
+    // e-shop fields apply when CardName = 'eShope Customer'
     const sqlWithEshop = `
       SELECT TOP 50
         T0."DocEntry",
@@ -56,17 +56,29 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
         T0."DocDate",
         T0."CardCode",
         T0."CardName",
-        (
-          SELECT MAX(S."U_CustomerName")
-          FROM "RYD"."@SOECOM" S
-          WHERE TO_NVARCHAR(S."U_SaleOrderCreateNo") = TO_NVARCHAR(T0."DocNum")
-        ) AS "eshop_customer_name",
+        S."U_SaleOrderCreateNo" AS "eshop_sale_order_no",
+        S."U_CustomerName" AS "eshop_customer_name",
+        S."U_CustomerEmail" AS "eshop_customer_email",
+        S."U_ShippingAddressAddress" AS "eshop_shipping_address",
+        S."U_ShippingAddressMobile" AS "eshop_shipping_mobile",
         T0."DocTotal",
         T0."DocCur" AS "DocCurrency",
         T0."DocStatus",
         T0."CANCELED",
         T0."SlpCode" AS "SalesPersonCode"
       FROM "RYD"."ORDR" T0
+      LEFT JOIN (
+        SELECT
+          TO_NVARCHAR("U_SaleOrderCreateNo") AS "SaleOrdNo",
+          MAX("U_SaleOrderCreateNo") AS "U_SaleOrderCreateNo",
+          MAX("U_CustomerName") AS "U_CustomerName",
+          MAX("U_CustomerEmail") AS "U_CustomerEmail",
+          MAX("U_ShippingAddressAddress") AS "U_ShippingAddressAddress",
+          MAX("U_ShippingAddressMobile") AS "U_ShippingAddressMobile"
+        FROM "RYD"."@SOECOM"
+        GROUP BY TO_NVARCHAR("U_SaleOrderCreateNo")
+      ) S
+        ON S."SaleOrdNo" = TO_NVARCHAR(T0."DocNum")
       WHERE T0."DocStatus" = 'O'
         AND T0."CANCELED" = 'N'
         ${repFilter}
@@ -97,20 +109,56 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
       rows = await conn.query(sqlWithEshop);
     } catch (eshopErr) {
       console.error(
-        "⚠️ @SOECOM U_SaleOrderCreateNo link failed, using base query:",
+        "⚠️ @SOECOM join failed, using base query:",
         eshopErr?.odbcErrors || eshopErr?.message || eshopErr
       );
       rows = await conn.query(sqlBase);
     }
 
-    const orders = (rows || []).map((o) => ({
-      ...o,
-      eshop_customer_name: String(
-        o.eshop_customer_name || o.ESHOP_CUSTOMER_NAME || o.U_CustomerName || ""
-      ).trim(),
-      Status: mapStatus(o),
-      DocumentStatus: o.DocStatus === "O" ? "bost_Open" : "bost_Close",
-    }));
+    const orders = (rows || []).map((o) => {
+      const isEshopCustomer =
+        String(o.CardName || "").trim().toLowerCase() === "eshope customer";
+
+      const pick = (...vals) => {
+        if (!isEshopCustomer) return "";
+        for (const v of vals) {
+          const s = String(v ?? "").trim();
+          if (s) return s;
+        }
+        return "";
+      };
+
+      return {
+        ...o,
+        eshop_sale_order_no: pick(
+          o.eshop_sale_order_no,
+          o.ESHOP_SALE_ORDER_NO,
+          o.U_SaleOrderCreateNo
+        ),
+        eshop_customer_name: pick(
+          o.eshop_customer_name,
+          o.ESHOP_CUSTOMER_NAME,
+          o.U_CustomerName
+        ),
+        eshop_customer_email: pick(
+          o.eshop_customer_email,
+          o.ESHOP_CUSTOMER_EMAIL,
+          o.U_CustomerEmail
+        ),
+        eshop_shipping_address: pick(
+          o.eshop_shipping_address,
+          o.ESHOP_SHIPPING_ADDRESS,
+          o.U_ShippingAddressAddress
+        ),
+        eshop_shipping_mobile: pick(
+          o.eshop_shipping_mobile,
+          o.ESHOP_SHIPPING_MOBILE,
+          o.U_ShippingAddressMobile
+        ),
+        Status: mapStatus(o),
+        DocumentStatus: o.DocStatus === "O" ? "bost_Open" : "bost_Close",
+      };
+    });
 
     listCache.set(cacheKey, { time: now, orders });
     return orders;

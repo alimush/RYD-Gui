@@ -34,7 +34,6 @@ export async function GET(req) {
     const conn = await pool.connect();
 
     // Link ORDR.DocNum <-> @SOECOM.U_SaleOrderCreateNo
-    // CardName from ORDR/OCRD, eshop_customer_name from @SOECOM.U_CustomerName
     const queryWithEshop = `
       SELECT 
         T0."DocEntry",
@@ -43,11 +42,11 @@ export async function GET(req) {
         T1."CardCode",
         T1."CardName",
         T1."Phone1",
-        (
-          SELECT MAX(S."U_CustomerName")
-          FROM "RYD"."@SOECOM" S
-          WHERE TO_NVARCHAR(S."U_SaleOrderCreateNo") = TO_NVARCHAR(T0."DocNum")
-        ) AS "eshop_customer_name",
+        S."U_SaleOrderCreateNo" AS "eshop_sale_order_no",
+        S."U_CustomerName" AS "eshop_customer_name",
+        S."U_CustomerEmail" AS "eshop_customer_email",
+        S."U_ShippingAddressAddress" AS "eshop_shipping_address",
+        S."U_ShippingAddressMobile" AS "eshop_shipping_mobile",
         T2."descript" AS "TerritoryName",
         T3."SlpName" AS "SalesPersonName",
         T0."U_Department",
@@ -57,6 +56,18 @@ export async function GET(req) {
       FROM "RYD"."ORDR" T0
       INNER JOIN "RYD"."OCRD" T1 
         ON T0."CardCode" = T1."CardCode"
+      LEFT JOIN (
+        SELECT
+          TO_NVARCHAR("U_SaleOrderCreateNo") AS "SaleOrdNo",
+          MAX("U_SaleOrderCreateNo") AS "U_SaleOrderCreateNo",
+          MAX("U_CustomerName") AS "U_CustomerName",
+          MAX("U_CustomerEmail") AS "U_CustomerEmail",
+          MAX("U_ShippingAddressAddress") AS "U_ShippingAddressAddress",
+          MAX("U_ShippingAddressMobile") AS "U_ShippingAddressMobile"
+        FROM "RYD"."@SOECOM"
+        GROUP BY TO_NVARCHAR("U_SaleOrderCreateNo")
+      ) S
+        ON S."SaleOrdNo" = TO_NVARCHAR(T0."DocNum")
       LEFT JOIN "RYD"."OTER" T2 
         ON T1."Territory" = T2."territryID"
       LEFT JOIN "RYD"."OSLP" T3 
@@ -97,7 +108,7 @@ export async function GET(req) {
       result = await conn.query(queryWithEshop);
     } catch (eshopErr) {
       console.error(
-        "⚠️ order-header @SOECOM U_SaleOrderCreateNo failed, using base:",
+        "⚠️ order-header @SOECOM join failed, using base:",
         eshopErr?.odbcErrors || eshopErr?.message || eshopErr
       );
       result = await conn.query(queryBase);
@@ -107,14 +118,46 @@ export async function GET(req) {
     if (!result.length)
       return NextResponse.json({ error: "Order not found" }, { status: 404 });
 
+    const row = result[0];
+    const isEshopCustomer =
+      String(row.CardName || "").trim().toLowerCase() === "eshope customer";
+
+    const pick = (...vals) => {
+      if (!isEshopCustomer) return "";
+      for (const v of vals) {
+        const s = String(v ?? "").trim();
+        if (s) return s;
+      }
+      return "";
+    };
+
     const data = {
-      ...result[0],
-      eshop_customer_name: String(
-        result[0].eshop_customer_name ||
-          result[0].ESHOP_CUSTOMER_NAME ||
-          result[0].U_CustomerName ||
-          ""
-      ).trim(),
+      ...row,
+      eshop_sale_order_no: pick(
+        row.eshop_sale_order_no,
+        row.ESHOP_SALE_ORDER_NO,
+        row.U_SaleOrderCreateNo
+      ),
+      eshop_customer_name: pick(
+        row.eshop_customer_name,
+        row.ESHOP_CUSTOMER_NAME,
+        row.U_CustomerName
+      ),
+      eshop_customer_email: pick(
+        row.eshop_customer_email,
+        row.ESHOP_CUSTOMER_EMAIL,
+        row.U_CustomerEmail
+      ),
+      eshop_shipping_address: pick(
+        row.eshop_shipping_address,
+        row.ESHOP_SHIPPING_ADDRESS,
+        row.U_ShippingAddressAddress
+      ),
+      eshop_shipping_mobile: pick(
+        row.eshop_shipping_mobile,
+        row.ESHOP_SHIPPING_MOBILE,
+        row.U_ShippingAddressMobile
+      ),
     };
 
     // ⚡ 3) خزّن بالكاش

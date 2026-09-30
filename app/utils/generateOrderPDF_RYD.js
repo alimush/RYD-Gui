@@ -102,10 +102,27 @@ export default async function generateOrderPDF_RYD(order) {
         <td style="padding:5px;">المندوب:</td>
         <td style="padding:5px;">${order.SalesPersonName || "—"}</td>
       </tr>
+      ${
+        String(order.CardName || "").trim().toLowerCase() === "eshope customer"
+          ? `
       <tr>
-        <td style="padding:5px;">eshop_customer_name:</td>
-        <td style="padding:5px;" colspan="3">${order.eshop_customer_name || "—"}</td>
+        <td style="padding:5px;">eShop Name:</td>
+        <td style="padding:5px;">${order.eshop_customer_name || "—"}</td>
+        <td style="padding:5px;">eShop Email:</td>
+        <td style="padding:5px;">${order.eshop_customer_email || "—"}</td>
       </tr>
+      <tr>
+        <td style="padding:5px;">eShop Mobile:</td>
+        <td style="padding:5px;">${order.eshop_shipping_mobile || "—"}</td>
+        <td style="padding:5px;">eShop Order No:</td>
+        <td style="padding:5px;">${order.eshop_sale_order_no || "—"}</td>
+      </tr>
+      <tr>
+        <td style="padding:5px;">eShop Address:</td>
+        <td style="padding:5px;" colspan="3">${order.eshop_shipping_address || "—"}</td>
+      </tr>`
+          : ""
+      }
       <tr>
         <td style="padding:5px;">طريقة الدفع:</td>
         <td style="padding:5px;">${order.PaymentMethod || "نقداً"}</td>
