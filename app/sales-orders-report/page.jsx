@@ -291,6 +291,7 @@ export default function SalesOrdersReport() {
       {showEshopColumns && (
         <>
           <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">eShop Name</th>
+          <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">eShop Email</th>
           <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">eShop Mobile</th>
           <th className="px-5 py-3 text-left font-semibold whitespace-nowrap">eShop Address</th>
         </>
@@ -323,13 +324,16 @@ export default function SalesOrdersReport() {
 
           {showEshopColumns && (
             <>
-              <td className="px-5 py-3 text-gray-700 truncate max-w-[160px]">
+              <td className="px-5 py-3 text-gray-700 whitespace-normal break-words min-w-[140px]">
                 {eshop ? o.eshop_customer_name || "—" : "—"}
               </td>
-              <td className="px-5 py-3 text-gray-700 whitespace-nowrap">
+              <td className="px-5 py-3 text-gray-700 whitespace-normal break-all min-w-[180px]">
+                {eshop ? o.eshop_customer_email || "—" : "—"}
+              </td>
+              <td className="px-5 py-3 text-gray-700 whitespace-nowrap min-w-[120px]">
                 {eshop ? o.eshop_shipping_mobile || "—" : "—"}
               </td>
-              <td className="px-5 py-3 text-gray-700 truncate max-w-[200px]">
+              <td className="px-5 py-3 text-gray-700 whitespace-normal break-words min-w-[200px]">
                 {eshop ? o.eshop_shipping_address || "—" : "—"}
               </td>
             </>

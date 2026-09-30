@@ -108,8 +108,14 @@ export default async function generateOrderPDF_RYD(order) {
       <tr>
         <td style="padding:5px;">eShop Name:</td>
         <td style="padding:5px;">${order.eshop_customer_name || "—"}</td>
+        <td style="padding:5px;">eShop Email:</td>
+        <td style="padding:5px; word-break:break-all;">${order.eshop_customer_email || "—"}</td>
+      </tr>
+      <tr>
         <td style="padding:5px;">eShop Mobile:</td>
         <td style="padding:5px;">${order.eshop_shipping_mobile || "—"}</td>
+        <td style="padding:5px;">eShop Order No:</td>
+        <td style="padding:5px;">${order.eshop_sale_order_no || "—"}</td>
       </tr>
       <tr>
         <td style="padding:5px;">eShop Address:</td>
