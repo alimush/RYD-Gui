@@ -33,7 +33,7 @@ export async function GET(req) {
     // ⚡ 2) استخدم Pool وليس اتصال جديد
     const conn = await pool.connect();
 
-    // U_CustomerName from @SOECOM linked by DocNum
+    // Link ORDR.CardName with @SOECOM.U_CustomerName via DocNum
     const queryWithEshop = `
       SELECT 
         T0."DocEntry",
@@ -42,7 +42,11 @@ export async function GET(req) {
         T1."CardCode",
         T1."CardName",
         T1."Phone1",
-        S."U_CustomerName" AS "eshop_customer_name",
+        (
+          SELECT MAX(S."U_CustomerName")
+          FROM "RYD"."@SOECOM" S
+          WHERE S."DocNum" = T0."DocNum"
+        ) AS "eshop_customer_name",
         T2."descript" AS "TerritoryName",
         T3."SlpName" AS "SalesPersonName",
         T0."U_Department",
@@ -52,8 +56,37 @@ export async function GET(req) {
       FROM "RYD"."ORDR" T0
       INNER JOIN "RYD"."OCRD" T1 
         ON T0."CardCode" = T1."CardCode"
-      LEFT JOIN "RYD"."@SOECOM" S
-        ON TO_NVARCHAR(S."DocNum") = TO_NVARCHAR(T0."DocNum")
+      LEFT JOIN "RYD"."OTER" T2 
+        ON T1."Territory" = T2."territryID"
+      LEFT JOIN "RYD"."OSLP" T3 
+        ON T0."SlpCode" = T3."SlpCode"
+      INNER JOIN "RYD"."OUSR" T4 
+        ON T0."UserSign" = T4."USERID"
+      WHERE T0."DocEntry" = ${docEntry}
+    `;
+
+    const queryWithEshopUDocNum = `
+      SELECT 
+        T0."DocEntry",
+        T0."DocNum",
+        T0."DocDate",
+        T1."CardCode",
+        T1."CardName",
+        T1."Phone1",
+        (
+          SELECT MAX(S."U_CustomerName")
+          FROM "RYD"."@SOECOM" S
+          WHERE S."U_DocNum" = T0."DocNum"
+        ) AS "eshop_customer_name",
+        T2."descript" AS "TerritoryName",
+        T3."SlpName" AS "SalesPersonName",
+        T0."U_Department",
+        T0."U_Location",
+        T4."U_NAME" AS "CreatedBy",
+        T0."Comments"
+      FROM "RYD"."ORDR" T0
+      INNER JOIN "RYD"."OCRD" T1 
+        ON T0."CardCode" = T1."CardCode"
       LEFT JOIN "RYD"."OTER" T2 
         ON T1."Territory" = T2."territryID"
       LEFT JOIN "RYD"."OSLP" T3 
@@ -92,12 +125,20 @@ export async function GET(req) {
     let result;
     try {
       result = await conn.query(queryWithEshop);
-    } catch (eshopErr) {
+    } catch (docNumErr) {
       console.error(
-        "⚠️ order-header @SOECOM DocNum join failed, using base:",
-        eshopErr?.odbcErrors || eshopErr?.message || eshopErr
+        "⚠️ order-header @SOECOM DocNum failed, trying U_DocNum:",
+        docNumErr?.odbcErrors || docNumErr?.message || docNumErr
       );
-      result = await conn.query(queryBase);
+      try {
+        result = await conn.query(queryWithEshopUDocNum);
+      } catch (uDocNumErr) {
+        console.error(
+          "⚠️ order-header @SOECOM U_DocNum failed, using base:",
+          uDocNumErr?.odbcErrors || uDocNumErr?.message || uDocNumErr
+        );
+        result = await conn.query(queryBase);
+      }
     }
     await conn.close();
 

@@ -33,7 +33,7 @@ function mapStatus(row) {
 
 async function fetchOrdersList(RepID, { nocache = false } = {}) {
   const rep = Number(RepID) || 0;
-  const cacheKey = `list_${rep}`;
+  const cacheKey = `list_eshop_docnum_${rep}`;
   const now = Date.now();
 
   if (!nocache && listCache.has(cacheKey)) {
@@ -47,7 +47,7 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
   try {
     const repFilter = rep !== 0 ? `AND T0."SlpCode" = ${rep}` : "";
 
-    // U_CustomerName from @SOECOM linked by DocNum
+    // Link ORDR.CardName with @SOECOM.U_CustomerName via DocNum
     const sqlWithEshop = `
       SELECT TOP 50
         T0."DocEntry",
@@ -55,15 +55,41 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
         T0."DocDate",
         T0."CardCode",
         T0."CardName",
-        S."U_CustomerName" AS "eshop_customer_name",
+        (
+          SELECT MAX(S."U_CustomerName")
+          FROM "RYD"."@SOECOM" S
+          WHERE S."DocNum" = T0."DocNum"
+        ) AS "eshop_customer_name",
         T0."DocTotal",
         T0."DocCur" AS "DocCurrency",
         T0."DocStatus",
         T0."CANCELED",
         T0."SlpCode" AS "SalesPersonCode"
       FROM "RYD"."ORDR" T0
-      LEFT JOIN "RYD"."@SOECOM" S
-        ON TO_NVARCHAR(S."DocNum") = TO_NVARCHAR(T0."DocNum")
+      WHERE T0."DocStatus" = 'O'
+        AND T0."CANCELED" = 'N'
+        ${repFilter}
+      ORDER BY T0."DocEntry" DESC
+    `;
+
+    const sqlWithEshopUDocNum = `
+      SELECT TOP 50
+        T0."DocEntry",
+        T0."DocNum",
+        T0."DocDate",
+        T0."CardCode",
+        T0."CardName",
+        (
+          SELECT MAX(S."U_CustomerName")
+          FROM "RYD"."@SOECOM" S
+          WHERE S."U_DocNum" = T0."DocNum"
+        ) AS "eshop_customer_name",
+        T0."DocTotal",
+        T0."DocCur" AS "DocCurrency",
+        T0."DocStatus",
+        T0."CANCELED",
+        T0."SlpCode" AS "SalesPersonCode"
+      FROM "RYD"."ORDR" T0
       WHERE T0."DocStatus" = 'O'
         AND T0."CANCELED" = 'N'
         ${repFilter}
@@ -92,12 +118,20 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
     let rows;
     try {
       rows = await conn.query(sqlWithEshop);
-    } catch (eshopErr) {
+    } catch (docNumErr) {
       console.error(
-        "⚠️ @SOECOM DocNum join failed, using base query:",
-        eshopErr?.odbcErrors || eshopErr?.message || eshopErr
+        "⚠️ @SOECOM DocNum link failed, trying U_DocNum:",
+        docNumErr?.odbcErrors || docNumErr?.message || docNumErr
       );
-      rows = await conn.query(sqlBase);
+      try {
+        rows = await conn.query(sqlWithEshopUDocNum);
+      } catch (uDocNumErr) {
+        console.error(
+          "⚠️ @SOECOM U_DocNum link failed, using base query:",
+          uDocNumErr?.odbcErrors || uDocNumErr?.message || uDocNumErr
+        );
+        rows = await conn.query(sqlBase);
+      }
     }
 
     const orders = (rows || []).map((o) => ({
