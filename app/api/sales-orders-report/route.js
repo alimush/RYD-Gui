@@ -46,7 +46,9 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
 
   try {
     const repFilter = rep !== 0 ? `AND T0."SlpCode" = ${rep}` : "";
-    const sql = `
+
+    // U_CustomerName comes from @SOECOM (e-shop), linked by CardCode
+    const sqlWithEshop = `
       SELECT TOP 50
         T0."DocEntry",
         T0."DocNum",
@@ -61,18 +63,77 @@ async function fetchOrdersList(RepID, { nocache = false } = {}) {
         T0."SlpCode" AS "SalesPersonCode"
       FROM "RYD"."ORDR" T0
       LEFT JOIN "RYD"."@SOECOM" S
-        ON S."Code" = T0."CardCode"
+        ON TO_NVARCHAR(S."U_CardCode") = TO_NVARCHAR(T0."CardCode")
       WHERE T0."DocStatus" = 'O'
         AND T0."CANCELED" = 'N'
         ${repFilter}
       ORDER BY T0."DocEntry" DESC
     `;
 
-    const rows = await conn.query(sql);
+    const sqlFallback = `
+      SELECT TOP 50
+        T0."DocEntry",
+        T0."DocNum",
+        T0."DocDate",
+        T0."CardCode",
+        T0."CardName",
+        T1."U_CustomerName" AS "eshop_customer_name",
+        T0."DocTotal",
+        T0."DocCur" AS "DocCurrency",
+        T0."DocStatus",
+        T0."CANCELED",
+        T0."SlpCode" AS "SalesPersonCode"
+      FROM "RYD"."ORDR" T0
+      LEFT JOIN "RYD"."OCRD" T1
+        ON T1."CardCode" = T0."CardCode"
+      WHERE T0."DocStatus" = 'O'
+        AND T0."CANCELED" = 'N'
+        ${repFilter}
+      ORDER BY T0."DocEntry" DESC
+    `;
+
+    const sqlBase = `
+      SELECT TOP 50
+        T0."DocEntry",
+        T0."DocNum",
+        T0."DocDate",
+        T0."CardCode",
+        T0."CardName",
+        T0."DocTotal",
+        T0."DocCur" AS "DocCurrency",
+        T0."DocStatus",
+        T0."CANCELED",
+        T0."SlpCode" AS "SalesPersonCode"
+      FROM "RYD"."ORDR" T0
+      WHERE T0."DocStatus" = 'O'
+        AND T0."CANCELED" = 'N'
+        ${repFilter}
+      ORDER BY T0."DocEntry" DESC
+    `;
+
+    let rows;
+    try {
+      rows = await conn.query(sqlWithEshop);
+    } catch (eshopErr) {
+      console.error(
+        "⚠️ @SOECOM join failed, trying OCRD.U_CustomerName:",
+        eshopErr?.odbcErrors || eshopErr?.message || eshopErr
+      );
+      try {
+        rows = await conn.query(sqlFallback);
+      } catch (ocrdErr) {
+        console.error(
+          "⚠️ OCRD.U_CustomerName failed, using base query:",
+          ocrdErr?.odbcErrors || ocrdErr?.message || ocrdErr
+        );
+        rows = await conn.query(sqlBase);
+      }
+    }
+
     const orders = (rows || []).map((o) => ({
       ...o,
       eshop_customer_name: String(
-        o.eshop_customer_name || o.ESHOP_CUSTOMER_NAME || ""
+        o.eshop_customer_name || o.ESHOP_CUSTOMER_NAME || o.U_CustomerName || ""
       ).trim(),
       Status: mapStatus(o),
       DocumentStatus: o.DocStatus === "O" ? "bost_Open" : "bost_Close",
@@ -149,11 +210,12 @@ export async function POST(req) {
     const orders = await fetchOrdersList(RepID, { nocache: !!nocache });
     return NextResponse.json({ success: true, orders });
   } catch (err) {
-    console.error("❌ SAP Fetch Orders Error:", err.response?.data || err.message);
+    console.error("❌ SAP Fetch Orders Error:", err.response?.data || err?.odbcErrors || err.message);
     const msg =
       err.response?.data?.error?.message?.value ||
+      err?.odbcErrors?.[0]?.message ||
       err.message ||
       "فشل جلب أوامر البيع.";
-    return NextResponse.json({ error: msg }, { status: 500 });
+    return NextResponse.json({ error: msg, odbcErrors: err.odbcErrors || null }, { status: 500 });
   }
 }

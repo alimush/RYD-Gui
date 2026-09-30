@@ -33,7 +33,7 @@ export async function GET(req) {
     // ⚡ 2) استخدم Pool وليس اتصال جديد
     const conn = await pool.connect();
 
-    const query = `
+    const queryWithEshop = `
       SELECT 
         T0."DocEntry",
         T0."DocNum",
@@ -52,17 +52,87 @@ export async function GET(req) {
       INNER JOIN "RYD"."OCRD" T1 
         ON T0."CardCode" = T1."CardCode"
       LEFT JOIN "RYD"."@SOECOM" S
-        ON S."Code" = T0."CardCode"
+        ON TO_NVARCHAR(S."U_CardCode") = TO_NVARCHAR(T0."CardCode")
       LEFT JOIN "RYD"."OTER" T2 
         ON T1."Territory" = T2."territryID"
       LEFT JOIN "RYD"."OSLP" T3 
         ON T0."SlpCode" = T3."SlpCode"
       INNER JOIN "RYD"."OUSR" T4 
         ON T0."UserSign" = T4."USERID"
-      WHERE T0."DocEntry" = ${docEntry};
+      WHERE T0."DocEntry" = ${docEntry}
     `;
 
-    const result = await conn.query(query);
+    const queryFallback = `
+      SELECT 
+        T0."DocEntry",
+        T0."DocNum",
+        T0."DocDate",
+        T1."CardCode",
+        T1."CardName",
+        T1."Phone1",
+        T1."U_CustomerName" AS "eshop_customer_name",
+        T2."descript" AS "TerritoryName",
+        T3."SlpName" AS "SalesPersonName",
+        T0."U_Department",
+        T0."U_Location",
+        T4."U_NAME" AS "CreatedBy",
+        T0."Comments"
+      FROM "RYD"."ORDR" T0
+      INNER JOIN "RYD"."OCRD" T1 
+        ON T0."CardCode" = T1."CardCode"
+      LEFT JOIN "RYD"."OTER" T2 
+        ON T1."Territory" = T2."territryID"
+      LEFT JOIN "RYD"."OSLP" T3 
+        ON T0."SlpCode" = T3."SlpCode"
+      INNER JOIN "RYD"."OUSR" T4 
+        ON T0."UserSign" = T4."USERID"
+      WHERE T0."DocEntry" = ${docEntry}
+    `;
+
+    const queryBase = `
+      SELECT 
+        T0."DocEntry",
+        T0."DocNum",
+        T0."DocDate",
+        T1."CardCode",
+        T1."CardName",
+        T1."Phone1",
+        T2."descript" AS "TerritoryName",
+        T3."SlpName" AS "SalesPersonName",
+        T0."U_Department",
+        T0."U_Location",
+        T4."U_NAME" AS "CreatedBy",
+        T0."Comments"
+      FROM "RYD"."ORDR" T0
+      INNER JOIN "RYD"."OCRD" T1 
+        ON T0."CardCode" = T1."CardCode"
+      LEFT JOIN "RYD"."OTER" T2 
+        ON T1."Territory" = T2."territryID"
+      LEFT JOIN "RYD"."OSLP" T3 
+        ON T0."SlpCode" = T3."SlpCode"
+      INNER JOIN "RYD"."OUSR" T4 
+        ON T0."UserSign" = T4."USERID"
+      WHERE T0."DocEntry" = ${docEntry}
+    `;
+
+    let result;
+    try {
+      result = await conn.query(queryWithEshop);
+    } catch (eshopErr) {
+      console.error(
+        "⚠️ order-header @SOECOM failed, trying OCRD.U_CustomerName:",
+        eshopErr?.odbcErrors || eshopErr?.message || eshopErr
+      );
+      try {
+        result = await conn.query(queryFallback);
+      } catch (ocrdErr) {
+        console.error(
+          "⚠️ order-header OCRD.U_CustomerName failed, using base:",
+          ocrdErr?.odbcErrors || ocrdErr?.message || ocrdErr
+        );
+        result = await conn.query(queryBase);
+      }
+    }
     await conn.close();
 
     if (!result.length)
@@ -71,7 +141,10 @@ export async function GET(req) {
     const data = {
       ...result[0],
       eshop_customer_name: String(
-        result[0].eshop_customer_name || result[0].ESHOP_CUSTOMER_NAME || ""
+        result[0].eshop_customer_name ||
+          result[0].ESHOP_CUSTOMER_NAME ||
+          result[0].U_CustomerName ||
+          ""
       ).trim(),
     };
 
