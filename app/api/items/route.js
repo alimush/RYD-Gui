@@ -54,7 +54,51 @@ export async function GET(req) {
   try {
     const { searchParams } = new URL(req.url);
     const q = searchParams.get("q")?.trim().toLowerCase() || "";
+    const codesParam = searchParams.get("codes")?.trim() || "";
+    const codes = codesParam
+      ? codesParam
+          .split(",")
+          .map((c) => c.trim())
+          .filter(Boolean)
+          .slice(0, 100)
+      : [];
     const imageBases = getImageBases(req);
+
+    // جلب صور مواد محددة (لتقرير الأوردر / البوب اب)
+    if (codes.length > 0) {
+      const odbc = await getOdbc();
+      const conn = await odbc.connect(CONN_STR);
+      try {
+        const inList = codes.map((c) => `'${c.replace(/'/g, "''")}'`).join(",");
+        const sql = `
+          SELECT
+            oitm."ItemCode",
+            oitm."ItemName",
+            oitm."PicturName"
+          FROM "RYD"."OITM" oitm
+          WHERE oitm."ItemCode" IN (${inList})
+        `;
+        const result = await conn.query(sql);
+        const items = (result || []).map((r) => {
+          const pic = (r.PicturName || "").trim();
+          return {
+            ItemCode: r.ItemCode,
+            ItemName: r.ItemName,
+            image: pic
+              ? `${imageBases.primary}/${pic}`
+              : `${imageBases.primary}/no-image.jpg`,
+            fallbackImage: pic
+              ? `${imageBases.fallback}/${pic}`
+              : `${imageBases.fallback}/no-image.jpg`,
+          };
+        });
+        return NextResponse.json(items);
+      } finally {
+        try {
+          await conn.close();
+        } catch (_) {}
+      }
+    }
 
     // بدون بحث لا نجلب كل المواد (ثقيل ويسبب 500)
     if (!q) {

@@ -21,7 +21,10 @@ import { Listbox, Transition } from "@headlessui/react";
 import { FaMoneyBills } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import generateOrderPDF_RYD from "@/app/utils/generateOrderPDF_RYD";
-const IMG_FALLBACK = "http://172.30.30.237:9086/12007777.jpg";
+
+const LOCAL_IMAGE_BASE = "http://172.30.30.96:8777";
+const PUBLIC_IMAGE_BASE = "http://109.205.118.249:8777";
+const IMG_FALLBACK = `${PUBLIC_IMAGE_BASE}/no-image.jpg`;
 
 export default function ReportPopup({ order, onClose, onCanceled, onUpdated }) {
   // نحتفظ بنسخة محلية من الأوردر لكي نقدر نحدّثها فورًا بعد الحفظ بدون ريفرش
@@ -30,6 +33,7 @@ export default function ReportPopup({ order, onClose, onCanceled, onUpdated }) {
   const [editMode, setEditMode] = useState(false);
   const [draftLines, setDraftLines] = useState([]);
   const [allItems, setAllItems] = useState([]);
+  const [itemImages, setItemImages] = useState({});
   const [canceling, setCanceling] = useState(false);
   const [isCanceled, setIsCanceled] = useState(false);
   const [saving, setSaving] = useState(false);
@@ -155,6 +159,60 @@ const originalDisc = fromSAP
     }
   }, [currentOrder]);
 
+  const lineItemCodesKey = useMemo(
+    () =>
+      [
+        ...new Set((draftLines || []).map((r) => r.ItemCode).filter(Boolean)),
+      ]
+        .sort()
+        .join(","),
+    [draftLines]
+  );
+
+  // 🖼️ تحميل صور مواد الأسطر عند فتح البوب اب
+  useEffect(() => {
+    if (!lineItemCodesKey) return;
+    const codes = lineItemCodesKey.split(",");
+
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(
+          `/api/items?codes=${encodeURIComponent(codes.join(","))}`
+        );
+        const data = await res.json();
+        if (!res.ok || !Array.isArray(data) || cancelled) return;
+
+        setItemImages((prev) => {
+          const next = { ...prev };
+          for (const it of data) {
+            if (!it?.ItemCode) continue;
+            next[it.ItemCode] = {
+              image: it.image || `${LOCAL_IMAGE_BASE}/no-image.jpg`,
+              fallbackImage:
+                it.fallbackImage || `${PUBLIC_IMAGE_BASE}/no-image.jpg`,
+            };
+          }
+          for (const code of codes) {
+            if (!next[code]) {
+              next[code] = {
+                image: `${LOCAL_IMAGE_BASE}/${code}.jpg`,
+                fallbackImage: `${PUBLIC_IMAGE_BASE}/${code}.jpg`,
+              };
+            }
+          }
+          return next;
+        });
+      } catch (err) {
+        console.error("❌ Failed to load line images:", err);
+      }
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [lineItemCodesKey]);
+
   // اقتراحات البحث من API مباشرة
   useEffect(() => {
     const s = addQuery.trim().toLowerCase();
@@ -183,6 +241,17 @@ const originalDisc = fromSAP
         const items = Array.isArray(data) ? data : [];
         setAllItems(items);
         setAddSuggestions(items.slice(0, 12));
+        setItemImages((prev) => {
+          const next = { ...prev };
+          for (const it of items) {
+            if (!it?.ItemCode) continue;
+            next[it.ItemCode] = {
+              image: it.image,
+              fallbackImage: it.fallbackImage,
+            };
+          }
+          return next;
+        });
       } catch (err) {
         if (err.name === "AbortError") return;
         console.error(err);
@@ -198,10 +267,30 @@ const originalDisc = fromSAP
   }, [addQuery]);
 
   const findImage = (itemCode) => {
+    const mapped = itemImages[itemCode];
+    if (mapped?.image) return mapped.image;
+
     const hit =
-      allItems.find((i) => i.ItemCode === itemCode)?.ImageURL ||
-      allItems.find((i) => i.ItemCode === itemCode)?.image;
-    return hit || `http://172.30.30.237:9086/${itemCode}.jpg`;
+      allItems.find((i) => i.ItemCode === itemCode)?.image ||
+      allItems.find((i) => i.ItemCode === itemCode)?.ImageURL;
+    if (hit) return hit;
+
+    return `${LOCAL_IMAGE_BASE}/${itemCode}.jpg`;
+  };
+
+  const handleImageError = (e, itemCode) => {
+    const img = e.currentTarget;
+    const mapped = itemImages[itemCode];
+    const fallback = mapped?.fallbackImage || `${PUBLIC_IMAGE_BASE}/${itemCode}.jpg`;
+
+    if (img.src !== fallback && !img.dataset.triedFallback) {
+      img.dataset.triedFallback = "1";
+      img.src = fallback;
+      return;
+    }
+    if (img.src !== IMG_FALLBACK) {
+      img.src = IMG_FALLBACK;
+    }
   };
 
   // تحديث صف محرّر مع دقة أعلى للإجمالي
@@ -722,8 +811,20 @@ const saveChanges = async () => {
           >
             {/* 🔹 صورة المادة */}
             <img
-              src={it.image || it.ImageURL}
-              onError={(e) => (e.target.src = IMG_FALLBACK)}
+              src={it.image || it.ImageURL || it.fallbackImage || IMG_FALLBACK}
+              onError={(e) => {
+                const img = e.currentTarget;
+                if (
+                  it.fallbackImage &&
+                  img.src !== it.fallbackImage &&
+                  !img.dataset.triedFallback
+                ) {
+                  img.dataset.triedFallback = "1";
+                  img.src = it.fallbackImage;
+                  return;
+                }
+                if (img.src !== IMG_FALLBACK) img.src = IMG_FALLBACK;
+              }}
               className="w-10 h-10 rounded-md border border-gray-300 object-cover shadow-sm"
               alt={it.ItemName}
             />
@@ -933,7 +1034,7 @@ const saveChanges = async () => {
                       <td className="p-3">
                         <img
                           src={findImage(r.ItemCode)}
-                          onError={(e) => (e.target.src = IMG_FALLBACK)}
+                          onError={(e) => handleImageError(e, r.ItemCode)}
                           className="w-12 h-12 rounded-md border border-gray-300 object-cover"
                           alt={r.ItemDescription}
                         />
