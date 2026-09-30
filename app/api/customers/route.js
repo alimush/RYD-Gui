@@ -11,8 +11,6 @@ export async function GET(req) {
 
     const conn = await odbc.connect(CONN_STR);
 
-    // eshop_customer_name is linked via @SOECOM.DocNum (order-level),
-    // so it is not available on customer search (no DocNum yet).
     let sql = `
       SELECT
         T0."Phone1",
@@ -37,14 +35,7 @@ export async function GET(req) {
     const result = await conn.query(sql);
     await conn.close();
 
-    const customers = (result || []).map((r) => ({
-      Phone1: r.Phone1,
-      CardName: r.CardName,
-      CardCode: r.CardCode,
-      eshop_customer_name: "",
-    }));
-
-    return new Response(JSON.stringify(customers), {
+    return new Response(JSON.stringify(result), {
       status: 200,
       headers: { "Content-Type": "application/json" },
     });

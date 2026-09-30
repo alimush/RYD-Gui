@@ -207,12 +207,7 @@ export default function SalesOrdersReport() {
                       }}
                       className="block w-full text-left px-4 py-2 hover:bg-gray-100"
                     >
-                      <div>{cust.CardCode} — {cust.CardName}</div>
-                      {cust.eshop_customer_name ? (
-                        <div className="text-xs text-gray-500">
-                          eshop: {cust.eshop_customer_name}
-                        </div>
-                      ) : null}
+                      {cust.CardCode} — {cust.CardName}
                     </button>
                   </li>
                 ))}

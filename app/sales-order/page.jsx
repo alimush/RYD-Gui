@@ -671,11 +671,6 @@ const totalsByCurrency = useMemo(() => {
               <div className="text-xs text-gray-500">
                 📞 {cust.Phone1 || "—"}
               </div>
-              {cust.eshop_customer_name ? (
-                <div className="text-xs text-gray-500 mt-0.5">
-                  eshop: {cust.eshop_customer_name}
-                </div>
-              ) : null}
             </button>
           </motion.li>
         ))
@@ -836,19 +831,6 @@ const totalsByCurrency = useMemo(() => {
      <div className="text-xs text-gray-500">رقم الهاتف</div>
      <div className="font-medium text-sm truncate max-w-[160px]">
        {selectedCustomer.Phone1 || "—"}
-     </div>
-   </div>
- </div>
-
- {/* 🛒 اسم زبون الإي شوب */}
- <div className="flex items-center gap-2">
-   <div className="bg-purple-100 p-2 rounded-lg">
-     <FiUser className="text-purple-600" />
-   </div>
-   <div>
-     <div className="text-xs text-gray-500">eshop_customer_name</div>
-     <div className="font-medium text-sm truncate max-w-[160px]">
-       {selectedCustomer.eshop_customer_name || "—"}
      </div>
    </div>
  </div>
